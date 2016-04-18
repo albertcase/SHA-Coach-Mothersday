@@ -10,7 +10,7 @@ define("TEMPLATE_ROOT", dirname(__FILE__) . '/../template');
 //当前时间
 define("NOWTIME", time());
 //微信公众号id
-define("WX_APPID", 'wx35a6d476b0dda3ea');
+define("WX_APPID", 'wx737a6d5fe4d19c89');
 //微信商户id
 define("WX_BUSID", '1275055201');
 //Curio接口
