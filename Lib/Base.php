@@ -19,7 +19,7 @@ class Base {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
 		$data = curl_exec($ch);
 		curl_close($ch);
-		return json_decode($data);
+		return $data;
 	}	
 
 	protected function postSSLData($url, $postData) {

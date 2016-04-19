@@ -7,6 +7,17 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
+		$mobile = '15121038676';
+		$AcxiomAPI = new \Lib\AcxiomAPI();
+	    echo $AcxiomAPI->sendverifycode($mobile);exit;
+	}
+
+	public function callbackAction() {
+		echo $this->Request()->request->get('openid');
+		exit;
+	}
+
+	public function scanAction() {
 		
 	}
 
@@ -51,4 +62,5 @@ class ApiController extends Controller {
 		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
 		
 	}
+
 }
