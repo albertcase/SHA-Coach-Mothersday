@@ -11,11 +11,11 @@ var gulp = require('gulp'),
 
 //Define the app path
 var path = {
-    all:['template/home.html','app/css/*.css','app/js/*.js'],
-    template:['template/home.html'],
-    css:['app/css/*.css'],
-    js:['app/js/*.js','!app/js/widget.js'],
-    images:['images/*.*']
+    all:['template/home.html','template/gallery.html','./app/css/*.css','./app/js/*.js'],
+    template:['./template/home.html'],
+    css:['./app/css/*.css'],
+    js:['./app/js/*.js','!app/js/widget.js'],
+    images:['./app/images/*.*']
 };
 
 // Browser-sync

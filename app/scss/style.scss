@@ -117,8 +117,7 @@ img{
 }
 
 body{
-  font:0.24rem/1.5 "SimSun",serif;
-  color: #fff;
+  font:0.24rem/1.5 "Arial",'sans-serif';
 }
 
 //for loading
@@ -185,7 +184,6 @@ body{
 }
 
 .wrapper{
-  background: #000;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -194,18 +192,85 @@ body{
     background-size: 100%;
   }
 }
-//for wrap
-.wrap{
-  z-index: 2;
-  position: absolute;
-  @include size(100%,100%);
-  left: 0;
-  top: 0;
+
+//for btn-sprite
+.btn-sprite{
+  background: #fff url("../images/btn-sprite.png") no-repeat;
+  background-size: 100%;
+  width: 2.39rem;
+  height: 0.57rem;
+  border: #000 1px solid;
+  &.btn-gogallery{
+
+  }
+  &.btn-filltext{
+    background-position: 0 -0.87rem;
+  }
 }
-//.logo{
-//  @include size(2.75rem,1.02rem);
-//  margin: 0.45rem auto 0rem;
-//}
+
+//for photo-frame
+.photo{
+  position: relative;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  &.photo-1{
+    background-image: url("../images/show-1.png");
+  }
+  &.photo-2{
+    background-image: url("../images/show-2.png");
+  }
+  &.photo-3{
+    background-image: url("../images/show-3.png");
+  }
+  &.photo-4{
+    background-image: url("../images/show-4.png");
+  }
+  &.photo-5{
+    background-image: url("../images/show-5.png");
+  }
+  .num{
+    color: #140304;
+    font-size: 0.82rem;
+    bottom: 1.2rem;
+    position: absolute;
+    left: 2.4rem;
+    @include transform(rotate(20deg));
+  }
+  .leave-words{
+    position: absolute;
+    @include size(52%,30%);
+    @include transform(rotate(20deg));
+    -webkit-appearance: none;
+    border: none;
+    background: transparent;
+    resize: none;
+  }
+}
+.photo-frame{
+  @include size(7.5rem,8.71rem);
+  #input-tomom{
+
+  }
+  .leave-words{
+    top: 2.5rem;
+    left: 2.4rem;
+    text-align: center;
+    font-size: 0.33rem;
+    color: #000;
+    overflow: hidden;
+  }
+}
+
+textarea::-webkit-input-placeholder {color: #333;}
+textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    #3a0c0a;
+}
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    #3a0c0a;
+}
+textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:    #3a0c0a;
+}
 
 //for pin
 .pin {
@@ -235,197 +300,246 @@ body{
   }
 }
 
-.buttons{
-  position: relative;
-  @include size(5rem,0.86rem);
-  margin: 0.2rem auto 0rem;
-  background: #000;
-  font-size: 0.36rem;
-  color: #fff;
-  text-align: center;
-  line-height: 0.86rem;
-  &.p1-3{
-    margin: 0.4rem auto;
-  }
-
-}
 
 //for .pin-1
 .pin-1{
-  background: url("../images/bg-1.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-  .p1-inner{
-    @include size(6.08rem,8.33rem);
-    background: url("../images/redpacket.png") no-repeat;
-    -webkit-background-size: 100% 100%;
-    background-size: 100% 100%;
-    @include transform(translate(-50%,-50%));
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  .p1-1{
+    @include size(5.71rem,0.42rem);
+    margin: 0.4rem auto;
   }
-  .logo{
-    @include size(2.58rem,0.54rem);
-    margin: 0.6rem auto 0.4rem;
-  }
-  .btn-open{
-    margin: 0 auto 0.5rem;
-    @include size(2.05rem,2.09rem);
+  .kv{
+    margin: 0rem auto 0.4rem;
   }
   .p1-t1{
-    margin: 0 auto;
-    @include size(2.76rem,0.89rem);
+    margin: 0rem auto 0.4rem;
+    @include size(5.46rem,1.26rem);
+  }
+  .btn-sprite{
+    margin: 0rem auto 0.2rem;
   }
 
 }
 
 //for .pin-2
 .pin-2{
-  background:#2b0103 url("../images/p2-bg.png") no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-  .logo{
-    @include size(2.58rem,0.54rem);
-    margin: 1rem auto 0.9rem;
+  .p1-1{
+    @include size(5.71rem,0.42rem);
+    margin: 0.4rem auto;
   }
-  .btn-submit{
+  .buttons{
     position: absolute;
-    bottom: 1.4rem;
-    left: 52%;
-    margin-left: -1rem;
-    @include size(2rem,0.6rem);
+    bottom: 0;
+    width: 100%;
+    height: 1.47rem;
+    padding-top:0.7rem;
+    background: #fff;
+    .btn-sprite{
+      display: inline-block;
+      margin: 0 0.2rem 0;
+    }
+    .btn-back{
+      background-position: 0 -2rem;
+    }
+    .btn-submit{
+      background-position: 0 -4.25rem;
+    }
   }
-  .privacy-term{
-    position: absolute;
-    right: 0.2rem;
-    bottom: 0.2rem;
-    @include size(2.82rem,0.35rem);
+
+}
+
+
+//for pin-3
+input[type='text'],
+input[type='tel']{
+  border: #353535 1px solid;
+  border-radius: 5px;
+  padding: 0.1rem;
+}
+
+.logo{
+  @include size(3.49rem,1.31rem);
+  margin: 0.2rem auto;
+}
+.line-1{
+  width: 90vw;
+  height: 2px;
+  background: #000;
+  border: none;
+  margin: 0.3rem auto;
+}
+.line-2{
+  width: 90vw;
+  height: 0px;
+  border-top: none;
+  border-bottom:#bebebe 2px dotted;
+  margin: 0.3rem auto;
+}
+.pin-3{
+  .info{
+    @include size(4.21rem,0.59rem);
+    margin: 0 auto;
   }
-  .p2-search{
-    position: absolute;
-    left: 0.2rem;
-    bottom: 0.2rem;
-    @include size(3.33rem,0.32rem);
+  .form-btn{
+    @include size(2.9rem,0.8rem);
+    background: url("../images/form-btn.png") no-repeat;
+    background-size: 100%;
   }
-  .term-pop{
-    @include size(6.2rem,8.5rem);
+  .form-validate{
+    width: 6rem;
+    margin: 0 auto;
+    .input-box{
+      position: relative;
+      overflow: hidden;
+    }
+    .file-title{
+      display: block;
+      @include size(2.07rem,0.4rem);
+      margin: 0.4rem 0 0.2rem;
+      background: url("../images/title.png") no-repeat;
+      background-size: 100%;
+    }
+    .input-phone{
+      float: left;
+      height: 0.5rem;
+      margin-right: 0.1rem;
+      margin-left: 0.1rem;
+    }
+    .btn-getkeycode{
+      float: left;
+      display: inline-block;
+      //background-position: 0 100%;
+      border: none;
+      padding: 0;
+      position: absolute;
+      right: -0.6rem;
+    }
+    .input-keycode{
+      height: 0.5rem;
+      float: left;
+      margin-left: 0.1rem;
+      width: 5.5rem;
+    }
+  }
+  .form-btn-submit{
+    background-position: 0 100%;
+    background-size: 100%;
+    margin: 0.2rem auto;
+  }
+}
+
+
+//for pin-4
+.pin-4{
+  .info{
+    @include size(3.36rem,0.65rem);
+    margin: 0 auto;
+  }
+  .file-title{
+    display: block;
+    @include size(2.07rem,0.4rem);
+    background: url("../images/title.png") no-repeat;
+    background-size: 100%;
+    background-position: 0 100%;
+
+  }
+  input[type='text']{
+    height: 0.5rem;
+    padding: 1vw;
+  }
+  .form-info{
+    width: 90vw;
+    margin: 0 auto;
+    .input-box{
+      position: relative;
+      //width: 32vw;
+      margin: 1vh 0;
+      padding-left: 10vw;
+      box-sizing: border-box;
+      >label{
+        //width: 5vw;
+        position: absolute;
+        left: 0;
+        top: 0.2rem;
+        width: 10vw;
+      }
+    }
+    .input-box-surname{
+      float: left;
+      width: 44vw;
+      .input-surname{
+        width: 30vw;
+      }
+    }
+    .input-box-name{
+      float: right;
+      width: 44vw;
+      .input-name{
+        width: 30vw;
+      }
+    }
+    .input-mobile{
+      width: 76vw;
+    }
+    .input-box-gender{
+      clear: both;
+      position: relative;
+      margin: 0.2rem 0;
+      padding-top: 0.2rem;
+      .label-gender{
+
+      }
+      .radio-collection{
+        width: 42vw;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .radio-inline{
+        float: left;
+        display: inline-block;
+        width: 20vw;
+        height: 0.5rem;
+        border: #474747 1px solid;
+        border-radius: 3px 0px 0px 3px;
+      }
+      .radio-inline-2{
+        border-radius: 0px 3px 3px 0px
+      }
+    }
+    .input-box-email{
+      .input-email-pre{
+        width: 45vw;
+      }
+      .input-email-after{
+        width: 23vw;
+      }
+    }
+  }
+  .form-btn-submit{
+    @include size(2.9rem,0.7rem);
+    background: url("../images/form-btn.png") 0 100% no-repeat;
+    background-size: 100%;
+    margin: 0.3rem auto;
+  }
+  .terms{
+    color: #a4a4a4;
+    a{
+      color: #000;
+    }
+  }
+}
+
+//for pin-5
+.pin-5{
+  .coupon{
+    display: block;
+    @include size(6.94rem,3.21rem);
     position: absolute;
     top: 50%;
     left: 50%;
     @include transform(translate(-50%,-50%));
-    background: rgba(0,0,0,0.9);
-    .term-text{
-      @include size(4.19rem,1.91rem);
-      margin: 2.4rem auto;
-    }
-    .tips{
-      @include size(1.91rem,0.29rem);
-      margin: 0.2rem auto;
-    }
   }
 }
 
-input[type="text"],
-input[type="tel"]{
-  border: none;
-  background: url("../images/input-border.png") bottom center no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-}
-.form-validate{
-  position: relative;
-  width: 6.35rem;
-  margin: 0 auto;
-  .input-box{
-    position: relative;
-    input[type="text"],input[type="tel"]{
-      @include size(6.35rem,0.67rem);
-      text-align: center;
-      font-size: 0.3rem;
-      color: #efce92;
-    }
-  }
-  .btn-getkeycode{
-    @include size(1.68rem,0.42rem);
-    position: absolute;
-    top: 0.15rem;
-    right: 0.5rem;
-    background: url("../images/btn-getkeycode.png") bottom center no-repeat;
-    -webkit-background-size: 100%;
-    background-size: 100%;
-    border: none;
-    &.countdown{
-      background: #5d2827;
-      border-radius: 10px;
-      color: #bf8b67;
-      font-size: 0.24rem;
-      line-height: 0.42rem;
-      padding: 0;
-    }
-  }
-}
-::-webkit-input-placeholder{
-  color: rgba(239,206,146,0.6);
-}
-:-moz-placeholder { /* Firefox 18- */
-  color: rgba(239,206,146,0.6);
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-  color: rgba(239,206,146,0.6);
-}
-
-:-ms-input-placeholder {
-  color: rgba(239,206,146,0.6);
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  background: transparent;
-  color: #efce92;
-}
-
-//for pin-3
-.pin-3{
-  background:url("../images/p3-bg.png") no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-  .logo{
-    @include size(2.01rem,2.05rem);
-    margin: 2.2rem auto 0.8rem;
-  }
-  .p3-t1{
-    @include size(3.52rem,2.24rem);
-    margin: 0 auto 2.5rem;
-    .tt{
-      width: 100%;
-      background: url("../images/money-list.png") no-repeat;
-      background-size: 100%;
-    }
-    .t1{
-      height: 0.6rem;
-      background-position: 0 0;
-    }
-    .t2{
-      height: 1rem;
-      background-position: 0 31%;
-      margin: 0 auto 0.2rem;
-      &.money2{
-        background-position: 0 75%;
-      }
-    }
-    .t3{
-      height: 0.3rem;
-      background-position: 0 100%;
-    }
-  }
-  .btn{
-    @include size(2.52rem,0.6rem);
-    margin: 0 auto 0.2rem;
-  }
-}
 .qrcode-pop{
   &.popup{
     width: 80%;
@@ -454,96 +568,13 @@ select:-webkit-autofill {
 .share-pop{
   .share-1{
     float: right;
-    @include size(3.67rem,3.4rem);
-  }
-  .share-2{
-    clear: both;
-    @include size(4.38rem,0.78rem);
-    margin: 0 auto ;
-    position: relative;
-    top: -1.6rem;
-  }
-  .p3-3{
-    @include size(4.08rem,4.57rem);
-    margin: 0 auto;
-    position: relative;
-  }
-  .btn-close{
-    position: absolute;
-    left: 50%;
-    bottom: 1rem;
-    margin-left: -0.3rem;
+    @include size(6.29rem,3.91rem);
+    margin-top: 0.4rem;
+    margin-right: 0.2rem;
   }
 }
 
 
-//for pin-4
-.pin-4{
-  background:url("../images/coupon-bg.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-  .logo{
-    margin: 1rem auto 0.8rem;
-    @include size(2.88rem,0.6rem);
-  }
-  .tmall{
-    margin: 0 auto;
-    @include size(6.89rem,4.43rem);
-  }
-  .weixin{
-    margin: -0.2rem auto 0;
-    @include size(6.89rem,4.51rem);
-  }
-}
-
-//for pin-5
-.pin-5{
-  background:#531320 url("../images/c-bg2.png") no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-  .logo{
-    margin: 1.1rem auto 0.5rem;
-    @include size(1.62rem,1.66rem);
-  }
-  .c-text{
-    margin: 0rem auto 0.1rem;
-    @include size(5.42rem,0.53rem);
-  }
-  .c-2{
-    margin: 0rem auto;
-    @include size(7.5rem,3.56rem);
-  }
-  .tao-wrap{
-    width: 5.9rem;
-    margin: 0 auto;
-    .title{
-      text-align: left;
-      margin-bottom: 0.2rem;
-      @include size(1.23rem,0.35rem);
-    }
-    .tao-code{
-      position: relative;
-      z-index: 10;
-      font-size: 0.27rem;
-      color: #000;
-      box-sizing: border-box;
-      padding: 0.6rem 0.5rem;
-      background: #e5c69f;
-      width: 100%;
-      height: 2.6rem;
-      text-align: left;
-      -webkit-appearance: none;
-      line-height: 1.5;
-      border: none;
-      border-radius: 0;
-      background: -moz-linear-gradient(top,#d9b78c,#f7ddba,#d9b78c);
-      background: -webkit-linear-gradient(top,#d9b78c,#f7ddba,#d9b78c);
-      background: -ms-linear-gradient(top,#d9b78c,#f7ddba,#d9b78c);
-      background: -o-linear-gradient(top,#d9b78c,#f7ddba,#d9b78c);
-      background: linear-gradient(top,#d9b78c,#f7ddba,#d9b78c);
-    }
-  }
-}
 
 
 //for ajax loading
@@ -643,6 +674,16 @@ select:-webkit-autofill {
     position: absolute;
     left: 0.2rem;
     bottom: 0.2rem;
+  }
+}
+
+//for gallery page
+.gallery{
+  .item{
+    @include size(3.3rem,4.3rem);
+  }
+  .photo{
+    @include size(3.28rem,3.80rem);
   }
 }
 
