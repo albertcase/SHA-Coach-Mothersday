@@ -677,6 +677,16 @@ input[type='tel']{
   }
 }
 
+//for gallery page
+.gallery{
+  .item{
+    @include size(3.3rem,4.3rem);
+  }
+  .photo{
+    @include size(3.28rem,3.80rem);
+  }
+}
+
 //test
 #__bs_notify__{
   display: none !important;

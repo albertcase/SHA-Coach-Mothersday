@@ -861,6 +861,15 @@ input[type='tel'] {
   bottom: 0.2rem;
 }
 
+.gallery .item {
+  width: 3.3rem;
+  height: 4.3rem;
+}
+.gallery .photo {
+  width: 3.28rem;
+  height: 3.8rem;
+}
+
 #__bs_notify__ {
   display: none !important;
 }
