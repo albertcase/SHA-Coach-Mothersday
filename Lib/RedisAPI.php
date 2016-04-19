@@ -27,6 +27,14 @@ class RedisAPI {
 		$this->_redis->del("Coach:" . $openid);
 	}
 
+	public function incrkey($table) {
+		$redis->hIncrBy('primarykey', $table, 1);
+	}
+
+	public function getkey($table) {
+		$redis->hGet('primarykey', $table);
+	}
+
 	public function setGreeting($uid, $greeting, $type) {
 		$this->_redis->lPush("Coach:Greeting", $uid . '|' . $greeting . '|' . $type);
 	}

@@ -7,15 +7,26 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
-		$mobile = '15121038676';
-		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    echo $AcxiomAPI->sendverifycode($mobile);exit;
+		// $mobile = '15121038676';
+		// $AcxiomAPI = new \Lib\AcxiomAPI();
+	 //    echo $AcxiomAPI->sendverifycode($mobile);exit;
+		$redis = new \Lib\RedisAPI();
+		echo $redis->getkey('test');exit;
+		$redis->incrkey('test');
 	}
 
 	public function callbackAction() {
 		echo $this->Request()->request->get('openid');
 		exit;
 	}
+
+	public function getdataAction() {
+		$data = $GLOBALS['HTTP_RAW_POST_DATA'];	
+		$data = json_decode($data, true);
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		$DatabaseAPI->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+	}
+
 
 	public function scanAction() {
 		

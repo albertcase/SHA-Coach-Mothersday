@@ -16,12 +16,12 @@ define("WX_BUSID", '1275055201');
 //Curio接口
 define("CURIO_AUTH_URL", 'http://coach.samesamechina.com/api/wechat/oauth/auth/a44fe2a7-c23c-453e-ba40-e7e214e040b8');
 define("CURIO_TOKEN", 'zcBpBLWyAFy6xs3e7HeMPL9zWrd7Xy');
-define("CURIO_JS_ID", '8309bc61-3c78-41d5-a1be-2f9e9ca01e95');
+define("CURIO_JS_ID", 'c102fde9-634a-4c9a-8936-6d8a0faf156e');
 
 //Database config info
 define("DBHOST", '127.0.0.1');
 define("DBUSER", 'root');
-define("DBPASS", '');
+define("DBPASS", '1qazxsw2');
 define("DBNAME", 'coach_mothersday');
 
 
