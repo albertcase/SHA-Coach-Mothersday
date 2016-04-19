@@ -195,8 +195,7 @@ img {
 }
 
 body {
-  font: 0.24rem/1.5 "SimSun",serif;
-  color: #fff;
+  font: 0.24rem/1.5 "Arial",'sans-serif';
 }
 
 .preloading {
@@ -328,7 +327,6 @@ body {
   }
 }
 .wrapper {
-  background: #000;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -338,13 +336,94 @@ body {
   background-size: 100%;
 }
 
-.wrap {
-  z-index: 2;
+.btn-sprite {
+  background: #fff url("../images/btn-sprite.png") no-repeat;
+  background-size: 100%;
+  width: 2.39rem;
+  height: 0.57rem;
+  border: #000 1px solid;
+}
+.btn-sprite.btn-filltext {
+  background-position: 0 -0.87rem;
+}
+
+.photo {
+  position: relative;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.photo.photo-1 {
+  background-image: url("../images/show-1.png");
+}
+.photo.photo-2 {
+  background-image: url("../images/show-2.png");
+}
+.photo.photo-3 {
+  background-image: url("../images/show-3.png");
+}
+.photo.photo-4 {
+  background-image: url("../images/show-4.png");
+}
+.photo.photo-5 {
+  background-image: url("../images/show-5.png");
+}
+.photo .num {
+  color: #140304;
+  font-size: 0.82rem;
+  bottom: 1.2rem;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
+  left: 2.4rem;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+.photo .leave-words {
+  position: absolute;
+  width: 52%;
+  height: 30%;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  resize: none;
+}
+
+.photo-frame {
+  width: 7.5rem;
+  height: 8.71rem;
+}
+.photo-frame .leave-words {
+  top: 2.5rem;
+  left: 2.4rem;
+  text-align: center;
+  font-size: 0.33rem;
+  color: #000;
+  overflow: hidden;
+}
+
+textarea::-webkit-input-placeholder {
+  color: #333;
+}
+
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #3a0c0a;
+}
+
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #3a0c0a;
+}
+
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #3a0c0a;
 }
 
 .pin {
@@ -375,221 +454,233 @@ body {
   width: 100%;
 }
 
-.buttons {
-  position: relative;
-  width: 5rem;
-  height: 0.86rem;
-  margin: 0.2rem auto 0rem;
-  background: #000;
-  font-size: 0.36rem;
-  color: #fff;
-  text-align: center;
-  line-height: 0.86rem;
-}
-.buttons.p1-3 {
+.pin-1 .p1-1 {
+  width: 5.71rem;
+  height: 0.42rem;
   margin: 0.4rem auto;
 }
-
-.pin-1 {
-  background: url("../images/bg-1.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-}
-.pin-1 .p1-inner {
-  width: 6.08rem;
-  height: 8.33rem;
-  background: url("../images/redpacket.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-.pin-1 .logo {
-  width: 2.58rem;
-  height: 0.54rem;
-  margin: 0.6rem auto 0.4rem;
-}
-.pin-1 .btn-open {
-  margin: 0 auto 0.5rem;
-  width: 2.05rem;
-  height: 2.09rem;
+.pin-1 .kv {
+  margin: 0rem auto 0.4rem;
 }
 .pin-1 .p1-t1 {
-  margin: 0 auto;
-  width: 2.76rem;
-  height: 0.89rem;
+  margin: 0rem auto 0.4rem;
+  width: 5.46rem;
+  height: 1.26rem;
+}
+.pin-1 .btn-sprite {
+  margin: 0rem auto 0.2rem;
 }
 
-.pin-2 {
-  background: #2b0103 url("../images/p2-bg.png") no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
+.pin-2 .p1-1 {
+  width: 5.71rem;
+  height: 0.42rem;
+  margin: 0.4rem auto;
 }
-.pin-2 .logo {
-  width: 2.58rem;
-  height: 0.54rem;
-  margin: 1rem auto 0.9rem;
-}
-.pin-2 .btn-submit {
+.pin-2 .buttons {
   position: absolute;
-  bottom: 1.4rem;
-  left: 52%;
-  margin-left: -1rem;
-  width: 2rem;
-  height: 0.6rem;
+  bottom: 0;
+  width: 100%;
+  height: 1.47rem;
+  padding-top: 0.7rem;
+  background: #fff;
 }
-.pin-2 .privacy-term {
-  position: absolute;
-  right: 0.2rem;
-  bottom: 0.2rem;
-  width: 2.82rem;
-  height: 0.35rem;
+.pin-2 .buttons .btn-sprite {
+  display: inline-block;
+  margin: 0 0.2rem 0;
 }
-.pin-2 .p2-search {
-  position: absolute;
-  left: 0.2rem;
-  bottom: 0.2rem;
-  width: 3.33rem;
-  height: 0.32rem;
+.pin-2 .buttons .btn-back {
+  background-position: 0 -2rem;
 }
-.pin-2 .term-pop {
-  width: 6.2rem;
-  height: 8.5rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.9);
+.pin-2 .buttons .btn-submit {
+  background-position: 0 -4.25rem;
 }
-.pin-2 .term-pop .term-text {
-  width: 4.19rem;
-  height: 1.91rem;
-  margin: 2.4rem auto;
+
+input[type='text'],
+input[type='tel'] {
+  border: #353535 1px solid;
+  border-radius: 5px;
+  padding: 0.1rem;
 }
-.pin-2 .term-pop .tips {
-  width: 1.91rem;
-  height: 0.29rem;
+
+.logo {
+  width: 3.49rem;
+  height: 1.31rem;
   margin: 0.2rem auto;
 }
 
-input[type="text"],
-input[type="tel"] {
+.line-1 {
+  width: 90vw;
+  height: 2px;
+  background: #000;
   border: none;
-  background: url("../images/input-border.png") bottom center no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
+  margin: 0.3rem auto;
 }
 
-.form-validate {
-  position: relative;
-  width: 6.35rem;
+.line-2 {
+  width: 90vw;
+  height: 0px;
+  border-top: none;
+  border-bottom: #bebebe 2px dotted;
+  margin: 0.3rem auto;
+}
+
+.pin-3 .info {
+  width: 4.21rem;
+  height: 0.59rem;
   margin: 0 auto;
 }
-.form-validate .input-box {
+.pin-3 .form-btn {
+  width: 2.9rem;
+  height: 0.8rem;
+  background: url("../images/form-btn.png") no-repeat;
+  background-size: 100%;
+}
+.pin-3 .form-validate {
+  width: 6rem;
+  margin: 0 auto;
+}
+.pin-3 .form-validate .input-box {
   position: relative;
+  overflow: hidden;
 }
-.form-validate .input-box input[type="text"], .form-validate .input-box input[type="tel"] {
-  width: 6.35rem;
-  height: 0.67rem;
-  text-align: center;
-  font-size: 0.3rem;
-  color: #efce92;
-}
-.form-validate .btn-getkeycode {
-  width: 1.68rem;
-  height: 0.42rem;
-  position: absolute;
-  top: 0.15rem;
-  right: 0.5rem;
-  background: url("../images/btn-getkeycode.png") bottom center no-repeat;
-  -webkit-background-size: 100%;
+.pin-3 .form-validate .file-title {
+  display: block;
+  width: 2.07rem;
+  height: 0.4rem;
+  margin: 0.4rem 0 0.2rem;
+  background: url("../images/title.png") no-repeat;
   background-size: 100%;
+}
+.pin-3 .form-validate .input-phone {
+  float: left;
+  height: 0.5rem;
+  margin-right: 0.1rem;
+  margin-left: 0.1rem;
+}
+.pin-3 .form-validate .btn-getkeycode {
+  float: left;
+  display: inline-block;
   border: none;
-}
-.form-validate .btn-getkeycode.countdown {
-  background: #5d2827;
-  border-radius: 10px;
-  color: #bf8b67;
-  font-size: 0.24rem;
-  line-height: 0.42rem;
   padding: 0;
+  position: absolute;
+  right: -0.6rem;
 }
-
-::-webkit-input-placeholder {
-  color: rgba(239, 206, 146, 0.6);
+.pin-3 .form-validate .input-keycode {
+  height: 0.5rem;
+  float: left;
+  margin-left: 0.1rem;
+  width: 5.5rem;
 }
-
-:-moz-placeholder {
-  /* Firefox 18- */
-  color: rgba(239, 206, 146, 0.6);
-}
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-  color: rgba(239, 206, 146, 0.6);
-}
-
-:-ms-input-placeholder {
-  color: rgba(239, 206, 146, 0.6);
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-  background: transparent;
-  color: #efce92;
-}
-
-.pin-3 {
-  background: url("../images/p3-bg.png") no-repeat;
-  -webkit-background-size: 100%;
+.pin-3 .form-btn-submit {
+  background-position: 0 100%;
   background-size: 100%;
+  margin: 0.2rem auto;
 }
-.pin-3 .logo {
-  width: 2.01rem;
-  height: 2.05rem;
-  margin: 2.2rem auto 0.8rem;
+
+.pin-4 .info {
+  width: 3.36rem;
+  height: 0.65rem;
+  margin: 0 auto;
 }
-.pin-3 .p3-t1 {
-  width: 3.52rem;
-  height: 2.24rem;
-  margin: 0 auto 2.5rem;
-}
-.pin-3 .p3-t1 .tt {
-  width: 100%;
-  background: url("../images/money-list.png") no-repeat;
+.pin-4 .file-title {
+  display: block;
+  width: 2.07rem;
+  height: 0.4rem;
+  background: url("../images/title.png") no-repeat;
   background-size: 100%;
-}
-.pin-3 .p3-t1 .t1 {
-  height: 0.6rem;
-  background-position: 0 0;
-}
-.pin-3 .p3-t1 .t2 {
-  height: 1rem;
-  background-position: 0 31%;
-  margin: 0 auto 0.2rem;
-}
-.pin-3 .p3-t1 .t2.money2 {
-  background-position: 0 75%;
-}
-.pin-3 .p3-t1 .t3 {
-  height: 0.3rem;
   background-position: 0 100%;
 }
-.pin-3 .btn {
-  width: 2.52rem;
-  height: 0.6rem;
-  margin: 0 auto 0.2rem;
+.pin-4 input[type='text'] {
+  height: 0.5rem;
+  padding: 1vw;
+}
+.pin-4 .form-info {
+  width: 90vw;
+  margin: 0 auto;
+}
+.pin-4 .form-info .input-box {
+  position: relative;
+  margin: 1vh 0;
+  padding-left: 10vw;
+  box-sizing: border-box;
+}
+.pin-4 .form-info .input-box > label {
+  position: absolute;
+  left: 0;
+  top: 0.2rem;
+  width: 10vw;
+}
+.pin-4 .form-info .input-box-surname {
+  float: left;
+  width: 44vw;
+}
+.pin-4 .form-info .input-box-surname .input-surname {
+  width: 30vw;
+}
+.pin-4 .form-info .input-box-name {
+  float: right;
+  width: 44vw;
+}
+.pin-4 .form-info .input-box-name .input-name {
+  width: 30vw;
+}
+.pin-4 .form-info .input-mobile {
+  width: 76vw;
+}
+.pin-4 .form-info .input-box-gender {
+  clear: both;
+  position: relative;
+  margin: 0.2rem 0;
+  padding-top: 0.2rem;
+}
+.pin-4 .form-info .input-box-gender .radio-collection {
+  width: 42vw;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.pin-4 .form-info .input-box-gender .radio-inline {
+  float: left;
+  display: inline-block;
+  width: 20vw;
+  height: 0.5rem;
+  border: #474747 1px solid;
+  border-radius: 3px 0px 0px 3px;
+}
+.pin-4 .form-info .input-box-gender .radio-inline-2 {
+  border-radius: 0px 3px 3px 0px;
+}
+.pin-4 .form-info .input-box-email .input-email-pre {
+  width: 45vw;
+}
+.pin-4 .form-info .input-box-email .input-email-after {
+  width: 23vw;
+}
+.pin-4 .form-btn-submit {
+  width: 2.9rem;
+  height: 0.7rem;
+  background: url("../images/form-btn.png") 0 100% no-repeat;
+  background-size: 100%;
+  margin: 0.3rem auto;
+}
+.pin-4 .terms {
+  color: #a4a4a4;
+}
+.pin-4 .terms a {
+  color: #000;
+}
+
+.pin-5 .coupon {
+  display: block;
+  width: 6.94rem;
+  height: 3.21rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .qrcode-pop.popup {
@@ -622,101 +713,10 @@ select:-webkit-autofill {
 
 .share-pop .share-1 {
   float: right;
-  width: 3.67rem;
-  height: 3.4rem;
-}
-.share-pop .share-2 {
-  clear: both;
-  width: 4.38rem;
-  height: 0.78rem;
-  margin: 0 auto;
-  position: relative;
-  top: -1.6rem;
-}
-.share-pop .p3-3 {
-  width: 4.08rem;
-  height: 4.57rem;
-  margin: 0 auto;
-  position: relative;
-}
-.share-pop .btn-close {
-  position: absolute;
-  left: 50%;
-  bottom: 1rem;
-  margin-left: -0.3rem;
-}
-
-.pin-4 {
-  background: url("../images/coupon-bg.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-}
-.pin-4 .logo {
-  margin: 1rem auto 0.8rem;
-  width: 2.88rem;
-  height: 0.6rem;
-}
-.pin-4 .tmall {
-  margin: 0 auto;
-  width: 6.89rem;
-  height: 4.43rem;
-}
-.pin-4 .weixin {
-  margin: -0.2rem auto 0;
-  width: 6.89rem;
-  height: 4.51rem;
-}
-
-.pin-5 {
-  background: #531320 url("../images/c-bg2.png") no-repeat;
-  -webkit-background-size: 100%;
-  background-size: 100%;
-}
-.pin-5 .logo {
-  margin: 1.1rem auto 0.5rem;
-  width: 1.62rem;
-  height: 1.66rem;
-}
-.pin-5 .c-text {
-  margin: 0rem auto 0.1rem;
-  width: 5.42rem;
-  height: 0.53rem;
-}
-.pin-5 .c-2 {
-  margin: 0rem auto;
-  width: 7.5rem;
-  height: 3.56rem;
-}
-.pin-5 .tao-wrap {
-  width: 5.9rem;
-  margin: 0 auto;
-}
-.pin-5 .tao-wrap .title {
-  text-align: left;
-  margin-bottom: 0.2rem;
-  width: 1.23rem;
-  height: 0.35rem;
-}
-.pin-5 .tao-wrap .tao-code {
-  position: relative;
-  z-index: 10;
-  font-size: 0.27rem;
-  color: #000;
-  box-sizing: border-box;
-  padding: 0.6rem 0.5rem;
-  background: #e5c69f;
-  width: 100%;
-  height: 2.6rem;
-  text-align: left;
-  -webkit-appearance: none;
-  line-height: 1.5;
-  border: none;
-  border-radius: 0;
-  background: -moz-linear-gradient(top, #d9b78c, #f7ddba, #d9b78c);
-  background: -webkit-linear-gradient(top, #d9b78c, #f7ddba, #d9b78c);
-  background: -ms-linear-gradient(top, #d9b78c, #f7ddba, #d9b78c);
-  background: -o-linear-gradient(top, #d9b78c, #f7ddba, #d9b78c);
-  background: linear-gradient(to bottom, #d9b78c, #f7ddba, #d9b78c);
+  width: 6.29rem;
+  height: 3.91rem;
+  margin-top: 0.4rem;
+  margin-right: 0.2rem;
 }
 
 .ajaxpop {
