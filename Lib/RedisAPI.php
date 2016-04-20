@@ -36,31 +36,35 @@ class RedisAPI {
 	}
 
 	public function regUser($openid, $nickname, $headimgurl) {
-		if ($this->_redis->hGet("userid", $openid)) {
-			$id = $this->_redis->hGet("userid", $openid);
-			$userTableKey = "user:" . $id;
-			return $this->_redis->hmGet($userTableKey, array('id', 'openid', 'nickname', 'headimgurl', 'greeting', 'background', 'ballot'));
+		// if ($this->_redis->hGet("userid", $openid)) {
+		// 	$id = $this->_redis->hGet("userid", $openid);
+		// 	$userTableKey = "user:" . $id;
+		// 	return $this->_redis->hmGet($userTableKey, array('id', 'openid', 'nickname', 'headimgurl', 'greeting', 'background', 'ballot'));
+		// }
+		$id = $this->_redis->hGet("userid", $openid);
+		if (!$id) {
+			$id = $this->incrkey('user');
+			$this->_redis->hSet("userid", $openid, $id);
 		}
-		$id = $this->incrkey('user');
-		$this->_redis->hSet("userid", $openid, $id);
 		$userTableKey = "user:" . $id;
 		$user = array('id' => $id, 'openid' => $openid, 'nickname' => $nickname, 'headimgurl' => $headimgurl);
 		$this->_redis->hMset($userTableKey, $user);
 		return $user;
 	}
 
-	public function loadUser($openid) {
+	public function loginUser($openid) {
 		if ($this->_redis->hGet("userid", $openid)) {
 			$id = $this->_redis->hGet("userid", $openid);
-			$userTableKey = "user:" . $id;
-			return $this->_redis->hmGet($userTableKey, array('id', 'openid', 'nickname', 'headimgurl', 'greeting', 'background', 'ballot'));
+			return $id;
 		}
 		$id = $this->incrkey('user');
 		$this->_redis->hSet("userid", $openid, $id);
+		return $id;
+	}
+
+	public function loadUser($id) {
 		$userTableKey = "user:" . $id;
-		$user = array('id' => $id, 'openid' => $openid);
-		$this->_redis->hMset($userTableKey, $user);
-		return $user;
+		return $this->_redis->hmGet($userTableKey, array('id', 'openid', 'nickname', 'headimgurl', 'greeting', 'background', 'ballot'));
 	}
 
 	public function ballot($uid, $gid) {

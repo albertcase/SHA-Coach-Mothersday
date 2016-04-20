@@ -7,7 +7,7 @@ class AcxiomAPI extends Base {
 
     public function sendverifycode($mobile){
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/sendverifycode";
-        $data = array('Mobile' => $mobile);
+        $data = array('mobile' => $mobile);
         $result = $this->postData($ws, json_encode($data)); 
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
@@ -20,7 +20,7 @@ class AcxiomAPI extends Base {
    
     public function customerbind($mobile, $openid, $verifycode){
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/customerbind";
-        $data = array('Mobile' => $mobile, 'Openid' => $openid, 'verifycode' => $verifycode);
+        $data = array('mobile' => $mobile, 'openid' => $openid, 'verifycode' => $verifycode);
         $result = $this->postData($ws, json_encode($data)); 
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
@@ -33,7 +33,7 @@ class AcxiomAPI extends Base {
 
     public function customerregister($firstname, $lastname, $mobile, $email, $gender, $openid){
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/customerregister";
-        $data = array('firstname' => $firstname, 'lastname' => $lastname, 'Mobile' => $mobile, 'Email' => $email, 'gender' => $gender, 'openid' => $openid);
+        $data = array('firstname' => $firstname, 'lastname' => $lastname, 'mobile' => $mobile, 'email' => $email, 'gender' => $gender, 'openid' => $openid);
         $result = $this->postData($ws, json_encode($data)); 
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();

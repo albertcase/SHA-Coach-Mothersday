@@ -21,7 +21,7 @@ define("CURIO_JS_ID", 'c102fde9-634a-4c9a-8936-6d8a0faf156e');
 //Database config info
 define("DBHOST", '127.0.0.1');
 define("DBUSER", 'root');
-define("DBPASS", '1qazxsw2');
+define("DBPASS", '');
 define("DBNAME", 'coach_mothersday');
 
 
