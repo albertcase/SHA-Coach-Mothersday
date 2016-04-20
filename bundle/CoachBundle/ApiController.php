@@ -7,12 +7,14 @@ use Core\Controller;
 class ApiController extends Controller {
 
 	public function testAction() {
-		$mobile = '15121038676';
-		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    echo $AcxiomAPI->sendverifycode($mobile);exit;
+		// $mobile = '15121038676';
+		// $AcxiomAPI = new \Lib\AcxiomAPI();
+	 //    echo $AcxiomAPI->sendverifycode($mobile);exit;
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		$redis = new \Lib\RedisAPI();
+		//$redis->setGreeting('123123', '5'); 
+		var_dump($redis->loadUser($_SESSION['user_id']));exit;
 		$redis->ballot(2,1);
 		var_dump($redis->regUser('oKCDxjivJ92ky4dxLT8dt1jcXtn4', 'nickname', 'headimgurl'));
 		exit;
@@ -135,13 +137,13 @@ class ApiController extends Controller {
 		$request = $this->Request();
 		$fields = array(
 			'greeting' => array('notnull', '3'),
-			'type' => array('notnull', '3'),
+			'background' => array('notnull', '3'),
 		);
 		$request->validation($fields);
 		$greeting = $request->request->get('greeting');
-		$type = $request->request->get('type');
+		$background = $request->request->get('background');
 		$redis = new \Lib\RedisAPI();
-		$rs = $redis->setGreeting($greeting, $type); 	
+		$rs = $redis->setGreeting($greeting, $background); 
 		if ($rs) {
 			return $this->statusPrint(1, '提交成功');
 		}
