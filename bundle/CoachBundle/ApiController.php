@@ -32,8 +32,11 @@ class ApiController extends Controller {
 		$mobile = $request->request->get('mobile');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->sendverifycode($mobile);
-	    if ($rs == 200) {
+	    if ($rs == 1) {
 	    	return $this->statusPrint(1, '提交成功');
+	    }
+	    if ($rs == 2) {
+	    	return $this->statusPrint(3, '已经绑定过');
 	    }
 	    return $this->statusPrint(2, '提交失败');
 	}
@@ -52,8 +55,11 @@ class ApiController extends Controller {
 		$verifycode = $request->request->get('verifycode');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->sendverifycode($mobile, $_SESSION['openid'], $verifycode);
-	    if ($rs == 200) {
+	    if ($rs == 1) {
 	    	return $this->statusPrint(1, '提交成功');
+	    }
+	    if ($rs == 2) {
+	    	return $this->statusPrint(3, '已经绑定过');
 	    }
 	    return $this->statusPrint(2, '提交失败');
 	}
@@ -80,8 +86,11 @@ class ApiController extends Controller {
 		$openid = $request->request->get('openid');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->customerregister($firstname, $lastname, $mobile, $email, $gender, $openid);
-	    if ($rs == 200) {
+	    if ($rs == 1) {
 	    	return $this->statusPrint(1, '提交成功');
+	    }
+	    if ($rs == 2) {
+	    	return $this->statusPrint(3, '已经绑定过');
 	    }
 	    return $this->statusPrint(2, '提交失败');
 	}

@@ -12,10 +12,13 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('sendverifycode', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == 200 ) {
-        	return $rs['responseDesc'];
+        if( $rs['responseCode'] == "200" ) {
+        	return 1;
         }
-        return $rs['responseDesc'];
+        if( $rs['responseCode'] == "001" ) {
+            return 2;
+        }
+        return 0;
     }
    
     public function customerbind($mobile, $openid, $verifycode){
@@ -25,10 +28,13 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('customerbind', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == 200 ) {
-        	return $rs['responseDesc'];
+        if( $rs['responseCode'] == "003" ) {
+        	return 1;
         }
-        return $rs['responseDesc'];
+        if( $rs['responseCode'] == "004" ) {
+            return 2;
+        }
+        return 0;
     }
 
     public function customerregister($firstname, $lastname, $mobile, $email, $gender, $openid){
@@ -38,9 +44,9 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('customerregister', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == 200 ) {
-        	return $rs['responseDesc'];
+        if( $rs['responseCode'] == "200" ) {
+        	return 1;
         }
-        return $rs['responseDesc'];
+        return 0;
     }
 }
