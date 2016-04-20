@@ -10,6 +10,7 @@ $routers['/api/status'] = array('CoachBundle\Api', 'status');
 $routers['/api/islogin'] = array('CoachBundle\Api', 'islogin');
 $routers['/api/greeting'] = array('CoachBundle\Api', 'greeting');
 $routers['/api/ballot'] = array('CoachBundle\Api', 'ballot');
+$routers['/api/list'] = array('CoachBundle\Api', 'list');
 $routers['/api/sendverifycode'] = array('CoachBundle\Api', 'sendverifycode');
 $routers['/api/customerbind'] = array('CoachBundle\Api', 'customerbind');
 $routers['/api/customerregister'] = array('CoachBundle\Api', 'customerregister');

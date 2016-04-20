@@ -87,8 +87,18 @@ class RedisAPI {
 		$userTableKey = "user:" . $id;
 		$user = array('greeting' => $greeting, 'background' => $background);
 		$this->_redis->hMset($userTableKey, $user);
-		$this->_redis->lPush("Coach:Greeting", $_SESSION['user_id'] . '|' . $greeting . '|' . $background);
+		$nickname = $this->_redis->hGet($userTableKey, 'nickname');
+		$this->_redis->lPush("Coach:Greeting", $_SESSION['user_id'] . '|' . $nickname . '|' . $greeting . '|' . $background);
 		return 1;
+	}
+
+	public function isSubscribed($openid) {
+		$info = file_get_contents("http://api.curio.im/v2/wx/users/" . $openid . "?access_token=" . CURIO_TOKEN);
+		$info = json_decode($info, true);
+	    if(isset($info['data']['subscribe']) && $info['data']['subscribe'] == 1)
+	      return 1;
+	    else
+	      return 0;
 	}
 
 	public function getGreeting($page, $row = 8) {
@@ -96,14 +106,15 @@ class RedisAPI {
 		$total = $this->_redis->lSize("Coach:Greeting");
 		$totalpage = ceil( $total / $row );
 		$start = ( $page - 1 ) * $row;
-		$end = $start + $row;
+		$end = $start + $row -1;
 		$arList = $this->_redis->lrange("Coach:Greeting", $start, $end);
 		$returnList = array();
 		for ( $i = 0; $i < count($arList); $i++ ) {
 			$value = explode('|', $arList[$i]);
-			$returnList[$i]['uid'] = $arList[$i][0];
-			$returnList[$i]['greeting'] = $arList[$i][1];
-			$returnList[$i]['type'] = $arList[$i][2];
+			$returnList[$i]['id'] = $value[0];
+			$returnList[$i]['nickname'] = $value[1];
+			$returnList[$i]['greeting'] = $value[2];
+			$returnList[$i]['type'] = $value[3];
 		}		
 		return array('nowpage' => $page, 'rowcount' => $row, 'totalpage' => $totalpage, 'list' => $returnList);
 	}

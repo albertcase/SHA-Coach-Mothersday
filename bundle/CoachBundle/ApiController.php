@@ -13,7 +13,7 @@ class ApiController extends Controller {
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		$redis = new \Lib\RedisAPI();
-		 //$redis->setGreeting('123123', '5'); 
+		 $redis->setGreeting('123123', '5'); 
 		// var_dump($redis->loadUser($_SESSION['user_id']));exit;
 		 $redis->ballot(2,1);
 		//var_dump($redis->regUser('oKCDxjivJ92ky4dxLT8dt1jcXtn4', 'nickname', 'headimgurl'));
@@ -132,27 +132,34 @@ class ApiController extends Controller {
 	}
 
 
-	public function scanAction() {
-		
+	public function listAction() {
+		$redis = new \Lib\RedisAPI();
+		$rs = $redis->getGreeting(1, 8);
+		var_dump($rs);exit;
 	}
 
 	public function statusAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
-		if ( $user->greeting == '' ) {
-			return $this->statusPrint(1, '0');
+		$redis = new \Lib\RedisAPI();
+		$rs = $redis->isSubscribed($_SESSION['openid']); 
+		if ($rs) {
+			return $this->statusPrint(1, '已关注');
 		}
-		return $this->statusPrint(1, '1');
+		return $this->statusPrint(0, '未关注');
 	}
 
 	public function greetingAction() {
 		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
-		
+		$id = $_SESSION['user_id'];
+		$redis = new \Lib\RedisAPI();
+		$info = $redis->loadUser($id);
+		if ($info['greeting']) {
+			return $this->statusPrint(2, '已经提交过了');
+		}
 		$request = $this->Request();
 		$fields = array(
 			'greeting' => array('notnull', '3'),
