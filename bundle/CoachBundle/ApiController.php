@@ -161,4 +161,25 @@ class ApiController extends Controller {
 		
 	}
 
+	public function ballotAction() {
+		if (!isset($_SESSION['user_id'])) {
+			return $this->statusPrint(0, '未登录');
+		}
+		
+		$request = $this->Request();
+		$fields = array(
+			'id' => array('notnull', '3')
+		);
+		$request->validation($fields);
+		$id = $request->request->get('id');
+		$redis = new \Lib\RedisAPI();
+		$rs = $redis->ballot($_SESSION['user_id'], $id); 
+		if ($rs) {
+			return $this->statusPrint(1, '提交成功');
+		}
+		return $this->statusPrint(2, '已经提交过');
+		
+	}
+
+
 }
