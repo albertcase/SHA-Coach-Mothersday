@@ -82,8 +82,13 @@ class RedisAPI {
 		return $this->_redis->flushAll();
 	}
 
-	public function setGreeting($uid, $greeting, $type) {
-		$this->_redis->lPush("Coach:Greeting", $uid . '|' . $greeting . '|' . $type);
+	public function setGreeting($greeting, $type) {
+		$id = $_SESSION['user_id'];
+		$userTableKey = "user:" . $id;
+		$user = array('greeting' => $greeting, 'type' => $type);
+		$this->_redis->hMset($userTableKey, $user);
+		$this->_redis->lPush("Coach:Greeting", $_SESSION['user_id'] . '|' . $greeting . '|' . $type);
+		return 1;
 	}
 
 	public function getGreeting($page, $row = 8) {

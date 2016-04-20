@@ -99,7 +99,7 @@ class ApiController extends Controller {
 		$redis = new \Lib\RedisAPI();
 		$_SESSION['user_id'] = $redis->loginUser($openid);
 		$_SESSION['openid'] = $openid;
-		
+
 		exit;
 	}
 
@@ -127,17 +127,11 @@ class ApiController extends Controller {
 		return $this->statusPrint(1, '1');
 	}
 
-	public function submitAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+	public function greetingAction() {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
-
-		if ( $user->greeting != '' ) {
-			return $this->statusPrint(2, '已经参与过');
-		}
-
+		
 		$request = $this->Request();
 		$fields = array(
 			'greeting' => array('notnull', '3'),
@@ -146,10 +140,8 @@ class ApiController extends Controller {
 		$request->validation($fields);
 		$greeting = $request->request->get('greeting');
 		$type = $request->request->get('type');
-
-		$DatabaseAPI = new \Lib\DatabaseAPI();
-
-		$rs = $DatabaseAPI->setGreeting($user->uid, $greeting, $type); 	
+		$redis = new \Lib\RedisAPI();
+		$rs = $redis->setGreeting($greeting, $type); 	
 		if ($rs) {
 			return $this->statusPrint(1, '提交成功');
 		}
