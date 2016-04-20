@@ -12,15 +12,19 @@
 
     <!-- inject:js -->
     <script type="text/javascript" src="../app/js/lib/zepto.min.js"></script>
+    <script type="text/javascript" src="../app/js/lib/pre-loader.js"></script>
     <script type="text/javascript" src="../app/js/rem.js"></script>
+    <script type="text/javascript" src="../app/js/api.js"></script>
+    <script type="text/javascript" src="../app/js/common.js"></script>
+    <script type="text/javascript" src="../app/js/controller.js"></script>
     <!-- endinject -->
 </head>
 <body>
 <!--preloading-->
-<div class="preloading hide">
+<div class="preloading">
     <div class="inner">
         <div class="l-logo">
-            <img src="http://coachxmas.samesamechina.com/img/loading-logo.png" alt=""/>
+            <img src="../app/images/loading-logo.png" alt=""/>
         </div>
         <div class="icon-loading">
             <span></span>
@@ -76,7 +80,7 @@
             <div class="input-box input-box-phone">
                 <label for="" class="file-title fill-phone"></label>
                 <input type="tel" class="input-phone" name="phone"/>
-                <button class="btn-getkeycode form-btn"></button>
+                <div class="btn-getkeycode form-btn"></div>
             </div>
             <div class="input-box input-box-keycode">
                 <label for="" class="file-title fill-keycode"></label>
@@ -109,18 +113,18 @@
                 <label for="" class="label-gender">性别<span class="icon-require">*</span></label>
                 <!--<input type="radio" class="input-gender" name="gender" value="男"/>-->
                 <div class="radio-collection">
-                    <label class="radio-inline radio-inline-1">
-                        <input type="radio" name="optradio">男
+                    <label class="radio-inline radio-inline-1 actived">
+                        <input type="radio" name="gender" value="男" checked>男
                     </label>
                     <label class="radio-inline radio-inline-2">
-                        <input type="radio" name="optradio">女
+                        <input type="radio" name="gender" value="女">女
                     </label>
                 </div>
                 <!--<input type="radio" class="input-gender" name="gender" value="女"/>-->
             </div>
             <div class="input-box input-box-mobile">
                 <label for="" class="label-mobile">手机 <span class="icon-require">*</span></label>
-                <input type="text" class="input-mobile" name="mobile"/>
+                <input type="text" class="input-mobile" name="mobile" disabled value="123"/>
             </div>
             <div class="input-box input-box-email">
                 <label for="" class="label-email">邮箱 <span class="icon-require">*</span></label>
@@ -128,14 +132,14 @@
                 @
                 <input type="text" class="input-email-after" name="email-after"/>
             </div>
+            <div class="form-btn-submit form-btn"></div>
         </form>
-        <div class="form-btn-submit form-btn"></div>
         <div class="terms">
             提交即代表您同意COACH的<a href="#">隐私协议</a>
         </div>
     </section>
     <!-- coupon page-->
-    <section class="pin pin-5 current">
+    <section class="pin pin-5">
         <a class="coupon" href="#">
             <img src="../app/images/coupon.png" alt=""/>
         </a>
