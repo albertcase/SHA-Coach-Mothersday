@@ -28,11 +28,40 @@ class RedisAPI {
 	}
 
 	public function incrkey($table) {
-		$redis->hIncrBy('primarykey', $table, 1);
+		return $this->_redis->Incr($table, 1);
 	}
 
 	public function getkey($table) {
-		$redis->hGet('primarykey', $table);
+		return $this->_redis->hGet($table);
+	}
+
+	public function regUser($openid, $nickname, $headimgurl) {
+		if ($this->_redis->hGet("userid", $openid)) {
+			$id = $this->_redis->hGet("userid", $openid);
+			$userTableKey = "user:" . $id;
+			return $this->_redis->hmGet($userTableKey, array('id', 'openid', 'nickname', 'headimgurl', 'greeting', 'background', 'ballot'));
+		}
+		$id = $this->incrkey('user');
+		$this->_redis->hSet("userid", $openid, $id);
+		$userTableKey = "user:" . $id;
+		$user = array('id' => $id, 'openid' => $openid, 'nickname' => $nickname, 'headimgurl' => $headimgurl, 'greeting' => '', 'background' => '', 'ballot' => 0);
+		$this->_redis->hMset($userTableKey, $user);
+		return $user;
+	}
+
+	public function ballot($uid, $gid) {
+		$ballotTableKey = "ballot:" . $gid;
+		if ($this->_redis->hGet($ballotTableKey, $uid)) {
+			return 0;
+		}
+		$this->_redis->hSet($ballotTableKey, $uid, '1');
+		$userTableKey = "user:" . $gid;
+		$this->_redis->hIncrBy($userTableKey, 'ballot', 1);
+		return 1;
+	}
+
+	public function flushAll() {
+		return $this->_redis->flushAll();
 	}
 
 	public function setGreeting($uid, $greeting, $type) {

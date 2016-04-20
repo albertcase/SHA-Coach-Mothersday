@@ -11,20 +11,35 @@ class ApiController extends Controller {
 		// $AcxiomAPI = new \Lib\AcxiomAPI();
 	 //    echo $AcxiomAPI->sendverifycode($mobile);exit;
 		$redis = new \Lib\RedisAPI();
-		echo $redis->getkey('test');exit;
-		$redis->incrkey('test');
+		$redis->ballot(2,1);
+		var_dump($redis->regUser('openid', 'nickname', 'headimgurl'));
+		exit;
+	}
+
+	public function isloginAction() {
+		if (!isset($_SESSION['user'])) {
+			return $this->statusPrint(0, '未登录');
+		}
+		return $this->statusPrint(0, $_SESSION['user']);
+	}
+
+	public function flushAction() {
+		$redis = new \Lib\RedisAPI();
+		var_dump($redis->flushAll());exit;
 	}
 
 	public function callbackAction() {
-		echo $this->Request()->request->get('openid');
+		$openid = $this->Request()->request->get('openid');
+		$redis = new \Lib\RedisAPI();
+		var_dump($redis->loadUser($openid));
 		exit;
 	}
 
 	public function getdataAction() {
 		$data = $GLOBALS['HTTP_RAW_POST_DATA'];	
 		$data = json_decode($data, true);
-		$DatabaseAPI = new \Lib\DatabaseAPI();
-		$DatabaseAPI->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+		$redis = new \Lib\RedisAPI();
+		$redis->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
 	}
 
 
