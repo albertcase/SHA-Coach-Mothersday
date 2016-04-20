@@ -149,10 +149,10 @@ img {
 
 .error {
   display: block;
-  width: 5rem;
-  color: #FFFFFF;
+  width: 100%;
+  color: #d61414;
   font-size: 0.2rem;
-  text-align: center;
+  text-align: left;
   margin: 0.1rem auto;
 }
 
@@ -397,6 +397,7 @@ body {
 .photo-frame {
   width: 7.5rem;
   height: 8.71rem;
+  margin: 0 auto;
 }
 .photo-frame .leave-words {
   top: 2.5rem;
@@ -542,6 +543,7 @@ input[type='tel'] {
 .pin-3 .form-validate .input-box {
   position: relative;
   overflow: hidden;
+  text-align: left;
 }
 .pin-3 .form-validate .file-title {
   display: block;
@@ -552,7 +554,6 @@ input[type='tel'] {
   background-size: 100%;
 }
 .pin-3 .form-validate .input-phone {
-  float: left;
   height: 0.5rem;
   margin-right: 0.1rem;
   margin-left: 0.1rem;
@@ -626,6 +627,7 @@ input[type='tel'] {
 }
 .pin-4 .form-info .input-mobile {
   width: 76vw;
+  background: #ccc;
 }
 .pin-4 .form-info .input-box-gender {
   clear: both;
@@ -643,11 +645,28 @@ input[type='tel'] {
   display: inline-block;
   width: 20vw;
   height: 0.5rem;
+  line-height: 0.5rem;
   border: #474747 1px solid;
   border-radius: 3px 0px 0px 3px;
+  text-align: center;
+  color: #000;
+}
+.pin-4 .form-info .input-box-gender .radio-inline.actived {
+  color: #fff;
+  background: #000;
 }
 .pin-4 .form-info .input-box-gender .radio-inline-2 {
   border-radius: 0px 3px 3px 0px;
+  border-left: none;
+}
+.pin-4 .form-info .input-box-gender input[name='gender'] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.pin-4 .form-info .input-box-gender input[name='gender']:focus {
+  border: none;
+  outline: none;
 }
 .pin-4 .form-info .input-box-email .input-email-pre {
   width: 45vw;
@@ -657,7 +676,7 @@ input[type='tel'] {
 }
 .pin-4 .form-btn-submit {
   width: 2.9rem;
-  height: 0.7rem;
+  height: 0.9rem;
   background: url("../images/form-btn.png") 0 100% no-repeat;
   background-size: 100%;
   margin: 0.3rem auto;
