@@ -23,8 +23,8 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    //Common.goHomepage();
-                    Common.goInfoPage();
+                    Common.goHomepage();
+                    //Common.goInfoPage();
 
                     //	go gallery page
                     $('.btn-gogallery').on('click',function(e){
@@ -33,7 +33,10 @@
 
                     $('.btn-filltext').on('click',function(){
                         //ifplay,if not, go page pin-2,else go myphoto page
-                        Common.goWriteGreetingPage();
+                        API.isLogin(function(data){
+                            console.log(data);
+                        });
+                        //Common.goWriteGreetingPage();
                     });
 
                     $('.pin-2 .btn-submit').on('click', function(){
