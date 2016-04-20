@@ -13,10 +13,10 @@ class ApiController extends Controller {
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		$redis = new \Lib\RedisAPI();
-		//$redis->setGreeting('123123', '5'); 
-		var_dump($redis->loadUser($_SESSION['user_id']));exit;
-		$redis->ballot(2,1);
-		var_dump($redis->regUser('oKCDxjivJ92ky4dxLT8dt1jcXtn4', 'nickname', 'headimgurl'));
+		 //$redis->setGreeting('123123', '5'); 
+		// var_dump($redis->loadUser($_SESSION['user_id']));exit;
+		 $redis->ballot(2,1);
+		//var_dump($redis->regUser('oKCDxjivJ92ky4dxLT8dt1jcXtn4', 'nickname', 'headimgurl'));
 		exit;
 	}
 
@@ -64,12 +64,22 @@ class ApiController extends Controller {
 		}
 		$request = $this->Request();
 		$fields = array(
-			'mobile' => array('mobile', '3')
+			'firstname' => array('notnull', '3'),
+			'lastname' => array('notnull', '3'),
+			'mobile' =>  array('mobile', '3'),
+			'email' => array('notnull', '3'),
+			'gender' =>  array('notnull', '3'),
+			'openid' => array('notnull', '3')
 		);
 		$request->validation($fields);
+		$firstname = $request->request->get('firstname');
+		$lastname = $request->request->get('lastname');
+		$mobile = $request->request->get('mobile');
+		$email = $request->request->get('email');
+		$gender = $request->request->get('gender');
 		$openid = $request->request->get('openid');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    $rs = $AcxiomAPI->customerregister($mobile);
+	    $rs = $AcxiomAPI->customerregister($firstname, $lastname, $mobile, $email, $gender, $openid);
 	    if ($rs == 200) {
 	    	return $this->statusPrint(1, '提交成功');
 	    }
