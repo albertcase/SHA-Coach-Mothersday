@@ -9,8 +9,8 @@ class ApiController extends Controller {
 	public function testAction() {
 		$mobile = '15121038676';
 		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    //echo $AcxiomAPI->sendverifycode($mobile);exit;
-	    echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
+	    echo $AcxiomAPI->sendverifycode($mobile);exit;
+	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		$redis = new \Lib\RedisAPI();
 		$redis->ballot(2,1);
@@ -98,6 +98,8 @@ class ApiController extends Controller {
 		$openid = $request->query->get('openid');
 		$redis = new \Lib\RedisAPI();
 		$_SESSION['user_id'] = $redis->loginUser($openid);
+		$_SESSION['openid'] = $openid;
+		
 		exit;
 	}
 
