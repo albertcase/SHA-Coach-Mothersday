@@ -33,9 +33,8 @@
 
                     $('.btn-filltext').on('click',function(){
                         //ifplay,if not, go page pin-2,else go myphoto page
-                        API.isLogin(function(data){
-                            console.log(data);
-                        });
+
+
                         //Common.goWriteGreetingPage();
                     });
 

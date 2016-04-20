@@ -14,7 +14,7 @@ API = {
     // greeting  background
     writeGreeting:function(obj,callback){
         $.ajax({
-            url:'/api/islogin',
+            url:'/api/greeting',
             type:'POST',
             dataType:'json',
             data:obj,
@@ -73,3 +73,35 @@ API = {
     }
 
 };
+
+//test api
+(function(){
+    //API.writeGreeting({greeting:'happy',background:1},function(data){
+    //    console.log(data);
+    //});
+
+    //API.ballot({id:121212},function(data){
+    //    console.log(data);
+    //});
+
+    //API.sendVerifycode({mobile:18502130583},function(data){
+    //    console.log(data);
+    //});
+
+    //API.customerBind({mobile:18502130583,verifycode:'8288'},function(data){
+    //    console.log(data);
+    //});
+
+    API.customerRegister({
+        firstname:'zhang',
+        lastname:'ya',
+        mobile :'18502130583',
+        email:'1@qq.com',
+        gender:'女',
+        openid:'123',
+    },
+    function(data){
+        console.log(data);
+    });
+
+})();
