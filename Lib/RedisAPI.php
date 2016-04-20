@@ -93,8 +93,9 @@ class RedisAPI {
 	}
 
 	public function isSubscribed($openid) {
-		$info = file_get_contents("http://api.curio.im/v2/wx/users/" . $openid . "?access_token=" . CURIO_TOKEN);
+		$info = file_get_contents("http://coach.samesamechina.com/v2/wx/users/" . $openid . "/access_token/" . CURIO_TOKEN);
 		$info = json_decode($info, true);
+		var_dump($info);die;
 	    if(isset($info['data']['subscribe']) && $info['data']['subscribe'] == 1)
 	      return 1;
 	    else

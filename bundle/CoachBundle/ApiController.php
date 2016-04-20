@@ -13,9 +13,10 @@ class ApiController extends Controller {
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		$redis = new \Lib\RedisAPI();
-		 $redis->setGreeting('123123', '5'); 
+		$rs = $redis->setGreeting('123123', '5'); 
+		var_dump($rs);exit;
 		// var_dump($redis->loadUser($_SESSION['user_id']));exit;
-		 $redis->ballot(2,1);
+		//$redis->ballot(2,1);
 		//var_dump($redis->regUser('oKCDxjivJ92ky4dxLT8dt1jcXtn4', 'nickname', 'headimgurl'));
 		exit;
 	}
@@ -133,9 +134,13 @@ class ApiController extends Controller {
 
 
 	public function listAction() {
+		$request = $this->Request();
+		$page = $request->query->get('page') ? $request->query->get('page') : 1;
+		$row = $request->query->get('row') ? $request->query->get('row') : 4;
 		$redis = new \Lib\RedisAPI();
-		$rs = $redis->getGreeting(1, 8);
-		var_dump($rs);exit;
+		$rs = $redis->getGreeting($page, $row);
+		return $this->statusPrint(1, $rs);
+		
 	}
 
 	public function statusAction() {
@@ -143,11 +148,13 @@ class ApiController extends Controller {
 			return $this->statusPrint(0, '未登录');
 		}
 		$redis = new \Lib\RedisAPI();
-		$rs = $redis->isSubscribed($_SESSION['openid']); 
+		//Eric 获取用户资料（关注） 微信js 
+		//$rs = $redis->isSubscribed($_SESSION['openid']); 
+		$rs = 1;
 		if ($rs) {
 			return $this->statusPrint(1, '已关注');
 		}
-		return $this->statusPrint(0, '未关注');
+		return $this->statusPrint(2, '未关注');
 	}
 
 	public function greetingAction() {
