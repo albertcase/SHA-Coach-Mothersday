@@ -29,7 +29,12 @@ class ApiController extends Controller {
 	}
 
 	public function callbackAction() {
-		$openid = $this->Request()->request->get('openid');
+		$request = $this->Request();
+		$fields = array(
+			'openid' => array('notnull', '3')
+		);
+		$request->validation($fields);
+		$openid = $request->query->get('openid');
 		$redis = new \Lib\RedisAPI();
 		var_dump($redis->loadUser($openid));
 		exit;

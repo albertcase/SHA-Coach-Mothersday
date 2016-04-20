@@ -44,7 +44,21 @@ class RedisAPI {
 		$id = $this->incrkey('user');
 		$this->_redis->hSet("userid", $openid, $id);
 		$userTableKey = "user:" . $id;
-		$user = array('id' => $id, 'openid' => $openid, 'nickname' => $nickname, 'headimgurl' => $headimgurl, 'greeting' => '', 'background' => '', 'ballot' => 0);
+		$user = array('id' => $id, 'openid' => $openid, 'nickname' => $nickname, 'headimgurl' => $headimgurl);
+		$this->_redis->hMset($userTableKey, $user);
+		return $user;
+	}
+
+	public function loadUser($openid) {
+		if ($this->_redis->hGet("userid", $openid)) {
+			$id = $this->_redis->hGet("userid", $openid);
+			$userTableKey = "user:" . $id;
+			return $this->_redis->hmGet($userTableKey, array('id', 'openid', 'nickname', 'headimgurl', 'greeting', 'background', 'ballot'));
+		}
+		$id = $this->incrkey('user');
+		$this->_redis->hSet("userid", $openid, $id);
+		$userTableKey = "user:" . $id;
+		$user = array('id' => $id, 'openid' => $openid);
 		$this->_redis->hMset($userTableKey, $user);
 		return $user;
 	}
