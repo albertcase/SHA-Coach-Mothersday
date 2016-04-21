@@ -23,7 +23,15 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    Common.goWriteGreetingPage();
+                    //Api.isFollow(function(data){
+                    //    console.log(data);
+                    //    if(!data.status){
+                    //        $('.qrcode-pop').removeClass('hide');
+                    //    }
+                    //});
+                    //Common.goHomepage();
+                    Common.cameraPage();
+                    self.renderPhoto();
                     //Common.goInfoPage();
 
                     //	go gallery page
@@ -31,14 +39,31 @@
                         Common.goGallerypage();
                     });
 
+                    //write your message
                     $('.btn-filltext').on('click',function(){
                         //ifplay,if not, go page pin-2,else go myphoto page
+                        Api.isLogin(function(data){
+                            console.log(data);
+                            if(data.status==1){
+                                 //    logged
+                                if(data.msg.background){
+                                    //Common.goMyPhotoPage();
+                                    //Common.goWriteGreetingPage();
+                                    //$('.photo-frame').attr('class','photo-frame photo photo'+data.msg.background);
+                                    //$('.textarea').value = data.msg.greeting;
 
+                                }else{
+                                    Common.goWriteGreetingPage();
+                                    self.radomGreetingBg();
+                                }
+                            }else{
+                                alert(data.msg);
+                            }
 
-                        //Common.goWriteGreetingPage();
-                        self.radomGreetingBg();
+                        });
                     });
 
+                    //submit your message
                     $('.pin-2 .btn-submit').on('click', function(){
                         self.generateGreeting();
                     });
@@ -80,6 +105,7 @@
             Common.msgBox('loading...');
         //    edit here
             $('.share-pop').removeClass('hide');
+
         },
         MobileValidate:function(){
             var validate = true,
@@ -249,6 +275,42 @@
                 }
             });
 
+        },
+        renderPhoto:function(){
+            var canvas = new fabric.Canvas('c');
+            canvas.setWidth($('.upload-img').width());
+            canvas.setHeight($('.upload-img').height());
+            canvas.setBackgroundColor('#fff');
+
+            fabric.Image.fromURL('/app/images/show-1.png',function(imgobj2){
+                imgobj2.set({
+                    //left:$('#c').width()*0.1,
+                    //top:$('#c').height() - $('#c').width()*0.8*65/500-15,
+                    //width:$('#c').width(),
+                    //height:$('#c').height(),
+                    selectable:true,
+                    hasControls: false,
+                    hasBorders: false
+                });
+                imgobj2.scale(0.4);
+                console.log(imgobj2);
+                canvas.add(imgobj2);
+                var renderPic = canvas.toDataURL({
+                    format: 'png',
+                    quality: 1
+                });
+                //$.ajax({
+                //    url:'/api/createImg',
+                //    type:'POST',
+                //    dataType:'json',
+                //    data:{
+                //        image:renderPic
+                //    },
+                //    success:function(result){
+                //        //空荡荡的了
+                //    }
+                //});
+            });
         },
         countDown:function(){
             var countdownTime = 59;

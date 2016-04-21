@@ -1,5 +1,5 @@
 /*All the api collection*/
-API = {
+Api = {
     //api/status
     isFollow:function(callback){
         $.ajax({
@@ -100,27 +100,27 @@ API = {
 
 //test api
 (function(){
-    //API.isFollow(function(data){
+    //Api.isFollow(function(data){
     //    console.log(data);
     //});
 
-    //API.writeGreeting({greeting:'happy',background:2},function(data){
+    //Api.writeGreeting({greeting:'happy',background:2},function(data){
     //    console.log(data);
     //});
 
-    //API.ballot({id:'123'},function(data){
+    //Api.ballot({id:'123'},function(data){
     //    console.log(data);
     //});
 
-    //API.sendVerifycode({mobile:'18502130583'},function(data){
+    //Api.sendVerifycode({mobile:'18502130583'},function(data){
     //    console.log(data);
     //});
 
-    //API.customerBind({mobile:'18502130583',verifycode:'76j8'},function(data){
+    //Api.customerBind({mobile:'18502130583',verifycode:'76j8'},function(data){
     //    console.log(data);
     //});
 
-    //API.customerRegister({
+    //Api.customerRegister({
     //    firstname:'zhang',
     //    lastname:'ya',
     //    mobile :'18502130583',
@@ -132,7 +132,7 @@ API = {
     //    console.log(data);
     //});
 
-    //API.galleryList({
+    //Api.galleryList({
     //    page:'1',
     //    row:'6'
     //},

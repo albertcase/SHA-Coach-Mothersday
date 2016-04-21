@@ -195,7 +195,8 @@ body{
 
 //for btn-sprite
 .btn-sprite{
-  background: #fff url("../images/btn-sprite.png") no-repeat;
+  display: inline-block;
+  background:#000 url("../images/btn-sprite.png") no-repeat;
   background-size: 100%;
   width: 2.39rem;
   height: 0.57rem;
@@ -309,14 +310,18 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
     margin: 0.4rem auto;
   }
   .kv{
-    margin: 0rem auto 0.4rem;
+    @include size(6.4rem,6.4rem);
+    margin: 0rem auto 0.6rem;
   }
   .p1-t1{
-    margin: 0rem auto 0.4rem;
+    margin: 0rem auto 0.8rem;
     @include size(5.46rem,1.26rem);
   }
   .btn-sprite{
-    margin: 0rem auto 0.2rem;
+    //margin: 0rem auto 0.2rem;
+  }
+  .btn-gogallery{
+    margin-right: 0.2rem;
   }
 
 }
@@ -568,29 +573,21 @@ input[type='tel']{
 }
 
 .qrcode-pop{
-  &.popup{
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
+  .inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+    .qrcode{
+      @include size(3.15rem,3.15rem);
+      margin: 0rem auto 0.5rem;
+    }
+    .qrcode-text{
+      @include size(4.49rem,0.88rem);
+      margin: 0 auto;
+    }
   }
-  .qrcode{
-    @include size(2.4rem,2.4rem);
-    margin: 2rem auto 0.5rem;
-  }
-  .qrcode-text{
-    margin: 0 auto;
-  }
-  .qt-yes{
-    @include size(2.34rem,1.07rem);
-  }
-  .qt-no{
-    @include size(2.34rem,1.5rem);
-  }
-  .minite-30{
-    @include size(2.1rem,0.24rem);
-    margin: 0.4rem auto 0;
-  }
+
 }
 .share-pop{
   .share-1{

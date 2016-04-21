@@ -12,6 +12,12 @@ function gotoPin(i) {
 		goWriteGreetingPage:function(){
 			gotoPin(1);
 		},
+		goMyPhotoPage:function(){
+			gotoPin(5);
+		},
+		cameraPage:function(){
+			gotoPin(6);
+		},
 		goGallerypage:function(){
 			window.location.href='gallery.html';
 		},
