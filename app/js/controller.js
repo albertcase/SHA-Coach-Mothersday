@@ -23,7 +23,7 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    Common.goHomepage();
+                    Common.goWriteGreetingPage();
                     //Common.goInfoPage();
 
                     //	go gallery page
@@ -36,10 +36,11 @@
 
 
                         //Common.goWriteGreetingPage();
+                        self.radomGreetingBg();
                     });
 
                     $('.pin-2 .btn-submit').on('click', function(){
-                        self.generate();
+                        self.generateGreeting();
                     });
 
                     $('.pin-2 .btn-back').on('click', function(){
@@ -50,6 +51,7 @@
                     *  Get Key code
                     * */
                     self.SubmitKeycodeForm();
+                    self.radomGreetingBg();
 
                     /*Submit the register information*/
                     self.SubmitInformationForm();
@@ -64,7 +66,12 @@
                 }
             })
         },
-        generate:function(){
+        radomGreetingBg:function(){
+            var self = this;
+            var bgName =  Math.round(Math.random() * (5 - 1) + 1);
+            $('.photo-frame').attr('class','photo-frame photo photo-'+bgName);
+        },
+        generateGreeting:function(){
             /*
             *  Input your words and then sent them to server
             *  submit words and photo number

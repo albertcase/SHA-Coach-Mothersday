@@ -1,6 +1,5 @@
 /*All the api collection*/
 API = {
-    //{"status":1,"msg":{"id":"1","openid":"oKCDxjivJ92ky4dxLT8dt1jcXtn4","nickname":"nickname","headimgurl":"headimgurl","greeting":false,"background":false,"ballot":"1”}}
     //api/status
     isFollow:function(callback){
         $.ajax({
@@ -12,6 +11,7 @@ API = {
             }
         });
     },
+    //{"status":1,"msg":{"id":"1","openid":"oKCDxjivJ92ky4dxLT8dt1jcXtn4","nickname":"nickname","headimgurl":"headimgurl","greeting":false,"background":false,"ballot":"1”}}
     isLogin:function(callback){
         $.ajax({
             url:'/api/islogin',
@@ -81,7 +81,20 @@ API = {
                 return callback(data);
             }
         });
-    }
+    },
+    //age  row
+    //"status":1,"msg":{"nowpage":1,"rowcount":4,"totalpage":3,"list":[{"id":"1","nickname":"","greeting":"123123","type":"5"},{"id":"1","nickname":"","greeting":"123123","type":"5"},{"id":"1","nickname":"","greeting":"123123","type":"5"},{"id":"1","nickname":"","greeting":"123123","type":"5"}]}}
+    galleryList:function(obj,callback){
+        $.ajax({
+            url:'/api/list',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                return callback(data);
+            }
+        });
+    },
 
 };
 
@@ -118,5 +131,14 @@ API = {
     //function(data){
     //    console.log(data);
     //});
+
+    //API.galleryList({
+    //    page:'1',
+    //    row:'6'
+    //},
+    //function(data){
+    //    console.log(data);
+    //});
+
 
 })();
