@@ -13,6 +13,7 @@
     <!-- inject:js -->
     <script type="text/javascript" src="../app/js/lib/zepto.min.js"></script>
     <script type="text/javascript" src="../app/js/lib/pre-loader.js"></script>
+    <script type="text/javascript" src="../app/js/lib/lrz.all.bundle.js"></script>
     <script type="text/javascript" src="../app/js/lib/fabric2.js"></script>
     <script type="text/javascript" src="../app/js/rem.js"></script>
     <script type="text/javascript" src="../app/js/api.js"></script>
@@ -53,14 +54,24 @@
         <div class="btn-sprite btn-gogallery"></div>
         <div class="btn-sprite btn-filltext"></div>
     </section>
+    <!-- photopage-->
     <section class="pin pin-2">
         <div class="p1-1">
             <img src="../app/images/p1-1.png" alt=""/>
         </div>
-        <div class="photo-frame photo photo-1">
-            <textarea name="" id="input-tomom" class="leave-words" cols="30" rows="10" placeholder="|输入对母亲的祝福语
-（总计50字符）" maxlength="50"></textarea>
-            <div class="num">000001</div>
+        <div class="photo-wrap">
+            <div class="photo-frame photo photo-1">
+                <div class="block-photo">
+                    <div class="btn-camera">
+                        <span class="icon"></span>
+                        拍摄或上传一张照片
+                    </div>
+                    <input type="file" accept="image/*" id="capture" capture="camera">
+                    <canvas id="c"></canvas>
+                </div>
+                <textarea name="" id="input-tomom" class="leave-words" cols="20" rows="2" placeholder="|输入对母亲的祝福语
+    （总计50字符）" maxlength="50"></textarea>
+            </div>
         </div>
         <div class="buttons">
             <div class="btn-sprite btn-back"></div>
@@ -161,11 +172,11 @@
 
     <!-- canvas upload image and then render image-->
     <section class="pin pin-7">
-        <input type="file" accept="image/*" id="capture" capture="camera">
-        <img src="../app/images/show-1.png" class="upload-img" style="width: 300px;height:300px;" alt=""/>
-        <canvas id="c" width="300" height="300">
+        <!--<input type="file" accept="image/*" id="capture" capture="camera">-->
+        <!--<img src="../app/images/show-1.png" class="upload-img" style="width: 300px;height:300px;" alt=""/>-->
+        <!--<canvas id="c" width="300" height="300">-->
 
-        </canvas>
+        <!--</canvas>-->
     </section>
     <!-- popup share-pop-->
     <div class="popup share-pop hide">

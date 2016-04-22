@@ -2,6 +2,7 @@
 Api = {
     //api/status
     isFollow:function(callback){
+        Common.msgBox('loading...');
         $.ajax({
             url:'/api/status',
             type:'POST',

@@ -210,8 +210,14 @@ body{
 }
 
 //for photo-frame
+.photo-wrap{
+  @include size(6.45rem,8.2rem);
+  margin: 0 auto;
+  background: #f0f0f0;
+}
 .photo{
   position: relative;
+  @include size(6.45rem,7.53rem);
   background-size: 100%;
   background-repeat: no-repeat;
   &.photo-1{
@@ -239,23 +245,24 @@ body{
   }
   .leave-words{
     position: absolute;
-    @include size(52%,30%);
-    @include transform(rotate(20deg));
+    @include size(67%,14%);
     -webkit-appearance: none;
     border: none;
     background: transparent;
     resize: none;
+    padding: 6px;
+    box-sizing: border-box;
   }
 }
 .photo-frame{
-  @include size(7.5rem,8.71rem);
+  //@include size(7.5rem,8.71rem);
   margin: 0 auto;
   #input-tomom{
 
   }
   .leave-words{
-    top: 2.5rem;
-    left: 2.4rem;
+    bottom: 1.4rem;
+    left: 1rem;
     text-align: center;
     font-size: 0.33rem;
     color: #000;
@@ -327,6 +334,15 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 //for .pin-2
+.canvas-container{
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  z-index: 100;
+}
 .pin-2{
   .p1-1{
     @include size(5.71rem,0.42rem);
@@ -348,6 +364,57 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
     }
     .btn-submit{
       background-position: 0 -4.25rem;
+    }
+  }
+  .photo-wrap{
+    position: relative;
+  }
+  .block-photo{
+    @include size(4.1rem,2.8rem);
+    background: #fff;
+    position: absolute;
+    top: 1.6rem;
+    left: 1.14rem;
+  }
+  #c{
+    //position: absolute;
+    //width: 100%;
+    //height: 100%;
+    //top: 0;
+    //left: 0;
+    //z-index: 1;
+    //background: url("../images/show-1.png") no-repeat;
+    //background-size: 100%;
+  }
+  #capture{
+    display: block;
+    @include size(0,0);
+    overflow: hidden;
+  }
+  .btn-camera{
+    position: relative;
+    z-index: 101;
+    font-size: 0.27rem;
+    .icon{
+      display: block;
+      position: relative;
+      @include size(0.6rem,0.6rem);
+      margin: 0.7rem auto 0.4rem;
+      &:before,&:after{
+        position: absolute;
+        top: 0;
+        display: block;
+        content: '';
+        background: #000;
+      }
+      &:before{
+        @include size(0.6rem,0.02rem);
+        top: 50%;
+      }
+      &:after{
+        @include size(0.02rem,0.6rem);
+        left: 50%;
+      }
     }
   }
 
