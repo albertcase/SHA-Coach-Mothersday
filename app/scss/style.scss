@@ -252,7 +252,7 @@ body{
     resize: none;
     padding: 6px;
     box-sizing: border-box;
-    @include transform(rotate(-20deg));
+    @include transform(rotate(-16deg));
   }
 }
 .photo-frame{
@@ -264,7 +264,7 @@ body{
   }
   .leave-words{
     top: 1.6rem;
-    left: 0rem;
+    left: 0.3rem;
     text-align: center;
     font-size: 0.33rem;
     color: #000;

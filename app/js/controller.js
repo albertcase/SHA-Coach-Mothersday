@@ -9,6 +9,7 @@
         this.canvas = new fabric.Canvas('c');
         this.canvas.setWidth($('.block-photo .p-inner').width());
         this.canvas.setHeight($('.block-photo .p-inner').height());
+        this.curBackground=1;
     };
     controller.prototype = {
         init:function(){
@@ -86,9 +87,12 @@
             var self = this;
             var bgName =  Math.round(Math.random() * (4 - 1) + 1);
             $('.photo-frame').attr('class','photo-frame photo photo-'+bgName);
+            this.curBackground = bgName;
         },
         LoadingGreetingPage:function(){
-            var self = this;
+            var self = this,
+                canvas = self.canvas,
+                words = $('#input-tomom').val();
             /*
              *  Input your words and then sent them to server
              *  submit words and photo number
@@ -105,34 +109,44 @@
                 self.uploadPhoto(e.target,canvaswidth)
             });
             //submit your message
+            var enable = true;
             $('.pin-2 .btn-submit').on('click', function(){
-                self.generateGreeting();
+
+                /*
+                 *  Input your words and then sent them to server
+                 *  submit words and photo number
+                 *  If submit success, show the share-pop
+                 */
+                if(!enable) return;
+                enable = false;
+
+                //render new picture
+                var renderPic = canvas.toDataURL({
+                    format: 'png',
+                    quality: 1
+                });
+                $('.photo-wrap').append('<img src="'+renderPic+'">');;
+                //    submit writeGreeting
+                Api.writeGreeting({
+                    greeting:words,
+                    background:this.curBackground,
+                    pic:renderPic
+                },function(data){
+                    console.log(data);
+                    enable = true;
+                    if(data.status==1){
+                        //    success
+                        $('.share-pop').removeClass('hide');
+                    }else{
+                        alert(data.msg);
+                    }
+
+                });
             });
 
             $('.pin-2 .btn-back').on('click', function(){
                 Common.goHomepage();
             });
-        },
-        generateGreeting:function(){
-            /*
-            *  Input your words and then sent them to server
-            *  submit words and photo number
-            *  If submit success, show the share-pop
-            */
-            //Common.msgBox('loading...');
-        //    edit here
-        //    $('.share-pop').removeClass('hide');
-            var self = this,
-                canvas = self.canvas;
-
-            //render new picture
-            var renderPic = canvas.toDataURL({
-                format: 'png',
-                quality: 1
-            });
-            $('.photo-wrap').append('<img src="'+renderPic+'">');
-        //    the
-
         },
         uploadPhoto:function(ele,canvaswidth){
             var self = this;
