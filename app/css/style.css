@@ -348,17 +348,10 @@ body {
   background-position: 0 -0.87rem;
 }
 
-.photo-wrap {
-  width: 6.45rem;
-  height: 8.2rem;
-  margin: 0 auto;
-  background: #f0f0f0;
-}
-
 .photo {
   position: relative;
-  width: 6.45rem;
-  height: 7.53rem;
+  width: 6.4rem;
+  height: 8.28rem;
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -391,22 +384,28 @@ body {
 }
 .photo .leave-words {
   position: absolute;
-  width: 67%;
-  height: 14%;
+  width: 4rem;
+  height: 2rem;
   -webkit-appearance: none;
   border: none;
   background: transparent;
   resize: none;
   padding: 6px;
   box-sizing: border-box;
+  -webkit-transform: rotate(-20deg);
+  -moz-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  -o-transform: rotate(-20deg);
+  transform: rotate(-20deg);
 }
 
 .photo-frame {
   margin: 0 auto;
+  overflow: hidden;
 }
 .photo-frame .leave-words {
-  bottom: 1.4rem;
-  left: 1rem;
+  top: 1.6rem;
+  left: 0rem;
   text-align: center;
   font-size: 0.33rem;
   color: #000;
@@ -516,12 +515,37 @@ textarea:-ms-input-placeholder {
   position: relative;
 }
 .pin-2 .block-photo {
-  width: 4.1rem;
-  height: 2.8rem;
-  background: #fff;
+  width: 4.2rem;
+  height: 4.2rem;
+  background: #f4f0eb;
   position: absolute;
-  top: 1.6rem;
-  left: 1.14rem;
+  bottom: 0.3rem;
+  right: 0.3rem;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+  box-shadow: 3px 1px 6px #999;
+  -ms-box-shadow: 3px 1px 6px #999;
+  -moz-box-shadow: 3px 1px 6px #999;
+  -o-box-shadow: 3px 1px 6px #999;
+  -webkit-box-shadow: 3px 1px 6px #999;
+  box-sizing: border-box;
+}
+.pin-2 .block-photo .p-inner {
+  background: #fff;
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  position: absolute;
+  left: 0.3rem;
+  top: 0.3rem;
+  box-shadow: 0px 0px 9px #ccc;
+  -ms-box-shadow: 0px 0px 9px #ccc;
+  -moz-box-shadow: 0px 0px 9px #ccc;
+  -o-box-shadow: 0px 0px 9px #ccc;
+  -webkit-box-shadow: 0px 0px 9px #ccc;
 }
 .pin-2 #capture {
   display: block;

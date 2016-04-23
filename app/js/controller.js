@@ -7,9 +7,8 @@
 
         //init the canvas
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setWidth($('.block-photo').width());
-        this.canvas.setHeight($('.block-photo').height());
-        console.log(this.canvas);
+        this.canvas.setWidth($('.block-photo .p-inner').width());
+        this.canvas.setHeight($('.block-photo .p-inner').height());
     };
     controller.prototype = {
         init:function(){
@@ -35,11 +34,10 @@
                     //        $('.qrcode-pop').removeClass('hide');
                     //    }
                     //});
-                    Common.goHomepage();
-                    self.generateGreeting();
-                    //Common.cameraPage();
-                    //self.renderPhoto();
-                    //Common.goInfoPage();
+                    //Common.goHomepage();
+
+                    //test now
+                    self.LoadingGreetingPage();
 
                     //	go gallery page
                     $('.btn-gogallery').on('click',function(e){
@@ -56,8 +54,7 @@
                                 if(data.msg.background){
                                     Common.goMyPhotoPage();
                                 }else{
-                                    Common.goWriteGreetingPage();
-                                    self.radomGreetingBg();
+                                    self.LoadingGreetingPage();
                                 }
                             }else{
                                 alert(data.msg);
@@ -87,16 +84,16 @@
         },
         randomGreetingBg:function(){
             var self = this;
-            var bgName =  Math.round(Math.random() * (5 - 1) + 1);
+            var bgName =  Math.round(Math.random() * (4 - 1) + 1);
             $('.photo-frame').attr('class','photo-frame photo photo-'+bgName);
         },
-        generateGreeting:function(){
+        LoadingGreetingPage:function(){
             var self = this;
             /*
-            *  Input your words and then sent them to server
-            *  submit words and photo number
-            *  If submit success, show the share-pop
-            */
+             *  Input your words and then sent them to server
+             *  submit words and photo number
+             *  If submit success, show the share-pop
+             */
             Common.goWriteGreetingPage();
             self.randomGreetingBg();
             $('.btn-camera').on('click', function(){
@@ -115,10 +112,53 @@
             $('.pin-2 .btn-back').on('click', function(){
                 Common.goHomepage();
             });
+        },
+        generateGreeting:function(){
+            /*
+            *  Input your words and then sent them to server
+            *  submit words and photo number
+            *  If submit success, show the share-pop
+            */
             //Common.msgBox('loading...');
         //    edit here
         //    $('.share-pop').removeClass('hide');
-        //    self.renderPhoto();
+            var self = this,
+                canvas = self.canvas;
+
+            //render new picture
+            var renderPic = canvas.toDataURL({
+                format: 'png',
+                quality: 1
+            });
+            $('.photo-wrap').append('<img src="'+renderPic+'">');
+        //    the
+
+        },
+        uploadPhoto:function(ele,canvaswidth){
+            var self = this;
+
+            lrz(ele.files[0],{width:canvaswidth*2},{quality:1})
+                .then(function (rst) {
+                    // 处理成功会执行
+                    //step=1;
+                    fabric.Image.fromURL(rst.base64,function(imgobj){
+                        imgobj.scale(0.5);
+                        imgobj.set({
+                            selectable:true,
+                            //hasControls:false,
+                            //hasBorders:false
+                        });
+                        self.canvas.add(imgobj);
+
+                    });
+                    $('.btn-camera').addClass('hide');
+                })
+                .catch(function (err) {
+                    // 处理失败会执行
+                })
+                .always(function () {
+                    // 不管是成功失败，都会执行
+                });
 
         },
         MobileValidate:function(){
@@ -289,42 +329,6 @@
                 }
             });
 
-        },
-        uploadPhoto:function(ele,canvaswidth){
-            var self = this;
-
-            lrz(ele.files[0],{width:canvaswidth*2},{quality:1})
-                .then(function (rst) {
-                    // 处理成功会执行
-                    //step=1;
-                    fabric.Image.fromURL(rst.base64,function(imgobj){
-                        imgobj.scale(0.5);
-                        imgobj.set({
-                            selectable:true,
-                            hasControls:false,
-                            hasBorders:false
-                        });
-                        self.canvas.add(imgobj);
-
-                    });
-                    $('.btn-camera').addClass('hide');
-                })
-                .catch(function (err) {
-                    // 处理失败会执行
-                })
-                .always(function () {
-                    // 不管是成功失败，都会执行
-                });
-
-        },
-        renderPhoto:function(){
-            var self = this,
-                canvas = self.canvas;
-            var renderPic = canvas.toDataURL({
-                    format: 'png',
-                    quality: 1
-                });
-            $('.photo-wrap').append('<img src="'+renderPic+'">');
         },
         countDown:function(){
             var countdownTime = 59;
