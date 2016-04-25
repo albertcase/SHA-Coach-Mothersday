@@ -194,6 +194,12 @@ img {
   transform: rotate(-45deg);
 }
 
+.slogan {
+  width: 4.18rem;
+  height: 0.41rem;
+  margin: 0.5rem auto;
+}
+
 body {
   font: 0.24rem/1.5 "Arial",'sans-serif';
 }
@@ -347,6 +353,18 @@ body {
 .btn-sprite.btn-filltext {
   background-position: 0 -0.87rem;
 }
+.btn-sprite.btn-back {
+  background-position: 0 -2rem;
+}
+.btn-sprite.btn-submit {
+  background-position: 0 -4.25rem;
+}
+.btn-sprite.btn-joinplay {
+  background-position: 0 100%;
+}
+.btn-sprite.btn-like {
+  background-position: 0 -3.15rem;
+}
 
 .photo {
   position: relative;
@@ -410,6 +428,44 @@ body {
   font-size: 0.33rem;
   color: #000;
   overflow: hidden;
+}
+
+.photo-wrap {
+  position: relative;
+}
+
+.block-photo {
+  width: 4.2rem;
+  height: 4.2rem;
+  background: #f4f0eb;
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.3rem;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+  box-shadow: 3px 1px 6px #999;
+  -ms-box-shadow: 3px 1px 6px #999;
+  -moz-box-shadow: 3px 1px 6px #999;
+  -o-box-shadow: 3px 1px 6px #999;
+  -webkit-box-shadow: 3px 1px 6px #999;
+  box-sizing: border-box;
+}
+.block-photo .p-inner {
+  background: #fff;
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  position: absolute;
+  left: 0.3rem;
+  top: 0.3rem;
+  box-shadow: 0px 0px 9px #ccc;
+  -ms-box-shadow: 0px 0px 9px #ccc;
+  -moz-box-shadow: 0px 0px 9px #ccc;
+  -o-box-shadow: 0px 0px 9px #ccc;
+  -webkit-box-shadow: 0px 0px 9px #ccc;
 }
 
 textarea::-webkit-input-placeholder {
@@ -504,48 +560,6 @@ textarea:-ms-input-placeholder {
 .pin-2 .buttons .btn-sprite {
   display: inline-block;
   margin: 0 0.2rem 0;
-}
-.pin-2 .buttons .btn-back {
-  background-position: 0 -2rem;
-}
-.pin-2 .buttons .btn-submit {
-  background-position: 0 -4.25rem;
-}
-.pin-2 .photo-wrap {
-  position: relative;
-}
-.pin-2 .block-photo {
-  width: 4.2rem;
-  height: 4.2rem;
-  background: #f4f0eb;
-  position: absolute;
-  bottom: 0.3rem;
-  right: 0.3rem;
-  -webkit-transform: rotate(20deg);
-  -moz-transform: rotate(20deg);
-  -ms-transform: rotate(20deg);
-  -o-transform: rotate(20deg);
-  transform: rotate(20deg);
-  box-shadow: 3px 1px 6px #999;
-  -ms-box-shadow: 3px 1px 6px #999;
-  -moz-box-shadow: 3px 1px 6px #999;
-  -o-box-shadow: 3px 1px 6px #999;
-  -webkit-box-shadow: 3px 1px 6px #999;
-  box-sizing: border-box;
-}
-.pin-2 .block-photo .p-inner {
-  background: #fff;
-  display: block;
-  width: 3.6rem;
-  height: 3.6rem;
-  position: absolute;
-  left: 0.3rem;
-  top: 0.3rem;
-  box-shadow: 0px 0px 9px #ccc;
-  -ms-box-shadow: 0px 0px 9px #ccc;
-  -moz-box-shadow: 0px 0px 9px #ccc;
-  -o-box-shadow: 0px 0px 9px #ccc;
-  -webkit-box-shadow: 0px 0px 9px #ccc;
 }
 .pin-2 #capture {
   display: block;
@@ -960,13 +974,84 @@ input[type='tel'] {
   bottom: 0.2rem;
 }
 
-.gallery .item {
-  width: 3.3rem;
-  height: 4.3rem;
+.pin-gallery {
+  overflow-y: auto;
 }
-.gallery .photo {
-  width: 3.28rem;
-  height: 3.8rem;
+
+.top-banner {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.7);
+  width: 100%;
+}
+.top-banner .user-name {
+  display: inline-block;
+  float: left;
+  margin-left: 0.1rem;
+}
+.top-banner .icon-good {
+  float: right;
+  margin-right: 0.1rem;
+}
+.top-banner .icon-good:after {
+  content: '';
+  display: inline-block;
+  width: 0.27rem;
+  height: 0.27rem;
+  background: url("../images/icon-sprite.png") no-repeat;
+  background-size: 100%;
+  position: relative;
+  top: 0.08rem;
+  margin-left: 0.1rem;
+}
+
+.gallery-list {
+  text-align: center;
+}
+.gallery-list .item {
+  position: relative;
+  display: inline-block;
+  margin: 0.2rem;
+}
+.gallery-list .item .photo {
+  width: 3.2rem;
+  height: 4.14rem;
+}
+.gallery-list .item .photo .leave-words {
+  top: 0.8rem;
+  left: 0.15rem;
+  width: 2rem;
+  height: 1rem;
+  padding: 3px;
+  font-size: 0.15rem;
+}
+.gallery-list .item .block-photo {
+  width: 2.1rem;
+  height: 2.1rem;
+}
+.gallery-list .item .block-photo .p-inner {
+  width: 1.8rem;
+  height: 1.8rem;
+  left: 0.15rem;
+  top: 0.15rem;
+}
+.gallery-list .item .block-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.pin-photo .photo-wrap {
+  width: 6.4rem;
+  height: auto;
+  margin: 0 auto;
+}
+.pin-photo .top-banner {
+  height: 0.6rem;
+  line-height: 0.6rem;
+  font-size: 0.26rem;
+  font-family: "Arial",sans-serif;
+  font-weight: bold;
 }
 
 #__bs_notify__ {
