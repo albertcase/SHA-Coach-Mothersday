@@ -125,7 +125,7 @@ class DatabaseAPI extends Base {
 	public function setGreeting($uid, $nickname, $image, $greeting, $background) {
 		$sql = "update `coach_info` SET `nickname` = ?, `image` = ?, `greeting` = ?, `background` = ? where id = ?";
 		$res = $this->db->prepare($sql); 
-		$res->bind_param("ssss", $nickname, $image, $greeting, $background, $uid);
+		$res->bind_param("sssss", $nickname, $image, $greeting, $background, $uid);
 		if ($res->execute()) {
 			return 1;
 		}
