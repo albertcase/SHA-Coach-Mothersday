@@ -148,8 +148,8 @@ class ApiController extends Controller {
 			'nowpage' => array('notnull', '3'),
 			'rowcount' => array('notnull', '3')
 		);
-		$page = $request->query->get('nowpage');
-		$row = $request->query->get('rowcount');
+		$page = $request->request->get('nowpage');
+		$row = $request->request->get('rowcount');
 		$redis = new \Lib\UserAPI();
 		$rs = $redis->getGreeting($page, $row);
 		return $this->statusPrint(1, $rs);
