@@ -3,7 +3,6 @@ var gulp = require('gulp'),
     minify = require('gulp-minify-css'),
     concat = require('gulp-concat'),
     watch = require('gulp-watch'),
-    uglify = require('gulp-uglify'),
     inject = require('gulp-inject'),
     sass = require('gulp-sass'),
     rename = require("gulp-rename"),
@@ -15,6 +14,9 @@ var path = {
     template:['./template/home.html'],
     css:['./app/css/*.css'],
     js:['./app/js/*.js','!app/js/widget.js'],
+    home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
+    photo_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/photopage.js'],
+    gallery_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/gallery.js'],
     images:['./app/images/*.*']
 };
 
@@ -51,17 +53,72 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./app/js'));
 });
 
-//
-gulp.task('injectfile',['css','js'], function () {
+//concat and uglify homejs
+gulp.task('homejs', function () {
+    // 1. 找到文件
+    gulp.src(path.home_incluede_js)
+        .pipe(concat('widget_home.js'))
+        // 2. 压缩文件
+        .pipe(uglify())
+        .pipe(rename('widget_home.js'))
+        // 3. 另存为压缩文件
+        .pipe(gulp.dest('./app/js/widget'));
+});
+//photo_incluede_js
+gulp.task('photojs', function () {
+    // 1. 找到文件
+    gulp.src(path.home_incluede_js)
+        .pipe(concat('widget_photo.js'))
+        // 2. 压缩文件
+        .pipe(uglify())
+        .pipe(rename('widget_photo.js'))
+        // 3. 另存为压缩文件
+        .pipe(gulp.dest('./app/js/widget'));
+});
+//gallery_incluede_js
+gulp.task('galleryjs', function () {
+    // 1. 找到文件
+    gulp.src(path.home_incluede_js)
+        .pipe(concat('widget_gallery.js'))
+        // 2. 压缩文件
+        .pipe(uglify())
+        .pipe(rename('widget_gallery.js'))
+        // 3. 另存为压缩文件
+        .pipe(gulp.dest('./app/js/widget'));
+});
+
+//generate home.tpl.php
+gulp.task('generate_home',['css','homejs'], function () {
     var target = gulp.src('./template/home.html');
     // It's not necessary to read the files (will speed up things), we're only after their paths:
-    var sources = gulp.src(['./app/js/widget.js', './app/css/style.css'], {read: false});
+    var sources = gulp.src(['./app/js/widget/widget_home.js', './app/css/style.css'], {read: false});
 
     return target.pipe(inject(sources))
         .pipe(rename('home.tpl.php'))
         .pipe(gulp.dest('./template'));
 });
 
+//generate photo.tpl.php
+gulp.task('generate_photo',['css','photojs'], function () {
+    var target = gulp.src('./template/photo.html');
+    // It's not necessary to read the files (will speed up things), we're only after their paths:
+    var sources = gulp.src(['./app/js/widget/widget_photo.js', './app/css/style.css'], {read: false});
+
+    return target.pipe(inject(sources))
+        .pipe(rename('photo.tpl.php'))
+        .pipe(gulp.dest('./template'));
+});
+
+//generate gallery.tpl.php
+gulp.task('generate_gallery',['css','galleryjs'], function () {
+    var target = gulp.src('./template/gallery.html');
+    // It's not necessary to read the files (will speed up things), we're only after their paths:
+    var sources = gulp.src(['./app/js/widget/widget_gallery.js', './app/css/style.css'], {read: false});
+
+    return target.pipe(inject(sources))
+        .pipe(rename('gallery.tpl.php'))
+        .pipe(gulp.dest('./template'));
+});
 
 gulp.task('default',['browser-sync']);
 
