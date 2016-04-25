@@ -126,7 +126,6 @@
                     format: 'png',
                     quality: 1
                 });
-                $('.photo-wrap').append('<img src="'+renderPic+'">');;
                 //    submit writeGreeting
                 Api.writeGreeting({
                     greeting:words,
