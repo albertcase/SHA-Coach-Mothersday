@@ -194,11 +194,13 @@ class ApiController extends Controller {
 		$url = $uploadapi->saveImage($image);
 
 		$databaseapi = new \Lib\DatabaseAPI();
-		$rs = $databaseapi->setGreeting($user->uid, $url, $greeting, $background); 
+		$nickname = $databaseapi->getNicknameByOpenid($user->openid);
+
+		$rs = $databaseapi->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
 		if ($rs) {
 			$redis = new \Lib\RedisAPI();
-			$nickname = $databaseapi->getNicknameByOpenid($user->openid);
-			$rs = $redis->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
+			
+			$redis->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
 			return $this->statusPrint(1, '提交成功');
 		}
 		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
