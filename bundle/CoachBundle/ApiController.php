@@ -198,9 +198,13 @@ class ApiController extends Controller {
 
 		$rs = $databaseapi->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
 		if ($rs) {
-			$redis = new \Lib\RedisAPI();
-			
+			$redis = new \Lib\RedisAPI();	
 			$redis->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
+
+			$user->image = $url;
+			$user->greeting = $greeting;
+			$user->background = $background;
+			$_SESSION['user'] = $user;
 			return $this->statusPrint(1, '提交成功');
 		}
 		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
