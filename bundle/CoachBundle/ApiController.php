@@ -144,8 +144,8 @@ class ApiController extends Controller {
 
 	public function listAction() {
 		$request = $this->Request();
-		$page = isset($request->query->get('page')) ? $request->query->get('page') : 1;
-		$row = isset($request->query->get('row')) ? $request->query->get('row') : 4;
+		$page = $request->query->get('page')? $request->query->get('page') : 1;
+		$row = $request->query->get('row') ? $request->query->get('row') : 4;
 		$redis = new \Lib\UserAPI();
 		$rs = $redis->getGreeting($page, $row);
 		return $this->statusPrint(1, $rs);
