@@ -237,7 +237,8 @@ class ApiController extends Controller {
 
 	public function cardAction() {
 		$wechatapi = new \Lib\WechatAPI();
-		return $wechatapi->cardList();
+		$list = $wechatapi->cardList();
+		return $this->statusPrint(1, $list);
 	}
 
 

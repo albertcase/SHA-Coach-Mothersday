@@ -54,6 +54,7 @@ class WechatAPI {
     $return = curl_exec ( $ch );
     curl_close ( $ch );
     $return = json_decode($return,true);
+
     return $cardList = $return['data']['cardList'];
   }
 
