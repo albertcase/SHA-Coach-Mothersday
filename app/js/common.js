@@ -12,8 +12,8 @@ function gotoPin(i) {
 		goWriteGreetingPage:function(){
 			gotoPin(1);
 		},
-		goMyPhotoPage:function(){
-			gotoPin(5);
+		goPhotoPage:function(){
+			window.location.href='home.html';
 		},
 		cameraPage:function(){
 			gotoPin(6);
