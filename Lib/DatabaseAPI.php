@@ -134,14 +134,24 @@ class DatabaseAPI extends Base {
 		return 0;
 	}
 
-	public function loadGreeting($id) {
-		$sql = "SELECT `id`, `nickname`, `image`, `greeting`, `` `coach_info` SET `nickname` = ?, `image` = ?, `greeting` = ?, `background` = ? where id = ?";
+
+	public function getGreetingById($id) {
+		$sql = "SELECT `id`, `nickname`, `image`, `greeting`, `background`, `ballot` from coach_info where id = ?";
 		$res = $this->db->prepare($sql); 
-		$res->bind_param("sssss", $nickname, $image, $greeting, $background, $uid);
+		$res->bind_param("s", $id);
+		$res->execute();
+		$res->bind_result($id, $nickname, $image, $greeting, $background, $ballot);
 		if ($res->execute()) {
-			return 1;
+			$return = array();
+			$return['id'] = $id;
+			$return['nickname'] = $nickname;
+			$return['image'] = $image;
+			$return['greeting'] = $greeting;
+			$return['background'] = $background;
+			$return['ballot'] = $ballot;
+			return $return;
 		}
-		return 0;
+		return NULL;
 	}
 
 	public function saveAcxiomLog($type, $data, $responseCode, $responseDesc, $result) {
