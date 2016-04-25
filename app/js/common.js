@@ -15,9 +15,6 @@ function gotoPin(i) {
 		goPhotoPage:function(){
 			window.location.href='photo.html';
 		},
-		cameraPage:function(){
-			gotoPin(6);
-		},
 		goGallerypage:function(){
 			window.location.href='gallery.html';
 		},

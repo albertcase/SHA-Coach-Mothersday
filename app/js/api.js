@@ -111,6 +111,19 @@ Api = {
             }
         });
     },
+    coupon:function(obj,callback){
+        Common.msgBox.add('loading...');
+        $.ajax({
+            url:'/api/card',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                Common.msgBox.remove();
+                return callback(data);
+            }
+        });
+    },
 
 };
 
