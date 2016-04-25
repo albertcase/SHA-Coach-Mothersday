@@ -110,6 +110,16 @@ class DatabaseAPI extends Base {
 		}
 	}
 
+	public function setGreeting($uid, $image, $greeting, $background) {
+		$sql = "update `coach_info` SET `image` = ?, `greeting` = ?, `background` = ? where id = ?";
+		$res = $this->db->prepare($sql); 
+		$res->bind_param("ssss", $image, $greeting, $background, $uid);
+		if ($res->execute()) {
+			return 1;
+		}
+		return 0;
+	}
+
 	public function saveAcxiomLog($type, $data, $responseCode, $responseDesc, $result) {
 		$sql = "INSERT INTO `acxiom_result` SET `type` = ?, `data` = ?, responseCode = ?, responseDesc = ?, result = ?";
 		$res = $this->db->prepare($sql); 
@@ -131,6 +141,4 @@ class DatabaseAPI extends Base {
 			return FALSE;
 		}
 	}
-	
-
 }

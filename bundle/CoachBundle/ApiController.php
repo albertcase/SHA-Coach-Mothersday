@@ -125,7 +125,7 @@ class ApiController extends Controller {
 		$openid = $request->query->get('openid');
 		$userapi = new \Lib\UserAPI();
 		$userapi->userLogin($openid);
-
+		
 		exit;
 	}
 
@@ -179,14 +179,16 @@ class ApiController extends Controller {
 		$fields = array(
 			'greeting' => array('notnull', '3'),
 			'background' => array('notnull', '3'),
+			'image' => array('notnull', '3'),
 		);
 		$request->validation($fields);
 		$greeting = $request->request->get('greeting');
 		$background = $request->request->get('background');
 		$image = $request->request->get('image');
+		$uploadapi = new \Lib\UploadAPI();
+		$url = $uploadapi->saveImage($image);
 
 		$databaseapi = new \Lib\DatabaseAPI();
-		$url = $databaseapi->getUrl($image);
 		$rs = $databaseapi->setGreeting($user->uid, $url, $greeting, $background); 
 		if ($rs) {
 			return $this->statusPrint(1, '提交成功');
