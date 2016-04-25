@@ -36,6 +36,7 @@
                     //    }
                     //});
                     //Common.goHomepage();
+                    //Common.goMobilePage();
 
                     //test now
                     self.LoadingGreetingPage();
@@ -130,7 +131,7 @@
                 Api.writeGreeting({
                     greeting:words,
                     background:this.curBackground,
-                    pic:renderPic
+                    image:renderPic
                 },function(data){
                     console.log(data);
                     enable = true;
@@ -277,23 +278,28 @@
                     //    start to get keycode
                     console.log('validate phone number');
                     var mobile = $('.input-phone').val();
-                    self.countDown();
-                    var xhr = $.ajax({
-                        type:'POST',
-                        url:'/api/check',
-                        data:{mobile:mobile},
-                        dataType:'json',
-                        success:function(data){
-                            console.log(data);
-                            //status:1 success
-                            //0,12 msg
-                            if(data.status==1){
-                                console.log('短信发送成功');
-                            }else{
-                                alert(data.msg);
-                            }
-                        }
-                    });
+                    //Api.sendVerifycode({
+                    //    mobile:mobile
+                    //},function(){
+                    //
+                    //});
+                    //self.countDown();
+                    //var xhr = $.ajax({
+                    //    type:'POST',
+                    //    url:'/api/check',
+                    //    data:{mobile:mobile},
+                    //    dataType:'json',
+                    //    success:function(data){
+                    //        console.log(data);
+                    //        //status:1 success
+                    //        //0,12 msg
+                    //        if(data.status==1){
+                    //            console.log('短信发送成功');
+                    //        }else{
+                    //            alert(data.msg);
+                    //        }
+                    //    }
+                    //});
                 };
             });
 
