@@ -13,7 +13,7 @@ function gotoPin(i) {
 			gotoPin(1);
 		},
 		goPhotoPage:function(){
-			window.location.href='home.html';
+			window.location.href='photo.html';
 		},
 		cameraPage:function(){
 			gotoPin(6);
