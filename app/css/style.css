@@ -337,7 +337,8 @@ body {
 }
 
 .btn-sprite {
-  background: #fff url("../images/btn-sprite.png") no-repeat;
+  display: inline-block;
+  background: #000 url("../images/btn-sprite.png") no-repeat;
   background-size: 100%;
   width: 2.39rem;
   height: 0.57rem;
@@ -349,6 +350,8 @@ body {
 
 .photo {
   position: relative;
+  width: 6.4rem;
+  height: 8.28rem;
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -381,27 +384,28 @@ body {
 }
 .photo .leave-words {
   position: absolute;
-  width: 52%;
-  height: 30%;
-  -webkit-transform: rotate(20deg);
-  -moz-transform: rotate(20deg);
-  -ms-transform: rotate(20deg);
-  -o-transform: rotate(20deg);
-  transform: rotate(20deg);
+  width: 4rem;
+  height: 2rem;
   -webkit-appearance: none;
   border: none;
   background: transparent;
   resize: none;
+  padding: 6px;
+  box-sizing: border-box;
+  -webkit-transform: rotate(-16deg);
+  -moz-transform: rotate(-16deg);
+  -ms-transform: rotate(-16deg);
+  -o-transform: rotate(-16deg);
+  transform: rotate(-16deg);
 }
 
 .photo-frame {
-  width: 7.5rem;
-  height: 8.71rem;
   margin: 0 auto;
+  overflow: hidden;
 }
 .photo-frame .leave-words {
-  top: 2.5rem;
-  left: 2.4rem;
+  top: 1.6rem;
+  left: 0.3rem;
   text-align: center;
   font-size: 0.33rem;
   color: #000;
@@ -461,15 +465,27 @@ textarea:-ms-input-placeholder {
   margin: 0.4rem auto;
 }
 .pin-1 .kv {
-  margin: 0rem auto 0.4rem;
+  width: 6.4rem;
+  height: 6.4rem;
+  margin: 0rem auto 0.6rem;
 }
 .pin-1 .p1-t1 {
-  margin: 0rem auto 0.4rem;
+  margin: 0rem auto 0.8rem;
   width: 5.46rem;
   height: 1.26rem;
 }
-.pin-1 .btn-sprite {
-  margin: 0rem auto 0.2rem;
+.pin-1 .btn-gogallery {
+  margin-right: 0.2rem;
+}
+
+.canvas-container {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  z-index: 100;
 }
 
 .pin-2 .p1-1 {
@@ -494,6 +510,77 @@ textarea:-ms-input-placeholder {
 }
 .pin-2 .buttons .btn-submit {
   background-position: 0 -4.25rem;
+}
+.pin-2 .photo-wrap {
+  position: relative;
+}
+.pin-2 .block-photo {
+  width: 4.2rem;
+  height: 4.2rem;
+  background: #f4f0eb;
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.3rem;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+  box-shadow: 3px 1px 6px #999;
+  -ms-box-shadow: 3px 1px 6px #999;
+  -moz-box-shadow: 3px 1px 6px #999;
+  -o-box-shadow: 3px 1px 6px #999;
+  -webkit-box-shadow: 3px 1px 6px #999;
+  box-sizing: border-box;
+}
+.pin-2 .block-photo .p-inner {
+  background: #fff;
+  display: block;
+  width: 3.6rem;
+  height: 3.6rem;
+  position: absolute;
+  left: 0.3rem;
+  top: 0.3rem;
+  box-shadow: 0px 0px 9px #ccc;
+  -ms-box-shadow: 0px 0px 9px #ccc;
+  -moz-box-shadow: 0px 0px 9px #ccc;
+  -o-box-shadow: 0px 0px 9px #ccc;
+  -webkit-box-shadow: 0px 0px 9px #ccc;
+}
+.pin-2 #capture {
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.pin-2 .btn-camera {
+  position: relative;
+  z-index: 101;
+  font-size: 0.27rem;
+}
+.pin-2 .btn-camera .icon {
+  display: block;
+  position: relative;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin: 0.7rem auto 0.4rem;
+}
+.pin-2 .btn-camera .icon:before, .pin-2 .btn-camera .icon:after {
+  position: absolute;
+  top: 0;
+  display: block;
+  content: '';
+  background: #000;
+}
+.pin-2 .btn-camera .icon:before {
+  width: 0.6rem;
+  height: 0.02rem;
+  top: 50%;
+}
+.pin-2 .btn-camera .icon:after {
+  width: 0.02rem;
+  height: 0.6rem;
+  left: 50%;
 }
 
 input[type='text'],
@@ -702,32 +789,25 @@ input[type='tel'] {
   transform: translate(-50%, -50%);
 }
 
-.qrcode-pop.popup {
-  width: 80%;
-  height: 80%;
-  top: 10%;
-  left: 10%;
+.qrcode-pop .inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-.qrcode-pop .qrcode {
-  width: 2.4rem;
-  height: 2.4rem;
-  margin: 2rem auto 0.5rem;
+.qrcode-pop .inner .qrcode {
+  width: 3.15rem;
+  height: 3.15rem;
+  margin: 0rem auto 0.5rem;
 }
-.qrcode-pop .qrcode-text {
+.qrcode-pop .inner .qrcode-text {
+  width: 4.49rem;
+  height: 0.88rem;
   margin: 0 auto;
-}
-.qrcode-pop .qt-yes {
-  width: 2.34rem;
-  height: 1.07rem;
-}
-.qrcode-pop .qt-no {
-  width: 2.34rem;
-  height: 1.5rem;
-}
-.qrcode-pop .minite-30 {
-  width: 2.1rem;
-  height: 0.24rem;
-  margin: 0.4rem auto 0;
 }
 
 .share-pop .share-1 {

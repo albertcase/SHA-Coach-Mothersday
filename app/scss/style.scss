@@ -195,7 +195,8 @@ body{
 
 //for btn-sprite
 .btn-sprite{
-  background: #fff url("../images/btn-sprite.png") no-repeat;
+  display: inline-block;
+  background:#000 url("../images/btn-sprite.png") no-repeat;
   background-size: 100%;
   width: 2.39rem;
   height: 0.57rem;
@@ -209,8 +210,14 @@ body{
 }
 
 //for photo-frame
+.photo-wrap{
+  //@include size(6.45rem,8.2rem);
+  //margin: 0 auto;
+  //background: #f0f0f0;
+}
 .photo{
   position: relative;
+  @include size(6.4rem,8.28rem);
   background-size: 100%;
   background-repeat: no-repeat;
   &.photo-1{
@@ -238,23 +245,26 @@ body{
   }
   .leave-words{
     position: absolute;
-    @include size(52%,30%);
-    @include transform(rotate(20deg));
+    @include size(4rem,2rem);
     -webkit-appearance: none;
     border: none;
     background: transparent;
     resize: none;
+    padding: 6px;
+    box-sizing: border-box;
+    @include transform(rotate(-16deg));
   }
 }
 .photo-frame{
-  @include size(7.5rem,8.71rem);
+  //@include size(7.5rem,8.71rem);
   margin: 0 auto;
+  overflow: hidden;
   #input-tomom{
 
   }
   .leave-words{
-    top: 2.5rem;
-    left: 2.4rem;
+    top: 1.6rem;
+    left: 0.3rem;
     text-align: center;
     font-size: 0.33rem;
     color: #000;
@@ -309,19 +319,32 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
     margin: 0.4rem auto;
   }
   .kv{
-    margin: 0rem auto 0.4rem;
+    @include size(6.4rem,6.4rem);
+    margin: 0rem auto 0.6rem;
   }
   .p1-t1{
-    margin: 0rem auto 0.4rem;
+    margin: 0rem auto 0.8rem;
     @include size(5.46rem,1.26rem);
   }
   .btn-sprite{
-    margin: 0rem auto 0.2rem;
+    //margin: 0rem auto 0.2rem;
+  }
+  .btn-gogallery{
+    margin-right: 0.2rem;
   }
 
 }
 
 //for .pin-2
+.canvas-container{
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  z-index: 100;
+}
 .pin-2{
   .p1-1{
     @include size(5.71rem,0.42rem);
@@ -343,6 +366,70 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
     }
     .btn-submit{
       background-position: 0 -4.25rem;
+    }
+  }
+  .photo-wrap{
+    position: relative;
+  }
+  .block-photo{
+    @include size(4.2rem,4.2rem);
+    background: #f4f0eb;
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
+    @include transform(rotate(20deg));
+    @include vendor-prefix(box-shadow,3px 1px 6px #999);
+    box-sizing: border-box;
+    .p-inner{
+      background: #fff;
+      display: block;
+      width: 3.6rem;
+      height: 3.6rem;
+      position: absolute;
+      left: 0.3rem;
+      top: 0.3rem;
+      @include vendor-prefix(box-shadow,0px 0px 9px #ccc);
+    }
+  }
+  #c{
+    //position: absolute;
+    //width: 100%;
+    //height: 100%;
+    //top: 0;
+    //left: 0;
+    //z-index: 1;
+    //background: url("../images/show-1.png") no-repeat;
+    //background-size: 100%;
+  }
+  #capture{
+    display: block;
+    @include size(0,0);
+    overflow: hidden;
+  }
+  .btn-camera{
+    position: relative;
+    z-index: 101;
+    font-size: 0.27rem;
+    .icon{
+      display: block;
+      position: relative;
+      @include size(0.6rem,0.6rem);
+      margin: 0.7rem auto 0.4rem;
+      &:before,&:after{
+        position: absolute;
+        top: 0;
+        display: block;
+        content: '';
+        background: #000;
+      }
+      &:before{
+        @include size(0.6rem,0.02rem);
+        top: 50%;
+      }
+      &:after{
+        @include size(0.02rem,0.6rem);
+        left: 50%;
+      }
     }
   }
 
@@ -568,29 +655,21 @@ input[type='tel']{
 }
 
 .qrcode-pop{
-  &.popup{
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
+  .inner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+    .qrcode{
+      @include size(3.15rem,3.15rem);
+      margin: 0rem auto 0.5rem;
+    }
+    .qrcode-text{
+      @include size(4.49rem,0.88rem);
+      margin: 0 auto;
+    }
   }
-  .qrcode{
-    @include size(2.4rem,2.4rem);
-    margin: 2rem auto 0.5rem;
-  }
-  .qrcode-text{
-    margin: 0 auto;
-  }
-  .qt-yes{
-    @include size(2.34rem,1.07rem);
-  }
-  .qt-no{
-    @include size(2.34rem,1.5rem);
-  }
-  .minite-30{
-    @include size(2.1rem,0.24rem);
-    margin: 0.4rem auto 0;
-  }
+
 }
 .share-pop{
   .share-1{

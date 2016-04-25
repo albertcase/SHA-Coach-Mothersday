@@ -4,6 +4,12 @@
     var controller = function(){
         this.curPage = 0;
         this.selectedColor = '';
+
+        //init the canvas
+        this.canvas = new fabric.Canvas('c');
+        this.canvas.setWidth($('.block-photo .p-inner').width());
+        this.canvas.setHeight($('.block-photo .p-inner').height());
+        this.curBackground=1;
     };
     controller.prototype = {
         init:function(){
@@ -23,33 +29,46 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    Common.goHomepage();
-                    //Common.goInfoPage();
+                    //Api.isFollow(function(data){
+                    //    console.log(data);
+                    //    if(!data.status){
+                    //        $('.qrcode-pop').removeClass('hide');
+                    //    }
+                    //});
+                    //Common.goHomepage();
+
+                    //test now
+                    self.LoadingGreetingPage();
 
                     //	go gallery page
                     $('.btn-gogallery').on('click',function(e){
                         Common.goGallerypage();
                     });
 
+                    //write your message
                     $('.btn-filltext').on('click',function(){
                         //ifplay,if not, go page pin-2,else go myphoto page
+                        Api.isLogin(function(data){
+                            console.log(data);
+                            if(data.status==1){
+                                 //    logged
+                                if(data.msg.background){
+                                    Common.goMyPhotoPage();
+                                }else{
+                                    self.LoadingGreetingPage();
+                                }
+                            }else{
+                                alert(data.msg);
+                            }
 
-
-                        //Common.goWriteGreetingPage();
-                    });
-
-                    $('.pin-2 .btn-submit').on('click', function(){
-                        self.generate();
-                    });
-
-                    $('.pin-2 .btn-back').on('click', function(){
-                        Common.goHomepage();
+                        });
                     });
 
                     /*
                     *  Get Key code
                     * */
                     self.SubmitKeycodeForm();
+                    self.randomGreetingBg();
 
                     /*Submit the register information*/
                     self.SubmitInformationForm();
@@ -64,15 +83,97 @@
                 }
             })
         },
-        generate:function(){
+        randomGreetingBg:function(){
+            var self = this;
+            var bgName =  Math.round(Math.random() * (4 - 1) + 1);
+            $('.photo-frame').attr('class','photo-frame photo photo-'+bgName);
+            this.curBackground = bgName;
+        },
+        LoadingGreetingPage:function(){
+            var self = this,
+                canvas = self.canvas,
+                words = $('#input-tomom').val();
             /*
-            *  Input your words and then sent them to server
-            *  submit words and photo number
-            *  If submit success, show the share-pop
-            */
-            Common.msgBox('loading...');
-        //    edit here
-            $('.share-pop').removeClass('hide');
+             *  Input your words and then sent them to server
+             *  submit words and photo number
+             *  If submit success, show the share-pop
+             */
+            Common.goWriteGreetingPage();
+            self.randomGreetingBg();
+            $('.btn-camera').on('click', function(){
+                $('#capture').trigger('click');
+            });
+            //input file change
+            $('#capture').on('change', function(e){
+                var canvaswidth = $('.block-photo').width();;
+                self.uploadPhoto(e.target,canvaswidth)
+            });
+            //submit your message
+            var enable = true;
+            $('.pin-2 .btn-submit').on('click', function(){
+
+                /*
+                 *  Input your words and then sent them to server
+                 *  submit words and photo number
+                 *  If submit success, show the share-pop
+                 */
+                if(!enable) return;
+                enable = false;
+
+                //render new picture
+                var renderPic = canvas.toDataURL({
+                    format: 'png',
+                    quality: 1
+                });
+                $('.photo-wrap').append('<img src="'+renderPic+'">');;
+                //    submit writeGreeting
+                Api.writeGreeting({
+                    greeting:words,
+                    background:this.curBackground,
+                    pic:renderPic
+                },function(data){
+                    console.log(data);
+                    enable = true;
+                    if(data.status==1){
+                        //    success
+                        $('.share-pop').removeClass('hide');
+                    }else{
+                        alert(data.msg);
+                    }
+
+                });
+            });
+
+            $('.pin-2 .btn-back').on('click', function(){
+                Common.goHomepage();
+            });
+        },
+        uploadPhoto:function(ele,canvaswidth){
+            var self = this;
+
+            lrz(ele.files[0],{width:canvaswidth*2},{quality:1})
+                .then(function (rst) {
+                    // 处理成功会执行
+                    //step=1;
+                    fabric.Image.fromURL(rst.base64,function(imgobj){
+                        imgobj.scale(0.5);
+                        imgobj.set({
+                            selectable:true,
+                            //hasControls:false,
+                            //hasBorders:false
+                        });
+                        self.canvas.add(imgobj);
+
+                    });
+                    $('.btn-camera').addClass('hide');
+                })
+                .catch(function (err) {
+                    // 处理失败会执行
+                })
+                .always(function () {
+                    // 不管是成功失败，都会执行
+                });
+
         },
         MobileValidate:function(){
             var validate = true,
