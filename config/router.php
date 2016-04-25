@@ -9,6 +9,7 @@ $routers['/api/flush'] = array('CoachBundle\Api', 'flush');
 $routers['/api/status'] = array('CoachBundle\Api', 'status');
 $routers['/api/islogin'] = array('CoachBundle\Api', 'islogin');
 $routers['/api/greeting'] = array('CoachBundle\Api', 'greeting');
+$routers['/api/getgreeting'] = array('CoachBundle\Api', 'getgreeting');
 $routers['/api/ballot'] = array('CoachBundle\Api', 'ballot');
 $routers['/api/list'] = array('CoachBundle\Api', 'list');
 $routers['/api/card'] = array('CoachBundle\Api', 'card');

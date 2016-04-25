@@ -211,6 +211,29 @@ class ApiController extends Controller {
 		
 	}
 
+	public function getgreetingAction() {
+		$UserAPI = new \Lib\UserAPI();
+		$user = $UserAPI->userLoad(true);
+		if (!$user) {
+			return $this->statusPrint(0, '未登录');
+		}
+		$request = $this->Request();
+		$fields = array(
+			'id' => array('notnull', '3')
+		);
+		$request->validation($fields);
+		$id = $request->request->get('id');
+
+		$databaseapi = new \Lib\DatabaseAPI();
+		$rs = $databaseapi->getGreetingById($id);
+
+		if ($rs) {
+			return $this->statusPrint(1, $rs);
+		}
+		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
+		
+	}
+
 	public function ballotAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
