@@ -73,8 +73,8 @@ class RedisAPI {
 			return 0;
 		}
 		$this->_redis->hSet($ballotTableKey, $uid, '1');
-		$userTableKey = "user:" . $gid;
-		$this->_redis->hIncrBy($userTableKey, 'ballot', 1);
+		//$userTableKey = "user:" . $gid;
+		//$this->_redis->hIncrBy($userTableKey, 'ballot', 1);
 		return 1;
 	}
 

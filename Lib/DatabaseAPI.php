@@ -66,22 +66,48 @@ class DatabaseAPI extends Base {
 		if (isset($_SESSION['user'])) {
 			return $_SESSION['user'];
 		}
-		$sql = "SELECT `id`, `openid`, `greeting`, `type` FROM `coach_info` WHERE `openid` = ?"; 
+		$sql = "SELECT `id`, `openid`, `nickname`, `greeting`, `background`, `ballot` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid, $mobile, $money, $timeint);
+		$res->bind_result($uid, $openid, $nickname, $greeting, $background, $ballot);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
 			$user->openid = $openid;
-			$user->mobile = $mobile;
-			$user->money = $money;
-			$user->timeint = $timeint;
+			$user->nickname = $nickname;
+			$user->greeting = $greeting;
+			$user->background = $background;
+			$user->ballot = $ballot;
 			$_SESSION['user'] = $user;
 			return $user;
 		}
 		return NULL;
+	}
+
+	public function ballot($uid, $id) {
+		$sql = "SELECT `id` FROM `coach_ballot` WHERE `uid` = ? and `pid` = ?"; 
+		$res = $this->db->prepare($sql);
+		$res->bind_param("ss", $uid, $id);
+		$res->execute();
+		$res->bind_result($id);
+		if($res->fetch()) {
+			return 0;
+		}
+		$sql = "INSERT INTO `coach_ballot` SET `uid` = ?, `pid` = ?";
+		$res = $this->db->prepare($sql); 
+		$res->bind_param("ss", $uid, $id);
+		if ($res->execute()) {
+			$sql = "update `coach_info` SET `ballot` = ballot + 1 where id = ?";
+			$res = $this->db->prepare($sql); 
+			$res->bind_param("s", $uid);
+			if ($res->execute()) {
+				return 1;
+			}
+			return 0;
+		} else {
+			return 0;
+		}
 	}
 
 	public function saveAcxiomLog($type, $data, $responseCode, $responseDesc, $result) {

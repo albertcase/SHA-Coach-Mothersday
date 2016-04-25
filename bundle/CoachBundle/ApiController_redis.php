@@ -22,9 +22,7 @@ class ApiController extends Controller {
 	}
 
 	public function sendverifycodeAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
 		$request = $this->Request();
@@ -45,9 +43,7 @@ class ApiController extends Controller {
 	}
 
 	public function customerbindAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
 		$request = $this->Request();
@@ -70,9 +66,7 @@ class ApiController extends Controller {
 	}
 
 	public function customerregisterAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
 		$request = $this->Request();
@@ -103,12 +97,13 @@ class ApiController extends Controller {
 	}
 
 	public function isloginAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
-		return $this->statusPrint(1, $user);
+		$id = $_SESSION['user_id'];
+		$redis = new \Lib\RedisAPI();
+		$info = $redis->loadUser($id);
+		return $this->statusPrint(1, $info);
 	}
 
 	public function flushAction() {
@@ -123,8 +118,9 @@ class ApiController extends Controller {
 		);
 		$request->validation($fields);
 		$openid = $request->query->get('openid');
-		$userapi = new \Lib\UserAPI();
-		$userapi->userLogin($openid);
+		$redis = new \Lib\RedisAPI();
+		$_SESSION['user_id'] = $redis->loginUser($openid);
+		$_SESSION['openid'] = $openid;
 
 		exit;
 	}
@@ -132,8 +128,8 @@ class ApiController extends Controller {
 	public function getdataAction() {
 		$data = $GLOBALS['HTTP_RAW_POST_DATA'];	
 		$data = json_decode($data, true);
-		$databaseapi = new \Lib\DatabaseAPI();
-		$databaseapi->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+		$redis = new \Lib\RedisAPI();
+		$redis->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
 	}
 
 
@@ -141,24 +137,19 @@ class ApiController extends Controller {
 		$request = $this->Request();
 		$page = $request->query->get('page') ? $request->query->get('page') : 1;
 		$row = $request->query->get('row') ? $request->query->get('row') : 4;
-		$redis = new \Lib\UserAPI();
+		$redis = new \Lib\RedisAPI();
 		$rs = $redis->getGreeting($page, $row);
 		return $this->statusPrint(1, $rs);
 		
 	}
 
 	public function statusAction() {
-		// if (!isset($_SESSION['user'])) {
-		// 	return $this->statusPrint(0, '未登录');
-		// }
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
-		$wechatapi = new \Lib\WechatAPI();
+		$redis = new \Lib\RedisAPI();
 		//Eric 获取用户资料（关注） 微信js 
-		$rs = $wechatapi->isSubscribed($user->openid); 
+		//$rs = $redis->isSubscribed($_SESSION['openid']); 
 		$rs = 1;
 		if ($rs) {
 			return $this->statusPrint(1, '已关注');
@@ -167,12 +158,13 @@ class ApiController extends Controller {
 	}
 
 	public function greetingAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
-		if ($user->greeting) {
+		$id = $_SESSION['user_id'];
+		$redis = new \Lib\RedisAPI();
+		$info = $redis->loadUser($id);
+		if ($info['greeting']) {
 			return $this->statusPrint(2, '已经提交过了');
 		}
 		$request = $this->Request();
@@ -183,11 +175,8 @@ class ApiController extends Controller {
 		$request->validation($fields);
 		$greeting = $request->request->get('greeting');
 		$background = $request->request->get('background');
-		$image = $request->request->get('image');
-
-		$databaseapi = new \Lib\DatabaseAPI();
-		$url = $databaseapi->getUrl($image);
-		$rs = $databaseapi->setGreeting($user->uid, $url, $greeting, $background); 
+		$redis = new \Lib\RedisAPI();
+		$rs = $redis->setGreeting($greeting, $background); 
 		if ($rs) {
 			return $this->statusPrint(1, '提交成功');
 		}
@@ -196,9 +185,7 @@ class ApiController extends Controller {
 	}
 
 	public function ballotAction() {
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
+		if (!isset($_SESSION['user_id'])) {
 			return $this->statusPrint(0, '未登录');
 		}
 		
@@ -209,10 +196,8 @@ class ApiController extends Controller {
 		$request->validation($fields);
 		$id = $request->request->get('id');
 		$redis = new \Lib\RedisAPI();
-		$rs = $redis->ballot($user->uid, $id); 
+		$rs = $redis->ballot($_SESSION['user_id'], $id); 
 		if ($rs) {
-			$databaseapi = new \Lib\DatabaseAPI();
-			$databaseapi->ballot($user->uid, $id); 
 			return $this->statusPrint(1, '提交成功');
 		}
 		return $this->statusPrint(2, '已经提交过');
