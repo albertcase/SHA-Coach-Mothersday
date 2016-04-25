@@ -30,13 +30,13 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    //Common.goHomepage();
+                    Common.goHomepage();
 
                     //test
-                    Common.goCouponPage();
-                    $('.coupon').on('click',function(){
-                        self.addCouppon(1);
-                    });
+                    //Common.goCouponPage();
+                    //$('.coupon').on('click',function(){
+                    //    self.addCouppon(1);
+                    //});
 
                     //	go gallery page
                     $('.btn-gogallery').on('click',function(e){
