@@ -150,7 +150,7 @@ class ApiController extends Controller {
 		);
 		$page = $request->request->get('nowpage');
 		$row = $request->request->get('rowcount');
-		$redis = new \Lib\UserAPI();
+		$redis = new \Lib\RedisAPI();
 		$rs = $redis->getGreeting($page, $row);
 		return $this->statusPrint(1, $rs);
 		
