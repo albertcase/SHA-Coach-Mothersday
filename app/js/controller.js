@@ -10,6 +10,7 @@
         this.canvas.setWidth($('.block-photo .p-inner').width());
         this.canvas.setHeight($('.block-photo .p-inner').height());
         this.curBackground=1;
+        this.openid = '';
     };
     controller.prototype = {
         init:function(){
@@ -35,11 +36,11 @@
                     //        $('.qrcode-pop').removeClass('hide');
                     //    }
                     //});
-                    //Common.goHomepage();
+                    Common.goHomepage();
                     //Common.goMobilePage();
 
                     //test now
-                    self.LoadingGreetingPage();
+                    //self.LoadingGreetingPage();
 
                     //	go gallery page
                     $('.btn-gogallery').on('click',function(e){
@@ -57,6 +58,7 @@
                                     Common.goMyPhotoPage();
                                 }else{
                                     self.LoadingGreetingPage();
+                                    self.openid = data.msg.openid;
                                 }
                             }else{
                                 alert(data.msg);
@@ -270,35 +272,28 @@
             /*
             *click get keycode button, validate mobile first and then connect api to sent user message
             */
+            var enableClick = true;
             $('.btn-getkeycode').on('click',function(e){
                 e.preventDefault();
-                if($('.countdown').length>0) return;
                 if(self.MobileValidate()){
                     //    start to get keycode
                     console.log('validate phone number');
+                    $('.btn-getkeycode').addClass('disabled');
+                    if(!enableClick) return;
+                    enableClick = false;
                     var mobile = $('.input-phone').val();
                     Api.sendVerifycode({
                         mobile:mobile
                     },function(data){
-
+                        enableClick = true;
+                        $('.btn-getkeycode').removeClass('disabled');
+                        if(data.status==1){
+                            console.log('短信发送成功');
+                        }else{
+                            alert(data.msg);
+                        }
                     });
-                    //self.countDown();
-                    //var xhr = $.ajax({
-                    //    type:'POST',
-                    //    url:'/api/check',
-                    //    data:{mobile:mobile},
-                    //    dataType:'json',
-                    //    success:function(data){
-                    //        console.log(data);
-                    //        //status:1 success
-                    //        //0,12 msg
-                    //        if(data.status==1){
-                    //            console.log('短信发送成功');
-                    //        }else{
-                    //            alert(data.msg);
-                    //        }
-                    //    }
-                    //});
+
                 };
             });
 
@@ -313,17 +308,17 @@
                     //    start to get keycode
                     var phonenumber = $('.input-phone').val();
                     var keycode = $('.input-keycode').val();
-                    console.log(phonenumber+'phonenumber'+keycode);
-                    Common.msgBox('loading...');
-                    var xhr_submit = $.ajax({
-                        type:'POST',
-                        url:'/api/submit',
-                        data:{mobile:phonenumber,code:keycode},
-                        dataType:'json',
-                        success:function(data){
-                            enableSubmit = true;
-                            $('.ajaxpop').remove();
-                            console.log('do something...');
+                    Api.customerBind({
+                        mobile:mobile,
+                        verifycode:verifycode
+                    },function(data){
+                        enableSubmit = true;
+                        if(data.status==1){
+                            //update info page
+                            $('.input-mobile').val(phonenumber);
+                            Common.goInfoPage();
+                        }else{
+                            alert(data.msg);
                         }
                     });
                 };
@@ -342,24 +337,30 @@
             * Submit the register information form
             * */
             var self = this;
+            var enableSubmit = true;
             $('.form-info .form-btn-submit').on('click',function(){
                 if(self.FormInforValidate()){
-                    console.log('validate success');
+                    if(!enableSubmit) return;
+                    enableSubmit = false;
+                    Api.customerRegister({
+                        firstname:$('.input-surname').val(),
+                        lastname:$('.input-name').val(),
+                        mobile :$('.input-mobile').val(),
+                        email:$('.input-email-pre').val()+'@'+$('.input-email-after').val(),
+                        gender:$('input[name="gender"]:checked').val(),
+                        openid:self.openid,
+                    },
+                    function(data){
+                        enableSubmit = true;
+                        if(data.status==1){
+                            //update info page
+                            Common.goCouponPage();
+                        }else{
+                            alert(data.msg);
+                        }
+                    });
                 }
             });
-
-        },
-        countDown:function(){
-            var countdownTime = 59;
-            var countdownline = setInterval(function(){
-                countdownTime--;
-                $('.btn-getkeycode').addClass('countdown').html(countdownTime);
-                if(countdownTime<=0){
-                    clearInterval(countdownline);
-                    $('.btn-getkeycode').removeClass('countdown').html('');
-                }
-            },1000);
-
 
         },
         closePop:function(){

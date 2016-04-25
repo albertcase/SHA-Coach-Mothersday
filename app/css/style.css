@@ -667,6 +667,9 @@ input[type='tel'] {
   position: absolute;
   right: -0.6rem;
 }
+.pin-3 .form-validate .btn-getkeycode.disabled {
+  opacity: 0.4;
+}
 .pin-3 .form-validate .input-keycode {
   height: 0.5rem;
   float: left;

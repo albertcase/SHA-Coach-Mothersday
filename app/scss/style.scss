@@ -502,6 +502,9 @@ input[type='tel']{
       padding: 0;
       position: absolute;
       right: -0.6rem;
+      &.disabled{
+        opacity: 0.4;
+      }
     }
     .input-keycode{
       height: 0.5rem;
