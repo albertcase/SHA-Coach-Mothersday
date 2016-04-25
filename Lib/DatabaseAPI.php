@@ -8,7 +8,7 @@ class DatabaseAPI extends Base {
 	public function __construct() {
 		$connect = new \mysqli(DBHOST, DBUSER, DBPASS, DBNAME);
 		$this->db = $connect;
-		$this->db->query("set names utf8");
+		//$this->db->query("set names utf8");
 	}
 
 	public function insertCurio($result) {
@@ -125,6 +125,16 @@ class DatabaseAPI extends Base {
 
 	public function setGreeting($uid, $nickname, $image, $greeting, $background) {
 		$sql = "update `coach_info` SET `nickname` = ?, `image` = ?, `greeting` = ?, `background` = ? where id = ?";
+		$res = $this->db->prepare($sql); 
+		$res->bind_param("sssss", $nickname, $image, $greeting, $background, $uid);
+		if ($res->execute()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public function loadGreeting($id) {
+		$sql = "SELECT `id`, `nickname`, `image`, `greeting`, `` `coach_info` SET `nickname` = ?, `image` = ?, `greeting` = ?, `background` = ? where id = ?";
 		$res = $this->db->prepare($sql); 
 		$res->bind_param("sssss", $nickname, $image, $greeting, $background, $uid);
 		if ($res->execute()) {

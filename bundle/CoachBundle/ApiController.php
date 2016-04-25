@@ -187,7 +187,8 @@ class ApiController extends Controller {
 			'image' => array('notnull', '3'),
 		);
 		$request->validation($fields);
-		$greeting = $request->request->get('greeting');
+		//$greeting = $request->request->get('greeting');
+		$greeting = '中文测试';
 		$background = $request->request->get('background');
 		$image = $request->request->get('image');
 		$uploadapi = new \Lib\UploadAPI();
