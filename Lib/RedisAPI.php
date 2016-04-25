@@ -82,13 +82,18 @@ class RedisAPI {
 		return $this->_redis->flushAll();
 	}
 
-	public function setGreeting($greeting, $background) {
-		$id = $_SESSION['user_id'];
-		$userTableKey = "user:" . $id;
-		$user = array('greeting' => $greeting, 'background' => $background);
-		$this->_redis->hMset($userTableKey, $user);
-		$nickname = $this->_redis->hGet($userTableKey, 'nickname');
-		$this->_redis->lPush("Coach:Greeting", $_SESSION['user_id'] . '|' . $nickname . '|' . $greeting . '|' . $background);
+	// public function setGreeting($greeting, $background) {
+	// 	$id = $_SESSION['user_id'];
+	// 	$userTableKey = "user:" . $id;
+	// 	$user = array('greeting' => $greeting, 'background' => $background);
+	// 	$this->_redis->hMset($userTableKey, $user);
+	// 	$nickname = $this->_redis->hGet($userTableKey, 'nickname');
+	// 	$this->_redis->lPush("Coach:Greeting", $_SESSION['user_id'] . '|' . $nickname . '|' . $greeting . '|' . $background);
+	// 	return 1;
+	// }
+
+	public function setGreeting($uid, $nickname, $image, $greeting, $background) {
+		$this->_redis->lPush("Coach:Greeting", $uid . '|' . $nickname . '|' . $image . '|' . $greeting . '|' . $background);
 		return 1;
 	}
 
@@ -102,6 +107,24 @@ class RedisAPI {
 	      return 0;
 	}
 
+	// public function getGreeting($page, $row = 8) {
+		
+	// 	$total = $this->_redis->lSize("Coach:Greeting");
+	// 	$totalpage = ceil( $total / $row );
+	// 	$start = ( $page - 1 ) * $row;
+	// 	$end = $start + $row -1;
+	// 	$arList = $this->_redis->lrange("Coach:Greeting", $start, $end);
+	// 	$returnList = array();
+	// 	for ( $i = 0; $i < count($arList); $i++ ) {
+	// 		$value = explode('|', $arList[$i]);
+	// 		$returnList[$i]['id'] = $value[0];
+	// 		$returnList[$i]['nickname'] = $value[1];
+	// 		$returnList[$i]['greeting'] = $value[2];
+	// 		$returnList[$i]['type'] = $value[3];
+	// 	}		
+	// 	return array('nowpage' => $page, 'rowcount' => $row, 'totalpage' => $totalpage, 'list' => $returnList);
+	// }
+
 	public function getGreeting($page, $row = 8) {
 		
 		$total = $this->_redis->lSize("Coach:Greeting");
@@ -114,8 +137,9 @@ class RedisAPI {
 			$value = explode('|', $arList[$i]);
 			$returnList[$i]['id'] = $value[0];
 			$returnList[$i]['nickname'] = $value[1];
-			$returnList[$i]['greeting'] = $value[2];
-			$returnList[$i]['type'] = $value[3];
+			$returnList[$i]['image'] = $value[2];
+			$returnList[$i]['greeting'] = $value[3];
+			$returnList[$i]['background'] = $value[4];
 		}		
 		return array('nowpage' => $page, 'rowcount' => $row, 'totalpage' => $totalpage, 'list' => $returnList);
 	}

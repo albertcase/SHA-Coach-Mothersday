@@ -62,6 +62,18 @@ class DatabaseAPI extends Base {
 		return FALSE;
 	}
 
+	public function getNicknameByOpenid($openid) {
+		$sql = "SELECT nickname  FROM `coach_oauth` WHERE `openid` = ?"; 
+		$res = $this->db->prepare($sql);
+		$res->bind_param("s", $openid);
+		$res->execute();
+		$res->bind_result($nickname);
+		if($res->fetch()) {
+			return $nickname;
+		}
+		return '';
+	}
+
 	public function findUserByOpenid($openid) {
 		if (isset($_SESSION['user'])) {
 			return $_SESSION['user'];
