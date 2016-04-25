@@ -27,6 +27,9 @@ function gotoPin(i) {
 		goInfoPage:function(){
 			gotoPin(3);
 		},
+		goCouponPage:function(){
+			gotoPin(4);
+		},
 		isWx:function(){
 			return (/micromessenger/.test(ua)) ? true:false;
 		},
