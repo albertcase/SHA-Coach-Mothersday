@@ -7,15 +7,11 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- inject:css -->
-    <link rel="stylesheet" href="../app/css/style.css"/>
+    <link rel="stylesheet" href="/app/css/style.css">
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script type="text/javascript" src="../app/js/lib/zepto.min.js"></script>
-    <script type="text/javascript" src="../app/js/rem.js"></script>
-    <script type="text/javascript" src="../app/js/common.js"></script>
-    <script type="text/javascript" src="../app/js/api.js"></script>
-    <script type="text/javascript" src="../app/js/photopage.js"></script>
+    <script src="/app/js/widget/widget_photo.js"></script>
     <!-- endinject -->
 </head>
 <body>

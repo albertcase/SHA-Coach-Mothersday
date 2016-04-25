@@ -30,17 +30,13 @@
                 onComplete: function(){
                     //remove the loading and show the first pin
                     $('.preloading').remove(1000);
-                    //Api.isFollow(function(data){
-                    //    console.log(data);
-                    //    if(!data.status){
-                    //        $('.qrcode-pop').removeClass('hide');
-                    //    }
-                    //});
                     Common.goHomepage();
-                    //Common.goMobilePage();
 
-                    //test now
-                    //self.LoadingGreetingPage();
+                    //test
+                    //Common.goCouponPage();
+                    //$('.coupon').on('click',function(){
+                    //    self.addCouppon(1);
+                    //});
 
                     //	go gallery page
                     $('.btn-gogallery').on('click',function(e){
@@ -55,8 +51,10 @@
                             if(data.status==1){
                                  //    logged
                                 if(data.msg.background){
-                                    Common.goMyPhotoPage();
+                                    //has submit image
+                                    Common.goPhotoPage();
                                 }else{
+                                    //not submit your image
                                     self.LoadingGreetingPage();
                                     self.openid = data.msg.openid;
                                 }
@@ -98,7 +96,7 @@
                 words = $('#input-tomom').val();
             /*
              *  Input your words and then sent them to server
-             *  submit words and photo number
+             *  submit words and image
              *  If submit success, show the share-pop
              */
             Common.goWriteGreetingPage();
@@ -161,8 +159,8 @@
                         imgobj.scale(0.5);
                         imgobj.set({
                             selectable:true,
-                            //hasControls:false,
-                            //hasBorders:false
+                            hasControls:false,
+                            hasBorders:false
                         });
                         self.canvas.add(imgobj);
 
@@ -354,12 +352,49 @@
                         enableSubmit = true;
                         if(data.status==1){
                             //update info page
+                            //go coupon page
                             Common.goCouponPage();
+                            $('.coupon').on('click',function(){
+                                self.addCouppon(1);
+                            });
                         }else{
                             alert(data.msg);
                         }
                     });
                 }
+            });
+
+        },
+        addCouppon:function(i){
+            Api.coupon({
+
+            },function(data){
+                if(data.status){
+                    var cardListJSON = data.msg;
+                    wx.addCard({
+                        cardList: [{
+                            cardId: cardListJSON[i-1].cardId,
+                            cardExt: '{"timestamp":"'+cardListJSON[i-1].cardExt.timestamp+'","signature":"'+cardListJSON[i-1].cardExt.signature+'"}'
+                        }],
+                        success: function(res) {
+                            var cardList = res.cardList;
+                            //alert(JSON.stringfiy(res));
+                        },
+                        fail: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        },
+                        complete: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        },
+                        cancel: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        },
+                        trigger: function(res) {
+                            //alert(JSON.stringfiy(res));
+                        }
+                    });
+                }
+
             });
 
         },

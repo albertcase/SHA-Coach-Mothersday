@@ -11,7 +11,7 @@
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script src="/app/js/widget.js"></script>
+    <script src="/app/js/widget/widget_home.js"></script>
     <!-- endinject -->
 </head>
 <body>
@@ -35,7 +35,7 @@
 <!--start content-->
 <div class="wrapper">
     <section class="pin pin-1">
-        <div class="p1-1">
+        <div class="slogan">
             <img src="../app/images/p1-1.png" alt=""/>
         </div>
         <div class="kv">
@@ -47,14 +47,30 @@
         <div class="btn-sprite btn-gogallery"></div>
         <div class="btn-sprite btn-filltext"></div>
     </section>
+    <!-- photopage-->
     <section class="pin pin-2">
-        <div class="p1-1">
+        <div class="slogan">
             <img src="../app/images/p1-1.png" alt=""/>
         </div>
-        <div class="photo-frame photo photo-1">
-            <textarea name="" id="input-tomom" class="leave-words" cols="30" rows="10" placeholder="|输入对母亲的祝福语
-（总计50字符）" maxlength="50"></textarea>
-            <div class="num">000001</div>
+        <div class="photo-wrap">
+            <div class="photo-frame photo photo-1">
+                <div class="block-photo">
+                    <div class="p-inner">
+                        <div class="btn-camera">
+                            <span class="icon"></span>
+                            拍摄或上传一张照片
+                        </div>
+                        <input type="file" accept="image/*" id="capture" capture="camera">
+                        <canvas id="c"></canvas>
+                    </div>
+                </div>
+                <textarea name="" id="input-tomom" class="leave-words" cols="20" rows="2"  maxlength="50" >
+世界上最好的妈妈
+值得世界上最好的礼物
+妈妈，祝你母亲节快乐
+我爱你
+                </textarea>
+            </div>
         </div>
         <div class="buttons">
             <div class="btn-sprite btn-back"></div>
@@ -119,7 +135,7 @@
             </div>
             <div class="input-box input-box-mobile">
                 <label for="" class="label-mobile">手机 <span class="icon-require">*</span></label>
-                <input type="text" class="input-mobile" name="mobile" disabled value="123"/>
+                <input type="text" class="input-mobile" name="mobile" disabled/>
             </div>
             <div class="input-box input-box-email">
                 <label for="" class="label-email">邮箱 <span class="icon-require">*</span></label>
@@ -135,14 +151,25 @@
     </section>
     <!-- coupon page-->
     <section class="pin pin-5">
-        <a class="coupon" href="#">
+        <div class="coupon" href="#">
             <img src="../app/images/coupon.png" alt=""/>
-        </a>
+        </div>
     </section>
-    <!-- popup-->
+    <!-- popup share-pop-->
     <div class="popup share-pop hide">
         <div class="share-1">
             <img src="../app/images/share-tips.png" alt=""/>
+        </div>
+    </div>
+    <!-- popup-->
+    <div class="popup qrcode-pop hide">
+        <div class="inner">
+            <div class="qrcode">
+                <img src="../app/images/qrcode-follow.png" alt=""/>
+            </div>
+            <div class="qrcode-text">
+                <img src="../app/images/qrcode-follow-text.png" alt=""/>
+            </div>
         </div>
     </div>
 
