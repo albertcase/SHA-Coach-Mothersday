@@ -179,12 +179,12 @@ class ApiController extends Controller {
 		$fields = array(
 			'greeting' => array('notnull', '3'),
 			'background' => array('notnull', '3'),
-			//'image' => array('notnull', '3'),
+			'image' => array('notnull', '3'),
 		);
 		$request->validation($fields);
-		$greeting = $request->request->get('greeting');
-		$background = $request->request->get('background');
-		$image = $request->request->get('image');
+		$greeting = $request->query->get('greeting');
+		$background = $request->query->get('background');
+		$image = $request->query->get('image');
 		$uploadapi = new \Lib\UploadAPI();
 		$url = $uploadapi->saveImage($image);
 
