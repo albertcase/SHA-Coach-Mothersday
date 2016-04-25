@@ -116,6 +116,11 @@ img{
 
 }
 
+.slogan{
+  @include size(4.18rem,0.41rem);
+  margin: 0.5rem auto;
+}
+
 body{
   font:0.24rem/1.5 "Arial",'sans-serif';
 }
@@ -207,6 +212,18 @@ body{
   &.btn-filltext{
     background-position: 0 -0.87rem;
   }
+  &.btn-back{
+    background-position: 0 -2rem;
+  }
+  &.btn-submit{
+    background-position: 0 -4.25rem;
+  }
+  &.btn-joinplay{
+    background-position: 0 100%;
+  }
+  &.btn-like{
+    background-position: 0 -3.15rem;
+  }
 }
 
 //for photo-frame
@@ -269,6 +286,30 @@ body{
     font-size: 0.33rem;
     color: #000;
     overflow: hidden;
+  }
+}
+
+.photo-wrap{
+  position: relative;
+}
+.block-photo{
+  @include size(4.2rem,4.2rem);
+  background: #f4f0eb;
+  position: absolute;
+  bottom: 0.3rem;
+  right: 0.3rem;
+  @include transform(rotate(20deg));
+  @include vendor-prefix(box-shadow,3px 1px 6px #999);
+  box-sizing: border-box;
+  .p-inner{
+    background: #fff;
+    display: block;
+    width: 3.6rem;
+    height: 3.6rem;
+    position: absolute;
+    left: 0.3rem;
+    top: 0.3rem;
+    @include vendor-prefix(box-shadow,0px 0px 9px #ccc);
   }
 }
 
@@ -361,45 +402,6 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
       display: inline-block;
       margin: 0 0.2rem 0;
     }
-    .btn-back{
-      background-position: 0 -2rem;
-    }
-    .btn-submit{
-      background-position: 0 -4.25rem;
-    }
-  }
-  .photo-wrap{
-    position: relative;
-  }
-  .block-photo{
-    @include size(4.2rem,4.2rem);
-    background: #f4f0eb;
-    position: absolute;
-    bottom: 0.3rem;
-    right: 0.3rem;
-    @include transform(rotate(20deg));
-    @include vendor-prefix(box-shadow,3px 1px 6px #999);
-    box-sizing: border-box;
-    .p-inner{
-      background: #fff;
-      display: block;
-      width: 3.6rem;
-      height: 3.6rem;
-      position: absolute;
-      left: 0.3rem;
-      top: 0.3rem;
-      @include vendor-prefix(box-shadow,0px 0px 9px #ccc);
-    }
-  }
-  #c{
-    //position: absolute;
-    //width: 100%;
-    //height: 100%;
-    //top: 0;
-    //left: 0;
-    //z-index: 1;
-    //background: url("../images/show-1.png") no-repeat;
-    //background-size: 100%;
   }
   #capture{
     display: block;
@@ -784,14 +786,91 @@ input[type='tel']{
 }
 
 //for gallery page
-.gallery{
-  .item{
-    @include size(3.3rem,4.3rem);
+.pin-gallery{
+  overflow-y:auto;
+}
+//for top banner
+.top-banner{
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,255,255,0.7);
+  width: 100%;
+  .user-name{
+    display: inline-block;
+    float: left;
+    margin-left: 0.1rem;
   }
-  .photo{
-    @include size(3.28rem,3.80rem);
+  .icon-good{
+    float: right;
+    margin-right: 0.1rem;
+    &:after{
+      content: '';
+      display: inline-block;
+      @include size(0.27rem,0.27rem);
+      background: url("../images/icon-sprite.png") no-repeat;
+      background-size: 100%;
+      position: relative;
+      top: 0.08rem;
+      margin-left: 0.1rem;
+    }
   }
 }
+.gallery-list{
+  //height: 85vh;
+  //overflow: auto;
+  text-align: center;
+  .item{
+    position: relative;
+    display: inline-block;
+    //@include size(3.2rem,4.14rem);
+    margin: 0.2rem;
+    .photo{
+      @include size(3.2rem,4.14rem);
+      .leave-words{
+        top: 0.8rem;
+        left: 0.15rem;
+        width: 2rem;
+        height: 1rem;
+        padding: 3px;
+        font-size: 0.15rem;
+      }
+    }
+    .writing-words{
+
+    }
+    .block-photo{
+      @include size(2.1rem,2.1rem);
+      .p-inner{
+        @include size(1.8rem,1.8rem);
+        left: 0.15rem;
+        top: 0.15rem;
+      }
+      img{
+        @include size(100%,100%);
+      }
+    }
+  }
+  //.photo{
+  //  @include size(3.28rem,3.80rem);
+  //}
+}
+
+//for pin photo
+.pin-photo{
+  .photo-wrap{
+    @include size(6.4rem,auto);
+    margin: 0 auto;
+  }
+  .top-banner{
+    height: 0.6rem;
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    font-family: "Arial",sans-serif;
+    font-weight: bold;
+  }
+}
+
 
 //test
 #__bs_notify__{
