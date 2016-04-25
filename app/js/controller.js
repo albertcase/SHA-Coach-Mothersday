@@ -130,7 +130,7 @@
                 //    submit writeGreeting
                 Api.writeGreeting({
                     greeting:words,
-                    background:this.curBackground,
+                    background:self.curBackground,
                     image:renderPic
                 },function(data){
                     console.log(data);
@@ -278,11 +278,11 @@
                     //    start to get keycode
                     console.log('validate phone number');
                     var mobile = $('.input-phone').val();
-                    //Api.sendVerifycode({
-                    //    mobile:mobile
-                    //},function(){
-                    //
-                    //});
+                    Api.sendVerifycode({
+                        mobile:mobile
+                    },function(data){
+
+                    });
                     //self.countDown();
                     //var xhr = $.ajax({
                     //    type:'POST',
