@@ -21,7 +21,14 @@ $(document).ready(function(){
                     $('.p-inner img').attr('src',listdata.image);
                     $('.leave-words').html(listdata.greeting);
                     $('.user-name').html(listdata.nickname);
+
+                    if(listdata.isballot){
+                        $('.icon-good').removeClass('notlike');
+                    }else{
+                        $('.icon-good').addClass('notlike');
+                    }
                     $('.icon-good').html(listdata.ballot);
+
                     uid = listdata.id;
                 }else{
                     //alert(data.msg);
@@ -51,7 +58,8 @@ $(document).ready(function(){
             enabled = true;
             if(data.status==1){
                 var voteNum = parseInt($('.icon-good').html());
-                $('.icon-good').html(voteNum++);
+                $('.icon-good').html(++voteNum);
+                $('.icon-good').removeClass('notlike');
             }else{
                 alert(data.msg);
             }
