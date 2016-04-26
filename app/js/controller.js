@@ -295,8 +295,7 @@
             });
 
         //    close the pop
-            self.closePop();
-            self.toMoneyPage();
+        //    self.closePop();
         },
         SubmitInformationForm:function(){
             /*

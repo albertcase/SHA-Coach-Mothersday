@@ -11,7 +11,26 @@ $(document).ready(function(){
         $('.loading-wrap').addClass('show');
         var baseurl = ''+'/app';
         var imagesArray = [
+            baseurl + '/images/loading-logo.png',
             baseurl + '/images/logo.png',
+            baseurl + '/images/p1-1.png',
+            baseurl + '/images/p1-t1.png',
+            baseurl + '/images/p3-1.png',
+            baseurl + '/images/p4-1.png',
+            baseurl + '/images/qrcode-follow-text.png',
+            baseurl + '/images/qrcode-follow.png',
+            baseurl + '/images/share-tips.png',
+            baseurl + '/images/share-tips.png',
+            baseurl + '/images/btn-sprite.png',
+            baseurl + '/images/coupon.png',
+            baseurl + '/images/form-btn.png',
+            baseurl + '/images/icon-sprite.png',
+            baseurl + '/images/kv.png',
+            baseurl + '/images/show-1.png',
+            baseurl + '/images/show-2.png',
+            baseurl + '/images/show-3.png',
+            baseurl + '/images/show-4.png',
+            baseurl + '/images/title.png'
         ];
         var i = 0;
         new preLoader(imagesArray, {
