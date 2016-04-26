@@ -103,9 +103,9 @@
                         $('.share-pop').removeClass('hide');
 
                         var sharepath = window.location.origin+'/photo?id='+self.id;
-                        weixinshare(sharepath,function(){
-                            Common.goMobilePage();
-                        });
+                        //weixinshare(sharepath,function(){
+                        //    Common.goMobilePage();
+                        //});
                     }else{
                         alert(data.msg);
                     }

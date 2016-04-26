@@ -1,9 +1,9 @@
-
-function weixinshare(sharelink,successcallback){
-    wx.ready(function() {
+$(document).ready(function(){
+    var sharepath = 'http://coach-mom.samesamechina.com/';
+    wx.ready(function(){
         wx.onMenuShareTimeline({
-            title: '大神说出对妈妈的爱，赢取全新Saddle手袋！',
-            link: sharelink,
+            title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+            link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             success: function () {
                 successcallback();
@@ -14,7 +14,7 @@ function weixinshare(sharelink,successcallback){
         wx.onMenuShareAppMessage({
             title: '大神说出对妈妈的爱，赢取全新Saddle手袋！',
             desc: '大神说出对妈妈的爱，赢取全新Saddle手袋！',
-            link: sharelink,
+            link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             type: '',
             dataUrl: '',
@@ -24,13 +24,6 @@ function weixinshare(sharelink,successcallback){
             cancel: function () {
             }
         });
-
-    });
-};
-
-$(document).ready(function(){
-    var sharepath = 'http://coach-mom.samesamechina.com/';
-    weixinshare(sharepath,function(){
 
     });
 
