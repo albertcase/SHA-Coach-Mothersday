@@ -16,12 +16,14 @@
             //loading all the resourse, such as css,js,image
             var self = this;
 
-            Common.goFirstPage();
+            //Common.goFirstPage();
+            Common.goCouponPage();
+
             Api.isLogin(function(data){
                 console.log(data);
                 if(data.status==1){
                     //    logged
-                    self.LoadingGreetingPage();
+                    //self.LoadingGreetingPage();
                     self.id = data.msg.id;
                     self.openid = data.msg.openid;
                 }else{
@@ -308,9 +310,10 @@
                     var phonenumber = $('.input-phone').val();
                     var keycode = $('.input-keycode').val();
                     Api.customerBind({
-                        mobile:mobile,
-                        verifycode:verifycode
+                        mobile:phonenumber,
+                        verifycode:keycode
                     },function(data){
+                        console.log(data);
                         //enableSubmit = true;
                         if(data.status==1){
                             //update info page
