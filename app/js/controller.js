@@ -102,6 +102,7 @@
                         //    success
                         $('.share-pop').removeClass('hide');
                         var sharepath = window.location.origin+'/photo?id='+self.id;
+
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
@@ -111,6 +112,7 @@
                                     Common.goMobilePage();
                                 },
                                 cancel: function(){
+
                                 }
                             });
                             wx.onMenuShareAppMessage({
@@ -121,13 +123,14 @@
                                 type: '',
                                 dataUrl: '',
                                 success: function(){
-
+                                    Common.goMobilePage();
                                 },
                                 cancel: function(){
                                 }
                             });
 
                         });
+
                     }else{
                         alert(data.msg);
                     }
