@@ -9,14 +9,29 @@ function gotoPin(i) {
 		goHomepage:function(){
 			gotoPin(0);
 		},
+		goReloadHomePage:function(id){
+			if(id){
+				window.location.href='home.html?id='+id;
+			}else{
+				window.location.href='home.html';
+			}
+		},
 		goWriteGreetingPage:function(){
 			gotoPin(1);
 		},
-		goPhotoPage:function(){
-			window.location.href='photo.html';
+		goPhotoPage:function(id){
+			if(id){
+				window.location.href='photo.html?id='+id;
+			}else{
+				window.location.href='photo.html';
+			}
 		},
-		goGallerypage:function(){
-			window.location.href='gallery.html';
+		goGallerypage:function(id){
+			if(id){
+				window.location.href='gallery.html?id='+id;
+			}else{
+				window.location.href='gallery.html';
+			}
 		},
 		goMobilePage:function(){
 			gotoPin(2);
@@ -29,6 +44,24 @@ function gotoPin(i) {
 		},
 		isWx:function(){
 			return (/micromessenger/.test(ua)) ? true:false;
+		},
+		queryString:function(name){
+
+			var name,value,i;
+			var str=location.href;
+			var num=str.indexOf("?")
+			str=str.substr(num+1);
+			var arrtmp=str.split("&");
+			for(i=0;i < arrtmp.length;i++) {
+				num=arrtmp[i].indexOf("=");
+				if(num>0)
+				{
+					name=arrtmp[i].substring(0,num);
+					value=arrtmp[i].substr(num+1);
+					return value;
+				}
+			}
+
 		},
 		msgBox:{
 			add:function(msg,long){

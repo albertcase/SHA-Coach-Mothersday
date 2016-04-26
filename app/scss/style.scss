@@ -807,6 +807,11 @@ input[type='tel']{
   .icon-good{
     float: right;
     margin-right: 0.1rem;
+    &.notlike{
+      &:after{
+        background-position: 0 100%;
+      }
+    }
     &:after{
       content: '';
       display: inline-block;

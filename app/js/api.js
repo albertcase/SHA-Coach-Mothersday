@@ -111,6 +111,20 @@ Api = {
             }
         });
     },
+    //id
+    getGreeting:function(obj,callback){
+        Common.msgBox.add('loading...');
+        $.ajax({
+            url:'/api/getgreeting',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                Common.msgBox.remove();
+                return callback(data);
+            }
+        });
+    },
     coupon:function(obj,callback){
         Common.msgBox.add('loading...');
         $.ajax({
