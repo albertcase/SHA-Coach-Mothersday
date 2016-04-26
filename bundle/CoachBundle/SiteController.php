@@ -23,4 +23,19 @@ class SiteController extends Controller {
 		exit;
 	}
 
+	public function homeAction() {	
+		$this->render('home');
+		exit;
+	}
+
+	public function photoAction() {	
+		$this->render('photo');
+		exit;
+	}
+
+	public function galleryAction() {	
+		$this->render('gallery');
+		exit;
+	}
+
 }
