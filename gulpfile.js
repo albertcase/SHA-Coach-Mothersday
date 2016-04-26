@@ -14,10 +14,10 @@ var path = {
     template:['./template/home.html'],
     css:['./app/css/*.css'],
     js:['./app/js/*.js','!app/js/widget.js'],
-    index_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/index.js'],
-    home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
-    photo_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/photopage.js'],
-    gallery_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/gallery.js'],
+    index_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/index.js'],
+    home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
+    photo_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/photopage.js'],
+    gallery_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/gallery.js'],
     images:['./app/images/*.*']
 };
 
