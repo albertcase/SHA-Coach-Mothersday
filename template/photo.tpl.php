@@ -40,7 +40,7 @@
             <div class="photo-frame photo photo-1">
                 <div class="block-photo">
                     <div class="p-inner">
-                        <img src="../app/images/kv.png" alt=""/>
+                        <img src="" alt=""/>
                     </div>
                 </div>
                 <div name=""  class="leave-words">

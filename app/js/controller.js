@@ -142,10 +142,6 @@
             });
 
 
-            //SubmitKeycodeForm SubmitInformationForm
-            self.SubmitKeycodeForm();
-            self.SubmitInformationForm();
-
             $('.pin-2 .btn-back').on('click', function(){
                 Common.goIndexpage();
             });
