@@ -4,7 +4,9 @@
 * */
 $(document).ready(function(){
 	var pagenum=1;
-	var enableScroll = true;
+	var enableScroll = true,
+		totalPage;
+
 
 	Api.galleryList({
 		nowpage:pagenum,
@@ -14,6 +16,7 @@ $(document).ready(function(){
 		if(data.status ==1){
 			var listData = data.msg.list;
 			var listHtml = '';
+			totalPage = parseInt(data.msg.totalpage);
 			for(var i=0;i<listData.length;i++){
 				listHtml = '<li class="item">'+
 					'<div class="top-banner">'+
@@ -47,6 +50,7 @@ $(document).ready(function(){
 			if(!enableScroll) return;
 			enableScroll = false;
 			pagenum++;
+			if(pagenum>totalPage) return;
 			Api.galleryList({
 				nowpage:pagenum,
 				rowcount:6

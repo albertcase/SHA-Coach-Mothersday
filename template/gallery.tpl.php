@@ -31,132 +31,132 @@
             <img src="../app/images/p1-1.png" alt=""/>
         </div>
         <ul class="gallery-list">
-            <li class="item">
-                <div class="top-banner">
-                    <span class="user-name">Cindy</span>
-                    <span class="icon-good">100</span>
-                </div>
-                <div class="photo-wrap">
-                    <div class="photo-frame photo photo-1">
-                        <div class="block-photo">
-                            <div class="p-inner">
-                                <img src="../app/images/kv.png" alt=""/>
-                            </div>
-                        </div>
-                        <div class="leave-words writing-words">
-                            世界上最好的妈妈
-                            值得世界上最好的礼物
-                            妈妈，祝你母亲节快乐
-                            我爱你
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="top-banner">
-                    <span class="user-name">Cindy</span>
-                    <span class="icon-good">100</span>
-                </div>
-                <div class="photo-wrap">
-                    <div class="photo-frame photo photo-1">
-                        <div class="block-photo">
-                            <div class="p-inner">
-                                <img src="../app/images/kv.png" alt=""/>
-                            </div>
-                        </div>
-                        <div class="leave-words writing-words">
-                            世界上最好的妈妈
-                            值得世界上最好的礼物
-                            妈妈，祝你母亲节快乐
-                            我爱你
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="top-banner">
-                    <span class="user-name">Cindy</span>
-                    <span class="icon-good">100</span>
-                </div>
-                <div class="photo-wrap">
-                    <div class="photo-frame photo photo-1">
-                        <div class="block-photo">
-                            <div class="p-inner">
-                                <img src="../app/images/kv.png" alt=""/>
-                            </div>
-                        </div>
-                        <div class="leave-words writing-words">
-                            世界上最好的妈妈
-                            值得世界上最好的礼物
-                            妈妈，祝你母亲节快乐
-                            我爱你
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="top-banner">
-                    <span class="user-name">Cindy</span>
-                    <span class="icon-good">100</span>
-                </div>
-                <div class="photo-wrap">
-                    <div class="photo-frame photo photo-1">
-                        <div class="block-photo">
-                            <div class="p-inner">
-                                <img src="../app/images/kv.png" alt=""/>
-                            </div>
-                        </div>
-                        <div class="leave-words writing-words">
-                            世界上最好的妈妈
-                            值得世界上最好的礼物
-                            妈妈，祝你母亲节快乐
-                            我爱你
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="top-banner">
-                    <span class="user-name">Cindy</span>
-                    <span class="icon-good">100</span>
-                </div>
-                <div class="photo-wrap">
-                    <div class="photo-frame photo photo-1">
-                        <div class="block-photo">
-                            <div class="p-inner">
-                                <img src="../app/images/kv.png" alt=""/>
-                            </div>
-                        </div>
-                        <div class="leave-words writing-words">
-                            世界上最好的妈妈
-                            值得世界上最好的礼物
-                            妈妈，祝你母亲节快乐
-                            我爱你
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="item">
-                <div class="photo-wrap">
-                    <div class="top-banner">
-                        <span class="user-name">Cindy</span>
-                        <span class="icon-good">100</span>
-                    </div>
-                    <div class="photo-frame photo photo-1">
-                        <div class="block-photo">
-                            <div class="p-inner">
-                                <img src="../app/images/kv.png" alt=""/>
-                            </div>
-                        </div>
-                        <div class="leave-words writing-words">
-                            世界上最好的妈妈
-                            值得世界上最好的礼物
-                            妈妈，祝你母亲节快乐
-                            我爱你
-                        </div>
-                    </div>
-                </div>
-            </li>
+            <!--<li class="item">-->
+                <!--<div class="top-banner">-->
+                    <!--<span class="user-name">Cindy</span>-->
+                    <!--<span class="icon-good">100</span>-->
+                <!--</div>-->
+                <!--<div class="photo-wrap">-->
+                    <!--<div class="photo-frame photo photo-1">-->
+                        <!--<div class="block-photo">-->
+                            <!--<div class="p-inner">-->
+                                <!--<img src="../app/images/kv.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="leave-words writing-words">-->
+                            <!--世界上最好的妈妈-->
+                            <!--值得世界上最好的礼物-->
+                            <!--妈妈，祝你母亲节快乐-->
+                            <!--我爱你-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="item">-->
+                <!--<div class="top-banner">-->
+                    <!--<span class="user-name">Cindy</span>-->
+                    <!--<span class="icon-good">100</span>-->
+                <!--</div>-->
+                <!--<div class="photo-wrap">-->
+                    <!--<div class="photo-frame photo photo-1">-->
+                        <!--<div class="block-photo">-->
+                            <!--<div class="p-inner">-->
+                                <!--<img src="../app/images/kv.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="leave-words writing-words">-->
+                            <!--世界上最好的妈妈-->
+                            <!--值得世界上最好的礼物-->
+                            <!--妈妈，祝你母亲节快乐-->
+                            <!--我爱你-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="item">-->
+                <!--<div class="top-banner">-->
+                    <!--<span class="user-name">Cindy</span>-->
+                    <!--<span class="icon-good">100</span>-->
+                <!--</div>-->
+                <!--<div class="photo-wrap">-->
+                    <!--<div class="photo-frame photo photo-1">-->
+                        <!--<div class="block-photo">-->
+                            <!--<div class="p-inner">-->
+                                <!--<img src="../app/images/kv.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="leave-words writing-words">-->
+                            <!--世界上最好的妈妈-->
+                            <!--值得世界上最好的礼物-->
+                            <!--妈妈，祝你母亲节快乐-->
+                            <!--我爱你-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="item">-->
+                <!--<div class="top-banner">-->
+                    <!--<span class="user-name">Cindy</span>-->
+                    <!--<span class="icon-good">100</span>-->
+                <!--</div>-->
+                <!--<div class="photo-wrap">-->
+                    <!--<div class="photo-frame photo photo-1">-->
+                        <!--<div class="block-photo">-->
+                            <!--<div class="p-inner">-->
+                                <!--<img src="../app/images/kv.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="leave-words writing-words">-->
+                            <!--世界上最好的妈妈-->
+                            <!--值得世界上最好的礼物-->
+                            <!--妈妈，祝你母亲节快乐-->
+                            <!--我爱你-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="item">-->
+                <!--<div class="top-banner">-->
+                    <!--<span class="user-name">Cindy</span>-->
+                    <!--<span class="icon-good">100</span>-->
+                <!--</div>-->
+                <!--<div class="photo-wrap">-->
+                    <!--<div class="photo-frame photo photo-1">-->
+                        <!--<div class="block-photo">-->
+                            <!--<div class="p-inner">-->
+                                <!--<img src="../app/images/kv.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="leave-words writing-words">-->
+                            <!--世界上最好的妈妈-->
+                            <!--值得世界上最好的礼物-->
+                            <!--妈妈，祝你母亲节快乐-->
+                            <!--我爱你-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li class="item">-->
+                <!--<div class="photo-wrap">-->
+                    <!--<div class="top-banner">-->
+                        <!--<span class="user-name">Cindy</span>-->
+                        <!--<span class="icon-good">100</span>-->
+                    <!--</div>-->
+                    <!--<div class="photo-frame photo photo-1">-->
+                        <!--<div class="block-photo">-->
+                            <!--<div class="p-inner">-->
+                                <!--<img src="../app/images/kv.png" alt=""/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="leave-words writing-words">-->
+                            <!--世界上最好的妈妈-->
+                            <!--值得世界上最好的礼物-->
+                            <!--妈妈，祝你母亲节快乐-->
+                            <!--我爱你-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
         </ul>
     </section>
 </body>
