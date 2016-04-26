@@ -754,6 +754,9 @@ input[type='tel']{
   height: 100%;
   top: 0;
   left: 0;
+  &.qrcode-pop{
+    background: rgba(255,255,255,0.6);
+  }
 }
 .tips-pop{
   .inner{
