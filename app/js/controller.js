@@ -16,17 +16,13 @@
             //loading all the resourse, such as css,js,image
             var self = this;
 
-            //Common.goFirstPage();
-            Common.goCouponPage();
-            $('.coupon').on('click',function(){
-                self.addCouppon(1);
-            });
+            Common.goFirstPage();
 
             Api.isLogin(function(data){
                 console.log(data);
                 if(data.status==1){
                     //    logged
-                    //self.LoadingGreetingPage();
+                    self.LoadingGreetingPage();
                     self.id = data.msg.id;
                     self.openid = data.msg.openid;
                 }else{
