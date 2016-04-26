@@ -9,17 +9,29 @@ function gotoPin(i) {
 		goHomepage:function(){
 			gotoPin(0);
 		},
-		goReloadHomePage:function(){
-			window.location.href='home.html';
+		goReloadHomePage:function(id){
+			if(id){
+				window.location.href='home.html?id='+id;
+			}else{
+				window.location.href='home.html';
+			}
 		},
 		goWriteGreetingPage:function(){
 			gotoPin(1);
 		},
-		goPhotoPage:function(){
-			window.location.href='photo.html';
+		goPhotoPage:function(id){
+			if(id){
+				window.location.href='photo.html?id='+id;
+			}else{
+				window.location.href='photo.html';
+			}
 		},
-		goGallerypage:function(){
-			window.location.href='gallery.html';
+		goGallerypage:function(id){
+			if(id){
+				window.location.href='gallery.html?id='+id;
+			}else{
+				window.location.href='gallery.html';
+			}
 		},
 		goMobilePage:function(){
 			gotoPin(2);
@@ -34,7 +46,7 @@ function gotoPin(i) {
 			return (/micromessenger/.test(ua)) ? true:false;
 		},
 		queryString:function(name){
-			//var curUrl = window.location.search;
+
 			var name,value,i;
 			var str=location.href;
 			var num=str.indexOf("?")

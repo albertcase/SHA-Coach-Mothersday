@@ -55,7 +55,7 @@
                                         //    logged
                                         if(data.msg.background){
                                             //has submit image
-                                            Common.goPhotoPage();
+                                            Common.goPhotoPage(data.msg.uid);
                                         }else{
                                             //not submit your image
                                             self.LoadingGreetingPage();
