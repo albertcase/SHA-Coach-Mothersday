@@ -110,7 +110,7 @@
                                 imgUrl: window.location.origin+'/app/images/kv.png',
                                 success:function(){
                                     Common.goMobilePage();
-                                    $('.share-pop').removeClass('hide');
+                                    $('.share-pop').addClass('hide');
                                 },
                                 cancel:function(){
 
@@ -125,7 +125,7 @@
                                 dataUrl: '',
                                 success:function(){
                                     Common.goMobilePage();
-                                    $('.share-pop').removeClass('hide');
+                                    $('.share-pop').addClass('hide');
                                 },
                                 cancel:function(){
                                 }
