@@ -62,7 +62,7 @@ $(document).ready(function(){
                                         Common.goPhotoPage(data.msg.id);
                                     }else{
                                         //not submit your image,go canvas page
-                                        Common.goIndexpage();
+                                        Common.goReloadHomePage();
                                     }
                                 }else{
                                     alert(data.msg);
