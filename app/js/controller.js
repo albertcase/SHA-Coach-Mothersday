@@ -18,6 +18,9 @@
 
             //Common.goFirstPage();
             Common.goCouponPage();
+            $('.coupon').on('click',function(){
+                self.addCouppon(1);
+            });
 
             Api.isLogin(function(data){
                 console.log(data);
