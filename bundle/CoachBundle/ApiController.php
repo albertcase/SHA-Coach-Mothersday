@@ -130,7 +130,8 @@ class ApiController extends Controller {
 		$openid = $request->query->get('openid');
 		$userapi = new \Lib\UserAPI();
 		$userapi->userLogin($openid);
-		
+		$url = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : "/";
+		$this->redirect($url);
 		exit;
 	}
 
