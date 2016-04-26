@@ -11,9 +11,9 @@ function gotoPin(i) {
 		},
 		goReloadHomePage:function(id){
 			if(id){
-				window.location.href='home.html?id='+id;
+				window.location.href='home?id='+id;
 			}else{
-				window.location.href='home.html';
+				window.location.href='home';
 			}
 		},
 		goWriteGreetingPage:function(){
@@ -21,16 +21,16 @@ function gotoPin(i) {
 		},
 		goPhotoPage:function(id){
 			if(id){
-				window.location.href='photo.html?id='+id;
+				window.location.href='photo?id='+id;
 			}else{
-				window.location.href='photo.html';
+				window.location.href='photo';
 			}
 		},
 		goGallerypage:function(id){
 			if(id){
-				window.location.href='gallery.html?id='+id;
+				window.location.href='gallery?id='+id;
 			}else{
-				window.location.href='gallery.html';
+				window.location.href='gallery';
 			}
 		},
 		goMobilePage:function(){

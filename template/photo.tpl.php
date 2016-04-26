@@ -10,27 +10,22 @@
     <link rel="stylesheet" href="/app/css/style.css">
     <!-- endinject -->
 
+    <script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9c84d6099c01177fed7ca6656361f139";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
     <!-- inject:js -->
     <script src="/app/js/widget/widget_photo.js"></script>
     <!-- endinject -->
 </head>
 <body>
-<div class="preloading hide">
-    <div class="inner">
-        <div class="l-logo">
-            <img src="../app/images/loading-logo.png" alt=""/>
-        </div>
-        <div class="icon-loading">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <p class="des-loading">
-            目前涌入的小伙伴过多<br>
-            页面正在跳转中，请耐心等待。
-        </p>
-    </div>
-</div>
 <div class="wrapper">
     <!-- photopage-->
     <section class="pin pin-2 pin-photo current">
@@ -61,7 +56,17 @@
             <div class="btn-sprite btn-like"></div>
         </div>
     </section>
-
+    <!-- popup-->
+    <div class="popup qrcode-pop hide">
+        <div class="inner">
+            <div class="qrcode">
+                <img src="../app/images/qrcode-follow.png" alt=""/>
+            </div>
+            <div class="qrcode-text">
+                <img src="../app/images/qrcode-follow-text.png" alt=""/>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
