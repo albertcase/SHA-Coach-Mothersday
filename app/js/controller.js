@@ -22,7 +22,9 @@
                     //    logged
                     if(data.msg.background){
                         //has submit image
-                        Common.goPhotoPage(data.msg.id);
+                        //Common.goPhotoPage(data.msg.id);
+                        self.LoadingGreetingPage();
+                        self.openid = data.msg.openid;
                     }else{
                         //not submit your image
                         self.LoadingGreetingPage();

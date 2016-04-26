@@ -14,7 +14,7 @@ var path = {
     template:['./template/home.html'],
     css:['./app/css/*.css'],
     js:['./app/js/*.js','!app/js/widget.js'],
-    index_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/index.js'],
+    index_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/index.js'],
     home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
     photo_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/photopage.js'],
     gallery_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/gallery.js'],
@@ -80,7 +80,7 @@ gulp.task('homejs', function () {
 //photo_incluede_js
 gulp.task('photojs', function () {
     // 1. 找到文件
-    gulp.src(path.home_incluede_js)
+    gulp.src(path.photo_incluede_js)
         .pipe(concat('widget_photo.js'))
         // 2. 压缩文件
         .pipe(uglify())
@@ -91,7 +91,7 @@ gulp.task('photojs', function () {
 //gallery_incluede_js
 gulp.task('galleryjs', function () {
     // 1. 找到文件
-    gulp.src(path.home_incluede_js)
+    gulp.src(path.gallery_incluede_js)
         .pipe(concat('widget_gallery.js'))
         // 2. 压缩文件
         .pipe(uglify())
