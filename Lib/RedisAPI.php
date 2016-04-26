@@ -78,6 +78,14 @@ class RedisAPI {
 		return 1;
 	}
 
+	public function isballot($uid, $gid) {
+		$ballotTableKey = "ballot:" . $gid;
+		if ($this->_redis->hGet($ballotTableKey, $uid)) {
+			return 0;
+		}
+		return 1;
+	}
+
 	public function flushAll() {
 		return $this->_redis->flushAll();
 	}

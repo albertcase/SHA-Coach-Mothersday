@@ -230,8 +230,9 @@ class ApiController extends Controller {
 
 		$databaseapi = new \Lib\DatabaseAPI();
 		$rs = $databaseapi->getGreetingById($id);
-
 		if ($rs) {
+			$redis = new \Lib\RedisAPI();	
+			$rs['isballot'] = $redis->isballot($user->id, $id); 
 			return $this->statusPrint(1, $rs);
 		}
 		return $this->statusPrint(999, '服务器繁忙，请稍候再试');
