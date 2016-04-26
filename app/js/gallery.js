@@ -20,17 +20,17 @@ $(document).ready(function(){
 			for(var i=0;i<listData.length;i++){
 				listHtml = '<li class="item">'+
 					'<div class="top-banner">'+
-					'<span class="user-name">'+listData.nickname+'</span>'+
-					'<span class="icon-good">'+listData.greeting+'</span>'+
+					'<span class="user-name">'+listData[i].nickname+'</span>'+
+					'<span class="icon-good">'+listData[i].greeting+'</span>'+
 					'</div>'+
 					'<div class="photo-wrap">'+
 					'<div class="photo-frame photo photo-1">'+
 					'<div class="block-photo">'+
 					'<div class="p-inner">'+
-					'<img src="../app/images/kv.png" alt=""/>'+
+					'<img src="'+listData[i].image+'" alt=""/>'+
 					'</div>'+
 					'</div>'+
-					'<div class="leave-words writing-words">'+listData.greeting+
+					'<div class="leave-words writing-words">100'+
 					'</div>'+
 					'</div>'+
 					'</div>'+
