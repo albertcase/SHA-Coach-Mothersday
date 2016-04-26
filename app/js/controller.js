@@ -8,7 +8,8 @@
         this.canvas.setWidth($('.block-photo .p-inner').width());
         this.canvas.setHeight($('.block-photo .p-inner').height());
         this.curBackground=1;
-        this.openid='';
+        this.id='';
+        this.openid = '';
     };
     controller.prototype = {
         init:function(){
@@ -20,16 +21,9 @@
                 console.log(data);
                 if(data.status==1){
                     //    logged
-                    if(data.msg.background){
-                        //has submit image
-                        //Common.goPhotoPage(data.msg.id);
-                        self.LoadingGreetingPage();
-                        self.openid = data.msg.openid;
-                    }else{
-                        //not submit your image
-                        self.LoadingGreetingPage();
-                        self.openid = data.msg.openid;
-                    }
+                    self.LoadingGreetingPage();
+                    self.id = data.msg.id;
+                    self.openid = data.msg.openid;
                 }else{
                     alert(data.msg);
                 }
@@ -107,6 +101,11 @@
                     if(data.status==1){
                         //    success
                         $('.share-pop').removeClass('hide');
+
+                        var sharepath = window.location.origin+'/photo?id='+self.id;
+                        weixinshare(sharepath,function(){
+                            Common.goMobilePage();
+                        });
                     }else{
                         alert(data.msg);
                     }
