@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    alert('weixinshare2');
     var sharepath = 'http://coach-mom.samesamechina.com/';
     wx.ready(function(){
         wx.onMenuShareTimeline({
