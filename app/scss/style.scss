@@ -488,6 +488,9 @@ input[type='tel']{
       margin: 0.4rem 0 0.2rem;
       background: url("../images/title.png") no-repeat;
       background-size: 100%;
+      &.fill-keycode{
+        background-position: 0 58%;
+      }
     }
     .input-phone{
       height: 0.5rem;
