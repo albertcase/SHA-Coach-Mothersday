@@ -46,23 +46,32 @@
                     //write your message
                     $('.btn-filltext').on('click',function(){
                         //ifplay,if not, go page pin-2,else go myphoto page
-                        Api.isLogin(function(data){
-                            console.log(data);
+                        Api.isFollow(function(data){
                             if(data.status==1){
-                                 //    logged
-                                if(data.msg.background){
-                                    //has submit image
-                                    Common.goPhotoPage();
-                                }else{
-                                    //not submit your image
-                                    self.LoadingGreetingPage();
-                                    self.openid = data.msg.openid;
-                                }
-                            }else{
-                                alert(data.msg);
-                            }
+                            //    followed
+                                Api.isLogin(function(data){
+                                    console.log(data);
+                                    if(data.status==1){
+                                        //    logged
+                                        if(data.msg.background){
+                                            //has submit image
+                                            Common.goPhotoPage();
+                                        }else{
+                                            //not submit your image
+                                            self.LoadingGreetingPage();
+                                            self.openid = data.msg.openid;
+                                        }
+                                    }else{
+                                        alert(data.msg);
+                                    }
 
+                                });
+                            }else{
+                                //not follow,show qrcode pop
+                                $('.qrcode-pop').removeClass('hide');
+                            }
                         });
+
                     });
 
                     /*

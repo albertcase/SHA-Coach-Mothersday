@@ -57,5 +57,19 @@ $(document).ready(function(){
         });
     });
 
+    //
+    $('.btn-joinplay').on('click', function(){
+        Api.isFollow(function(data){
+            if(data.status==1){
+                //    followed
+                Common.goReloadHomePage();
+            }else{
+                //not follow,show qrcode pop
+                $('.qrcode-pop').removeClass('hide');
+            }
+        });
+    });
+
+
 
 });

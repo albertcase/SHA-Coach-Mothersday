@@ -9,6 +9,9 @@ function gotoPin(i) {
 		goHomepage:function(){
 			gotoPin(0);
 		},
+		goReloadHomePage:function(){
+			window.location.href='home.html';
+		},
 		goWriteGreetingPage:function(){
 			gotoPin(1);
 		},
