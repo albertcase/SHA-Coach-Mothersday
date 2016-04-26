@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    alert('weixinshare');
+    alert('weixinshare2');
     var sharepath = 'http://coach-mom.samesamechina.com/';
     wx.ready(function(){
         wx.onMenuShareTimeline({
@@ -13,14 +13,14 @@ $(document).ready(function(){
             }
         });
         wx.onMenuShareAppMessage({
-            title: '大神说出对妈妈的爱，赢取全新Saddle手袋！',
-            desc: '大神说出对妈妈的爱，赢取全新Saddle手袋！',
+            title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+            desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             type: '',
             dataUrl: '',
             success: function () {
-                successcallback();
+
             },
             cancel: function () {
             }
