@@ -157,9 +157,9 @@ class ApiController extends Controller {
 	}
 
 	public function statusAction() {
-		// if (!isset($_SESSION['user'])) {
-		// 	return $this->statusPrint(0, '未登录');
-		// }
+		if (!isset($_SESSION['user'])) {
+			return $this->statusPrint(0, '未登录');
+		}
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
@@ -167,7 +167,7 @@ class ApiController extends Controller {
 		}
 		$wechatapi = new \Lib\WechatAPI();
 		//Eric 获取用户资料（关注） 微信js 
-		$rs = $wechatapi->isSubscribed($user->openid); 
+		$rs = $wechatapi->isSubscribed($user->getOpenid()); 
 		$rs = 1;
 		if ($rs) {
 			return $this->statusPrint(1, '已关注');
