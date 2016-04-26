@@ -200,10 +200,10 @@ class ApiController extends Controller {
 		$databaseapi = new \Lib\DatabaseAPI();
 		$nickname = $databaseapi->getNicknameByOpenid($user->openid);
 
-		$rs = $databaseapi->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
+		$rs = $databaseapi->setGreeting($user->id, $nickname, $url, $greeting, $background); 
 		if ($rs) {
 			$redis = new \Lib\RedisAPI();	
-			$redis->setGreeting($user->uid, $nickname, $url, $greeting, $background); 
+			$redis->setGreeting($user->id, $nickname, $url, $greeting, $background); 
 
 			$user->image = $url;
 			$user->greeting = $greeting;
@@ -252,10 +252,10 @@ class ApiController extends Controller {
 		$request->validation($fields);
 		$id = $request->request->get('id');
 		$redis = new \Lib\RedisAPI();
-		$rs = $redis->ballot($user->uid, $id); 
+		$rs = $redis->ballot($user->id, $id); 
 		if ($rs) {
 			$databaseapi = new \Lib\DatabaseAPI();
-			$databaseapi->ballot($user->uid, $id); 
+			$databaseapi->ballot($user->id, $id); 
 			return $this->statusPrint(1, '提交成功');
 		}
 		return $this->statusPrint(2, '已经提交过');

@@ -76,17 +76,14 @@ class DatabaseAPI extends Base {
 	}
 
 	public function findUserByOpenid($openid) {
-		if (isset($_SESSION['user'])) {
-			return $_SESSION['user'];
-		}
 		$sql = "SELECT `id`, `openid`, `nickname`, `image`, `greeting`, `background`, `ballot` FROM `coach_info` WHERE `openid` = ?"; 
 		$res = $this->db->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid, $nickname, $image, $greeting, $background, $ballot);
+		$res->bind_result($id, $openid, $nickname, $image, $greeting, $background, $ballot);
 		if($res->fetch()) {
 			$user = new \stdClass();
-			$user->uid = $uid;
+			$user->id = $id;
 			$user->openid = $openid;
 			$user->nickname = $nickname;
 			$user->image = $image;
