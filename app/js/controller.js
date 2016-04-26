@@ -2,96 +2,57 @@
 ;(function(){
     'use strict';
     var controller = function(){
-        this.curPage = 0;
-        this.selectedColor = '';
 
         //init the canvas
         this.canvas = new fabric.Canvas('c');
         this.canvas.setWidth($('.block-photo .p-inner').width());
         this.canvas.setHeight($('.block-photo .p-inner').height());
         this.curBackground=1;
-        this.openid = '';
+        this.openid='';
     };
     controller.prototype = {
         init:function(){
             //loading all the resourse, such as css,js,image
             var self = this;
-            //    loading first
-            $('.loading-wrap').addClass('show');
-            var baseurl = ''+'/app';
-            var imagesArray = [
-                baseurl + '/images/logo.png',
-            ];
-            var i = 0;
-            new preLoader(imagesArray, {
-                onProgress: function(){
 
-                },
-                onComplete: function(){
-                    //remove the loading and show the first pin
-                    $('.preloading').remove(1000);
-                    Common.goHomepage();
-
-                    //test
-                    //Common.goCouponPage();
-                    //$('.coupon').on('click',function(){
-                    //    self.addCouppon(1);
-                    //});
-
-                    //	go gallery page
-                    $('.btn-gogallery').on('click',function(e){
-                        Common.goGallerypage();
-                    });
-
-                    //write your message
-                    $('.btn-filltext').on('click',function(){
-                        //ifplay,if not, go page pin-2,else go myphoto page
-                        Api.isFollow(function(data){
-                            if(data.status==1){
-                            //    followed
-                                Api.isLogin(function(data){
-                                    console.log(data);
-                                    if(data.status==1){
-                                        //    logged
-                                        if(data.msg.background){
-                                            //has submit image
-                                            Common.goPhotoPage(data.msg.uid);
-                                        }else{
-                                            //not submit your image
-                                            self.LoadingGreetingPage();
-                                            self.openid = data.msg.openid;
-                                        }
-                                    }else{
-                                        alert(data.msg);
-                                    }
-
-                                });
-                            }else{
-                                //not follow,show qrcode pop
-                                $('.qrcode-pop').removeClass('hide');
-                            }
-                        });
-
-                    });
-
-                    /*
-                    *  Get Key code
-                    * */
-                    self.SubmitKeycodeForm();
-                    self.randomGreetingBg();
-
-                    /*Submit the register information*/
-                    self.SubmitInformationForm();
-
-                    var labelRadio = $('.form-info .radio-inline');
-                        //select the radio
-                    labelRadio.on('click',function(){
-                        labelRadio.removeClass('actived');
-                        $(this).addClass('actived');
-                    });
-
+            Common.goFirstPage();
+            Api.isLogin(function(data){
+                console.log(data);
+                if(data.status==1){
+                    //    logged
+                    if(data.msg.background){
+                        //has submit image
+                        //Common.goPhotoPage(data.msg.id);
+                        self.LoadingGreetingPage();
+                        self.openid = data.msg.openid;
+                    }else{
+                        //not submit your image
+                        self.LoadingGreetingPage();
+                        self.openid = data.msg.openid;
+                    }
+                }else{
+                    alert(data.msg);
                 }
-            })
+
+            });
+
+            //test
+            //self.LoadingGreetingPage();
+
+            /*
+             *  Get Key code
+             * */
+            self.SubmitKeycodeForm();
+
+            /*Submit the register information*/
+            self.SubmitInformationForm();
+
+            var labelRadio = $('.form-info .radio-inline');
+            //select the radio
+            labelRadio.on('click',function(){
+                labelRadio.removeClass('actived');
+                $(this).addClass('actived');
+            });
         },
         randomGreetingBg:function(){
             var self = this;
@@ -154,7 +115,7 @@
             });
 
             $('.pin-2 .btn-back').on('click', function(){
-                Common.goHomepage();
+                Common.goIndexpage();
             });
         },
         uploadPhoto:function(ele,canvaswidth){
@@ -336,8 +297,7 @@
             });
 
         //    close the pop
-            self.closePop();
-            self.toMoneyPage();
+        //    self.closePop();
         },
         SubmitInformationForm:function(){
             /*
@@ -406,25 +366,7 @@
 
             });
 
-        },
-        closePop:function(){
-            $('.btn-close').on('click', function(){
-                $(this).parent().addClass('hide');
-            })
-        },
-        toMoneyPage:function(){
-            var self = this;
-            //    close the pop
-            self.closePop();
-            $('.btn-get').on('click', function(){
-               $('.qrcode-pop').removeClass('hide').addClass('animate fade');
-            });
-            $('.btn-share').on('click',function(){
-                $('.share-pop').removeClass('hide').addClass('animate fade');
-            });
         }
-
-
     };
 
     if (typeof define === 'function' && define.amd){

@@ -14,7 +14,8 @@ var path = {
     template:['./template/home.html'],
     css:['./app/css/*.css'],
     js:['./app/js/*.js','!app/js/widget.js'],
-    home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
+    index_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/index.js'],
+    home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
     photo_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/photopage.js'],
     gallery_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/api.js','./app/js/common.js','./app/js/gallery.js'],
     images:['./app/images/*.*']
@@ -53,6 +54,18 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./app/js'));
 });
 
+//concat and uglify indexjs
+gulp.task('indexjs', function () {
+    // 1. 找到文件
+    gulp.src(path.index_incluede_js)
+        .pipe(concat('widget_index.js'))
+        // 2. 压缩文件
+        .pipe(uglify())
+        .pipe(rename('widget_index.js'))
+        // 3. 另存为压缩文件
+        .pipe(gulp.dest('./app/js/widget'));
+});
+
 //concat and uglify homejs
 gulp.task('homejs', function () {
     // 1. 找到文件
@@ -67,7 +80,7 @@ gulp.task('homejs', function () {
 //photo_incluede_js
 gulp.task('photojs', function () {
     // 1. 找到文件
-    gulp.src(path.home_incluede_js)
+    gulp.src(path.photo_incluede_js)
         .pipe(concat('widget_photo.js'))
         // 2. 压缩文件
         .pipe(uglify())
@@ -78,13 +91,25 @@ gulp.task('photojs', function () {
 //gallery_incluede_js
 gulp.task('galleryjs', function () {
     // 1. 找到文件
-    gulp.src(path.home_incluede_js)
+    gulp.src(path.gallery_incluede_js)
         .pipe(concat('widget_gallery.js'))
         // 2. 压缩文件
         .pipe(uglify())
         .pipe(rename('widget_gallery.js'))
         // 3. 另存为压缩文件
         .pipe(gulp.dest('./app/js/widget'));
+});
+
+
+//generate index.tpl.php
+gulp.task('generate_index',['css','indexjs'], function () {
+    var target = gulp.src('./template/index.html');
+    // It's not necessary to read the files (will speed up things), we're only after their paths:
+    var sources = gulp.src(['./app/js/widget/widget_index.js', './app/css/style.css'], {read: false});
+
+    return target.pipe(inject(sources))
+        .pipe(rename('index.tpl.php'))
+        .pipe(gulp.dest('./template'));
 });
 
 //generate home.tpl.php
@@ -119,6 +144,8 @@ gulp.task('generate_gallery',['css','galleryjs'], function () {
         .pipe(rename('gallery.tpl.php'))
         .pipe(gulp.dest('./template'));
 });
+
+gulp.task('template',['generate_index','generate_home','generate_photo','generate_gallery']);
 
 gulp.task('default',['browser-sync']);
 

@@ -7,7 +7,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <!-- inject:css -->
-    <link rel="stylesheet" href="../app/css/style.css"/>
+    <link rel="stylesheet" href="/app/css/style.css">
     <!-- endinject -->
 
     <script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>
@@ -22,45 +22,48 @@
     </script>
 
     <!-- inject:js -->
-    <script type="text/javascript" src="../app/js/lib/zepto.min.js"></script>
-    <script type="text/javascript" src="../app/js/lib/pre-loader.js"></script>
-    <script type="text/javascript" src="../app/js/rem.js"></script>
-    <script type="text/javascript" src="../app/js/common.js"></script>
-    <script type="text/javascript" src="../app/js/api.js"></script>
-    <script type="text/javascript" src="../app/js/photopage.js"></script>
+    <script src="/app/js/widget/widget_index.js"></script>
     <!-- endinject -->
 </head>
 <body>
+<!--preloading-->
+<div class="preloading">
+    <div class="inner">
+        <div class="l-logo">
+            <img src="../app/images/loading-logo.png" alt=""/>
+        </div>
+        <div class="icon-loading">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <p class="des-loading">
+            目前涌入的小伙伴过多<br>
+            页面正在跳转中，请耐心等待。
+        </p>
+    </div>
+</div>
+<!--start content-->
 <div class="wrapper">
-    <!-- photopage-->
-    <section class="pin pin-2 pin-photo current">
+    <section class="pin pin-1">
         <div class="slogan">
             <img src="../app/images/p1-1.png" alt=""/>
         </div>
-        <div class="photo-wrap">
-            <div class="top-banner">
-                <span class="user-name">Cindy</span>
-                <span class="icon-good">100</span>
-            </div>
-            <div class="photo-frame photo photo-1">
-                <div class="block-photo">
-                    <div class="p-inner">
-                        <img src="../app/images/kv.png" alt=""/>
-                    </div>
-                </div>
-                <div name=""  class="leave-words">
-世界上最好的妈妈
-值得世界上最好的礼物
-妈妈，祝你母亲节快乐
-我爱你
-                </div>
-            </div>
+        <div class="kv">
+            <img src="../app/images/kv.png" alt=""/>
         </div>
-        <div class="buttons">
-            <div class="btn-sprite btn-joinplay"></div>
-            <div class="btn-sprite btn-like"></div>
+        <div class="p1-t1">
+            <img src="../app/images/p1-t1.png" alt=""/>
         </div>
+        <div class="btn-sprite btn-gogallery"></div>
+        <div class="btn-sprite btn-filltext"></div>
     </section>
+    <!-- popup share-pop-->
+    <div class="popup share-pop hide">
+        <div class="share-1">
+            <img src="../app/images/share-tips.png" alt=""/>
+        </div>
+    </div>
     <!-- popup-->
     <div class="popup qrcode-pop hide">
         <div class="inner">

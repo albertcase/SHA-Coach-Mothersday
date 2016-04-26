@@ -5,35 +5,36 @@
 $(document).ready(function(){
     var qsid = Common.queryString('id'),
         uid;
-    Api.isLogin(function(data){
-        if(data.status==1){
+    Api.isLogin(function(datalogin){
+        if(datalogin.status==1){
 
             //loading the page content
             Api.getGreeting({
                 id:qsid
             },function(data){
+                console.log(data);
+                var listdata = data.msg;
                 //enableScroll = true;
-                if(data.status ==1){
-                    var data = data.msg;
-                    var Html = '';
-                    $('.photo-frame').attr('class','photo-frame photo photo-'+data.background);
-                    $('.p-inner img').attr('src',data.image);
-                    $('.leave-words').html(data.greeting);
-                    $('.user-name').html(data.nickname);
-                    $('.icon-good').html(data.ballot);
-                    uid = data.uid;
+                if(data.status==1){
+                    console.log(111);
+                    $('.photo-frame').attr('class','photo-frame photo photo-'+listdata.background);
+                    $('.p-inner img').attr('src',listdata.image);
+                    $('.leave-words').html(listdata.greeting);
+                    $('.user-name').html(listdata.nickname);
+                    $('.icon-good').html(listdata.ballot);
+                    uid = listdata.id;
                 }else{
                     //alert(data.msg);
                 }
-
+                //    logged
+                if(listdata.background){
+                    $('.btn-sprite').eq(0).removeClass('btn-joinplay').addClass('btn-gogallery');
+                }else{
+                    //not submit your image
+                    $('.btn-sprite').eq(0).addClass('btn-joinplay').removeClass('btn-gogallery');
+                }
             });
-            //    logged
-            if(data.msg.background){
-                $('.btn-sprite').eq(0).removeClass('btn-joinplay').addClass('btn-gogallery');
-            }else{
-                //not submit your image
-                $('.btn-sprite').eq(0).addClass('btn-joinplay').removeClass('btn-gogallery');
-            }
+
         }else{
             //alert(data.msg);
         }
@@ -62,7 +63,7 @@ $(document).ready(function(){
         Api.isFollow(function(data){
             if(data.status==1){
                 //    followed
-                Common.goReloadHomePage(uid);
+                Common.goIndexpage(uid);
             }else{
                 //not follow,show qrcode pop
                 $('.qrcode-pop').removeClass('hide');
