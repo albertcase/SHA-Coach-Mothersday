@@ -19,7 +19,7 @@ class SiteController extends Controller {
 			$WechatAPI = new \Lib\WechatAPI();
 			$WechatAPI->wechatAuthorize();
 		}	
-		$this->render('test');
+		$this->render('index');
 		exit;
 	}
 

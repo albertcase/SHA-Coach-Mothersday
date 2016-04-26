@@ -6,9 +6,22 @@ function gotoPin(i) {
 ;(function(){
 	var ua = navigator.userAgent.toLowerCase();
 	var Common = {
-		goHomepage:function(){
-			gotoPin(0);
+		goIndexpage:function(id){
+			//go index.tpl.php
+			if(id){
+				window.location.href='index?id='+id;
+			}else{
+				window.location.href='index';
+			}
 		},
+		//goHomepage:function(id){
+		//	//go home.tpl.php
+		//	if(id){
+		//		window.location.href='home?id='+id;
+		//	}else{
+		//		window.location.href='home';
+		//	}
+		//},
 		goReloadHomePage:function(id){
 			if(id){
 				window.location.href='home?id='+id;
@@ -16,8 +29,12 @@ function gotoPin(i) {
 				window.location.href='home';
 			}
 		},
+		goFirstPage:function(){
+			gotoPin(0);
+		},
 		goWriteGreetingPage:function(){
-			gotoPin(1);
+			//home
+			gotoPin(0);
 		},
 		goPhotoPage:function(id){
 			if(id){
@@ -34,13 +51,13 @@ function gotoPin(i) {
 			}
 		},
 		goMobilePage:function(){
-			gotoPin(2);
+			gotoPin(1);
 		},
 		goInfoPage:function(){
-			gotoPin(3);
+			gotoPin(2);
 		},
 		goCouponPage:function(){
-			gotoPin(4);
+			gotoPin(3);
 		},
 		isWx:function(){
 			return (/micromessenger/.test(ua)) ? true:false;
