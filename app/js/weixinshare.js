@@ -5,10 +5,10 @@ $(document).ready(function(){
             title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
-            success: function () {
+            success:function(){
 
             },
-            cancel: function () {
+            cancel:function(){
             }
         });
         wx.onMenuShareAppMessage({
@@ -18,10 +18,10 @@ $(document).ready(function(){
             imgUrl: window.location.origin+'/app/images/kv.png',
             type: '',
             dataUrl: '',
-            success: function () {
+            success:function(){
 
             },
-            cancel: function () {
+            cancel:function(){
             }
         });
 
