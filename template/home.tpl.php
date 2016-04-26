@@ -10,6 +10,17 @@
     <link rel="stylesheet" href="/app/css/style.css">
     <!-- endinject -->
 
+    <script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?9c84d6099c01177fed7ca6656361f139";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
     <!-- inject:js -->
     <script src="/app/js/widget/widget_home.js"></script>
     <!-- endinject -->
