@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/app/css/style.css">
     <!-- endinject -->
 
-    <!--<script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>-->
-    <script src="http://uat.coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>
+    <script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>
+    <!--<script src="http://uat.coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>-->
     <script>
         var _hmt = _hmt || [];
         (function() {
