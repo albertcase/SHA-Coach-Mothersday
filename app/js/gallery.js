@@ -7,7 +7,6 @@ $(document).ready(function(){
 	var enableScroll = true,
 		totalPage;
 
-
 	Api.galleryList({
 		nowpage:pagenum,
 		rowcount:6
@@ -18,7 +17,7 @@ $(document).ready(function(){
 			var listHtml = '';
 			totalPage = parseInt(data.msg.totalpage);
 			for(var i=0;i<listData.length;i++){
-				listHtml = '<li class="item">'+
+				listHtml = listHtml+'<li class="item">'+
 					'<div class="top-banner">'+
 					'<span class="user-name">'+listData[i].nickname+'</span>'+
 					'<span class="icon-good">100'+'</span>'+
