@@ -299,11 +299,11 @@
             /*
              * Submit the Form, so we need FormKeycodeValidate first and then api
              */
-            var enableSubmit = true;
+            //var enableSubmit = true;
             $('.form-validate .form-btn-submit').on('click',function(){
                 if(self.FormKeycodeValidate()){
-                    if(!enableSubmit) return;
-                    enableSubmit = false;
+                    //if(!enableSubmit) return;
+                    //enableSubmit = false;
                     //    start to get keycode
                     var phonenumber = $('.input-phone').val();
                     var keycode = $('.input-keycode').val();
@@ -311,7 +311,7 @@
                         mobile:mobile,
                         verifycode:verifycode
                     },function(data){
-                        enableSubmit = true;
+                        //enableSubmit = true;
                         if(data.status==1){
                             //update info page
                             $('.input-mobile').val(phonenumber);
