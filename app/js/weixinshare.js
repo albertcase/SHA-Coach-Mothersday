@@ -6,7 +6,7 @@ $(document).ready(function(){
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             success: function () {
-                successcallback();
+
             },
             cancel: function () {
             }

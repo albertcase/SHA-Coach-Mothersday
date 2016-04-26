@@ -103,9 +103,32 @@
                         $('.share-pop').removeClass('hide');
 
                         var sharepath = window.location.origin+'/photo?id='+self.id;
-                        //weixinshare(sharepath,function(){
-                        //    Common.goMobilePage();
-                        //});
+                        wx.ready(function(){
+                            wx.onMenuShareTimeline({
+                                title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+                                link: sharepath,
+                                imgUrl: window.location.origin+'/app/images/kv.png',
+                                success: function () {
+                                    Common.goMobilePage();
+                                },
+                                cancel: function () {
+                                }
+                            });
+                            wx.onMenuShareAppMessage({
+                                title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+                                desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+                                link: sharepath,
+                                imgUrl: window.location.origin+'/app/images/kv.png',
+                                type: '',
+                                dataUrl: '',
+                                success: function () {
+
+                                },
+                                cancel: function () {
+                                }
+                            });
+
+                        });
                     }else{
                         alert(data.msg);
                     }
