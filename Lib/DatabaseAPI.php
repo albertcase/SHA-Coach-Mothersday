@@ -138,7 +138,7 @@ class DatabaseAPI extends Base {
 		$res->bind_param("s", $id);
 		$res->execute();
 		$res->bind_result($id, $nickname, $image, $greeting, $background, $ballot);
-		if ($res->execute()) {
+		if ($res->fetch()) {
 			$return = array();
 			$return['id'] = $id;
 			$return['nickname'] = $nickname;
