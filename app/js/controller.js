@@ -17,6 +17,7 @@
             var self = this;
 
             Common.goFirstPage();
+
             Api.isLogin(function(data){
                 console.log(data);
                 if(data.status==1){
@@ -101,17 +102,19 @@
                     if(data.status==1){
                         //    success
                         $('.share-pop').removeClass('hide');
-
                         var sharepath = window.location.origin+'/photo?id='+self.id;
+
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
                                 link: sharepath,
                                 imgUrl: window.location.origin+'/app/images/kv.png',
-                                success: function () {
+                                success:function(){
                                     Common.goMobilePage();
+                                    $('.share-pop').addClass('hide');
                                 },
-                                cancel: function () {
+                                cancel:function(){
+
                                 }
                             });
                             wx.onMenuShareAppMessage({
@@ -121,20 +124,23 @@
                                 imgUrl: window.location.origin+'/app/images/kv.png',
                                 type: '',
                                 dataUrl: '',
-                                success: function () {
-
+                                success:function(){
+                                    Common.goMobilePage();
+                                    $('.share-pop').addClass('hide');
                                 },
-                                cancel: function () {
+                                cancel:function(){
                                 }
                             });
 
                         });
+
                     }else{
                         alert(data.msg);
                     }
 
                 });
             });
+
 
             $('.pin-2 .btn-back').on('click', function(){
                 Common.goIndexpage();
@@ -290,19 +296,20 @@
             /*
              * Submit the Form, so we need FormKeycodeValidate first and then api
              */
-            var enableSubmit = true;
+            //var enableSubmit = true;
             $('.form-validate .form-btn-submit').on('click',function(){
                 if(self.FormKeycodeValidate()){
-                    if(!enableSubmit) return;
-                    enableSubmit = false;
+                    //if(!enableSubmit) return;
+                    //enableSubmit = false;
                     //    start to get keycode
                     var phonenumber = $('.input-phone').val();
                     var keycode = $('.input-keycode').val();
                     Api.customerBind({
-                        mobile:mobile,
-                        verifycode:verifycode
+                        mobile:phonenumber,
+                        verifycode:keycode
                     },function(data){
-                        enableSubmit = true;
+                        console.log(data);
+                        //enableSubmit = true;
                         if(data.status==1){
                             //update info page
                             $('.input-mobile').val(phonenumber);

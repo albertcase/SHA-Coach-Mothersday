@@ -70,17 +70,25 @@ Api = {
     },
     //mobile verifycode
     customerBind:function(obj,callback){
-        Common.msgBox.add('loading...');
-        $.ajax({
-            url:'/api/customerbind',
-            type:'POST',
-            dataType:'json',
-            data:obj,
-            success:function(data){
-                Common.msgBox.remove();
-                return callback(data);
-            }
-        });
+        //Common.msgBox.add('loading...');
+        //$.ajax({
+        //    url:'/api/customerbind',
+        //    type:'POST',
+        //    dataType:'json',
+        //    data:obj,
+        //    success:function(data){
+        //        Common.msgBox.remove();
+        //        return callback(data);
+        //    }
+        //});
+
+        //test code
+        var data = {
+          status:1
+        };
+        callback(data);
+
+
     },
     // firstname lastname mobile email gender openid
     customerRegister:function(obj,callback){
