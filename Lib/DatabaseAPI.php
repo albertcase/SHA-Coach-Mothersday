@@ -150,9 +150,9 @@ class DatabaseAPI extends Base {
 		$sql="SELECT * FROM  `coach_info`  where status=1 limit $start, $row";
 		$res = $this->db->query($sql);
 		$data = array();
-		while($row = $res->fetch_array(MYSQLI_ASSOC))
+		while($rows = $res->fetch_array(MYSQLI_ASSOC))
 		{
-			$data[] = $row;
+			$data[] = $rows;
 		}		
 		return array('nowpage' => $page, 'rowcount' => $row, 'totalpage' => $totalpage, 'list' => $data);
 	}
