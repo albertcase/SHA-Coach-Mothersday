@@ -49,4 +49,17 @@ class AcxiomAPI extends Base {
         }
         return 0;
     }
+
+    public function openidverify($openid) {
+        $ws = $this->apiUrl . "/coachwechatws/ws/customer/openidverify";
+        $data = array('openid' => $openid);
+        $result = $this->postData($ws, json_encode($data)); 
+        $rs = json_decode($result, true);
+        $databaseAPI = new \Lib\DatabaseAPI();
+        $databaseAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
+        if( $rs['responseCode'] == "200" ) {
+            return 1;
+        }
+        return 0;
+    }
 }

@@ -8,8 +8,8 @@ class ApiController extends Controller {
 
 	public function testAction() {
 		// $mobile = '15121038676';
-		// $AcxiomAPI = new \Lib\AcxiomAPI();
-	 //    echo $AcxiomAPI->sendverifycode($mobile);exit;
+		 $AcxiomAPI = new \Lib\AcxiomAPI();
+	     echo $AcxiomAPI->openidverify('oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		// $redis = new \Lib\RedisAPI();
