@@ -36,10 +36,10 @@
 
             //test
             //self.LoadingGreetingPage();
-            $('.btn-share').on('click',function(){
-                self.shareSuccess();
-            });
-            Common.goInfoPage();
+            //$('.btn-share').on('click',function(){
+            //    self.shareSuccess();
+            //});
+            //Common.goInfoPage();
 
             /*
              *  Get Key code
