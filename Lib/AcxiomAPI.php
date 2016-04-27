@@ -12,10 +12,10 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('sendverifycode', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == "200" ) {
+        if ( $rs['responseCode'] == "200" ) {
         	return 1;
         }
-        if( $rs['responseCode'] == "001" || $rs['responseCode'] == "002") {
+        if ( $rs['responseCode'] == "001" || $rs['responseCode'] == "002") {
             return 2;
         }
         return 0;
@@ -28,10 +28,10 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('customerbind', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == "003" ) {
+        if ( $rs['responseCode'] == "003" ) {
         	return 1;
         }
-        if( $rs['responseCode'] == "004" ) {
+        if ( $rs['responseCode'] == "004" ) {
             return 2;
         }
         return 0;
@@ -44,7 +44,7 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('customerregister', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == "200" ) {
+        if ( $rs['responseCode'] == "200" ) {
         	return 1;
         }
         return 0;
@@ -57,8 +57,12 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
-        if( $rs['responseCode'] == "200" ) {
-            return 1;
+        if ( $rs['responseCode'] == "200" ) {
+            if ( $rs['satus'] == "未绑定" ) {
+                return 0;
+            } else {
+                return 1;
+            }
         }
         return 0;
     }
