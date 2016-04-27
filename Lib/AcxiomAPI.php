@@ -15,7 +15,7 @@ class AcxiomAPI extends Base {
         if( $rs['responseCode'] == "200" ) {
         	return 1;
         }
-        if( $rs['responseCode'] == "001" ) {
+        if( $rs['responseCode'] == "001" || $rs['responseCode'] == "002") {
             return 2;
         }
         return 0;
