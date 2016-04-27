@@ -56,7 +56,7 @@ Api = {
     },
     //mobile
     sendVerifycode:function(obj,callback){
-        Common.msgBox.add('loading...');
+        Common.msgBox.add('短信发送中...');
         $.ajax({
             url:'/api/sendverifycode',
             type:'POST',
@@ -81,14 +81,6 @@ Api = {
                 return callback(data);
             }
         });
-
-        //test code
-        //var data = {
-        //  status:1
-        //};
-        //callback(data);
-
-
     },
     // firstname lastname mobile email gender openid
     customerRegister:function(obj,callback){

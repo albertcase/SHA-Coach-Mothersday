@@ -284,7 +284,6 @@
                 e.preventDefault();
                 if(self.MobileValidate()){
                     //    start to get keycode
-                    console.log('validate phone number');
                     $('.btn-getkeycode').addClass('disabled');
                     if(!enableClick) return;
                     enableClick = false;
@@ -292,16 +291,18 @@
                     Api.sendVerifycode({
                         mobile:mobile
                     },function(data){
-                        enableClick = true;
-                        $('.btn-getkeycode').removeClass('disabled');
-                        if(data.status==1){
-                            console.log('短信发送成功');
-                        }else if(data.status==0){
-                            //not login
-                            Common.goIndexpage();
-                        }else{
-                            alert(data.msg);
-                        }
+                        setTimeout(function(){
+                            enableClick = true;
+                            $('.btn-getkeycode').removeClass('disabled');
+                            if(data.status==1){
+                                console.log('短信发送成功');
+                            }else if(data.status==0){
+                                //not login
+                                Common.goIndexpage();
+                            }else{
+                                alert(data.msg);
+                            }
+                        },30000);
                     });
 
                 };
