@@ -57,9 +57,6 @@
         <div class="buttons">
             <div class="btn-sprite btn-back"></div>
             <div class="btn-sprite btn-submit"></div>
-            <div class="btn-share">
-                朋友圈分享
-            </div>
         </div>
     </section>
     <!-- mobile validate-->

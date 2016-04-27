@@ -15,9 +15,6 @@
         init:function(){
             //loading all the resourse, such as css,js,image
             var self = this;
-
-            Common.goFirstPage();
-
             Api.isLogin(function(data){
                 console.log(data);
                 if(data.status==1){
@@ -33,13 +30,6 @@
                 }
 
             });
-
-            //test
-            //self.LoadingGreetingPage();
-            //$('.btn-share').on('click',function(){
-            //    self.shareSuccess();
-            //});
-            //Common.goInfoPage();
 
             /*
              *  Get Key code
