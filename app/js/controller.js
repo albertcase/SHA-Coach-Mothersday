@@ -22,7 +22,7 @@
                 console.log(data);
                 if(data.status==1){
                     //    logged
-                    //self.LoadingGreetingPage();
+                    self.LoadingGreetingPage();
                     self.id = data.msg.id;
                     self.openid = data.msg.openid;
                 }else if(data.status==0){
@@ -36,10 +36,10 @@
 
             //test
             //self.LoadingGreetingPage();
-            $('.btn-share').on('click',function(){
-                self.shareSuccess();
-            });
-            Common.goInfoPage();
+            //$('.btn-share').on('click',function(){
+            //    self.shareSuccess();
+            //});
+            //Common.goInfoPage();
 
             /*
              *  Get Key code
