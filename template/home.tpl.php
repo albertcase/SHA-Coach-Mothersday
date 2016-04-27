@@ -57,9 +57,6 @@
         <div class="buttons">
             <div class="btn-sprite btn-back"></div>
             <div class="btn-sprite btn-submit"></div>
-            <div class="btn-share">
-                朋友圈分享
-            </div>
         </div>
     </section>
     <!-- mobile validate-->
@@ -136,7 +133,7 @@
     </section>
     <!-- coupon page-->
     <section class="pin pin-5">
-        <div class="coupon" href="#">
+        <div class="coupon">
             <img src="../app/images/coupon.png" alt=""/>
         </div>
     </section>

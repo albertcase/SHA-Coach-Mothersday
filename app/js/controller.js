@@ -15,9 +15,6 @@
         init:function(){
             //loading all the resourse, such as css,js,image
             var self = this;
-
-            Common.goFirstPage();
-
             Api.isLogin(function(data){
                 console.log(data);
                 if(data.status==1){
@@ -33,13 +30,6 @@
                 }
 
             });
-
-            //test
-            //self.LoadingGreetingPage();
-            //$('.btn-share').on('click',function(){
-            //    self.shareSuccess();
-            //});
-            //Common.goInfoPage();
 
             /*
              *  Get Key code
@@ -62,6 +52,11 @@
             labelRadio.on('click',function(){
                 labelRadio.removeClass('actived');
                 $(this).addClass('actived');
+            });
+
+            //get the coupon
+            $('.coupon').on('click',function(){
+                self.addCouppon(1);
             });
         },
         randomGreetingBg:function(){
@@ -374,9 +369,6 @@
                             //update info page
                             //go coupon page
                             Common.goCouponPage();
-                            $('.coupon').on('click',function(){
-                                self.addCouppon(1);
-                            });
                         }else if(data.status==0){
                             //not login
                             Common.goIndexpage();
