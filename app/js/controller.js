@@ -69,7 +69,8 @@
              *  submit words and image
              *  If submit success, show the share-pop
              */
-            Common.goWriteGreetingPage();
+            //Common.goWriteGreetingPage();
+            Common.goCouponPage();
             self.randomGreetingBg();
             $('.btn-camera').on('click', function(){
                 $('#capture').trigger('click');
