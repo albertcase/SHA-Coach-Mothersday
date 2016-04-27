@@ -144,7 +144,7 @@ class DatabaseAPI extends Base {
 
 	public function getGreeting($page, $row = 8) {
 		
-		$total = $this->getTotal();
+		echo $total = $this->getTotal();exit;
 		$totalpage = ceil( $total / $row );
 		$start = ( $page - 1 ) * $row;
 		$sql="SELECT * FROM  `coach_info`  where status=1 limit $start, $row";
