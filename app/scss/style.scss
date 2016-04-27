@@ -366,7 +366,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
   }
   .p1-t1{
     margin: 0rem auto 0.8rem;
-    @include size(5.46rem,1.26rem);
+    @include size(6.65rem,1.25rem);
   }
   .btn-sprite{
     //margin: 0rem auto 0.2rem;
@@ -864,14 +864,13 @@ input[type='tel']{
   }
 }
 .gallery-list{
-  //height: 85vh;
-  //overflow: auto;
-  text-align: center;
+  text-align: left;
   .item{
     position: relative;
     display: inline-block;
     //@include size(3.2rem,4.14rem);
     margin: 0.2rem;
+    width: 3.3rem;
     .photo{
       @include size(3.2rem,4.14rem);
       .leave-words{
