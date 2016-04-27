@@ -682,10 +682,8 @@ input[type='tel']{
 }
 .share-pop{
   .share-1{
-    float: right;
     @include size(6.29rem,3.91rem);
-    margin-top: 0.4rem;
-    margin-right: 0.2rem;
+    margin: 0.4rem auto;
   }
 }
 
