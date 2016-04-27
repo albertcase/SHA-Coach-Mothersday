@@ -33,7 +33,7 @@ class ApiController extends Controller {
 			return $this->statusPrint(0, '未登录');
 		}
 		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    $rs = $AcxiomAPI->sendverifycode($user->openid);
+	    $rs = $AcxiomAPI->openidverify($user->openid);
 	    if ($rs == 1) {
 	    	return $this->statusPrint(1, '已经绑定过');
 	    }
