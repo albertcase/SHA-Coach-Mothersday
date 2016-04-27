@@ -147,7 +147,7 @@ class DatabaseAPI extends Base {
 		$total = $this->getTotal();
 		$totalpage = ceil( $total / $row );
 		$start = ( $page - 1 ) * $row;
-		$sql="SELECT * FROM  `coach_info`  where status=1 limit $start, $row";
+		$sql="SELECT * FROM  `coach_info`  where status=1 order by ballot desc limit $start, $row";
 		$res = $this->db->query($sql);
 		$data = array();
 		while($rows = $res->fetch_array(MYSQLI_ASSOC))
