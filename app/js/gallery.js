@@ -36,6 +36,9 @@ $(document).ready(function(){
 					'</li>'
 			}
 			$('.gallery-list').append(listHtml);
+		}else if(data.status==0){
+			//not login
+			Common.goIndexpage();
 		}else{
 			alert(data.msg);
 		}
@@ -79,6 +82,9 @@ $(document).ready(function(){
 							'</li>'
 					}
 					$('.gallery-list').append(listHtml);
+				}else if(data.status==0){
+					//not login
+					Common.goIndexpage();
 				}else{
 					alert(data.msg);
 				}

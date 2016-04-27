@@ -64,6 +64,9 @@ $(document).ready(function(){
                                         //not submit your image,go canvas page
                                         Common.goReloadHomePage();
                                     }
+                                }else if(data.status==0){
+                                    //not login
+                                    Common.goIndexpage();
                                 }else{
                                     alert(data.msg);
                                 }

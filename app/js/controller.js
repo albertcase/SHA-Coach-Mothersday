@@ -25,6 +25,9 @@
                     self.LoadingGreetingPage();
                     self.id = data.msg.id;
                     self.openid = data.msg.openid;
+                }else if(data.status==0){
+                    //not login
+                    Common.goIndexpage();
                 }else{
                     alert(data.msg);
                 }
@@ -135,6 +138,9 @@
 
                         });
 
+                    }else if(data.status==0){
+                        //not login
+                        Common.goIndexpage();
                     }else{
                         alert(data.msg);
                     }
@@ -286,6 +292,9 @@
                         $('.btn-getkeycode').removeClass('disabled');
                         if(data.status==1){
                             console.log('短信发送成功');
+                        }else if(data.status==0){
+                            //not login
+                            Common.goIndexpage();
                         }else{
                             alert(data.msg);
                         }
@@ -315,6 +324,9 @@
                             //update info page
                             $('.input-mobile').val(phonenumber);
                             Common.goInfoPage();
+                        }else if(data.status==0){
+                            //not login
+                            Common.goIndexpage();
                         }else{
                             alert(data.msg);
                         }
@@ -356,6 +368,9 @@
                             $('.coupon').on('click',function(){
                                 self.addCouppon(1);
                             });
+                        }else if(data.status==0){
+                            //not login
+                            Common.goIndexpage();
                         }else{
                             alert(data.msg);
                         }
