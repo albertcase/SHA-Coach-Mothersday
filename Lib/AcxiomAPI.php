@@ -58,10 +58,10 @@ class AcxiomAPI extends Base {
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
         if ( $rs['responseCode'] == "200" ) {
-            if ( $rs['satus'] == "未绑定" ) {
-                return 0;
-            } else {
+            if ( $rs['status'] == "已绑定" ) {
                 return 1;
+            } else {
+                return 0;
             }
         }
         return 0;
