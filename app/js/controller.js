@@ -56,6 +56,7 @@
 
             //get the coupon
             $('.coupon').on('click',function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'Draw']);
                 self.addCouppon(1);
             });
         },
@@ -77,6 +78,7 @@
             Common.goWriteGreetingPage();
             self.randomGreetingBg();
             $('.btn-camera').on('click', function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'photo']);
                 $('#capture').trigger('click');
             });
             //input file change
@@ -93,6 +95,7 @@
                  *  submit words and photo number
                  *  If submit success, show the share-pop
                  */
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'submit1']);
                 if(!enable) return;
                 enable = false;
 
@@ -120,6 +123,7 @@
                                 link: sharepath,
                                 imgUrl: window.location.origin+'/app/images/kv.png',
                                 success:function(){
+                                    _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
                                     self.shareSuccess();
                                 },
                                 cancel:function(){
@@ -134,6 +138,7 @@
                                 type: '',
                                 dataUrl: '',
                                 success:function(){
+                                    _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to friend']);
                                     self.shareSuccess();
                                 },
                                 cancel:function(){
@@ -154,6 +159,7 @@
 
 
             $('.pin-2 .btn-back').on('click', function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'back1']);
                 Common.goIndexpage();
             });
         },
@@ -313,6 +319,7 @@
              */
             //var enableSubmit = true;
             $('.form-validate .form-btn-submit').on('click',function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'submit2']);
                 if(self.FormKeycodeValidate()){
                     //if(!enableSubmit) return;
                     //enableSubmit = false;
@@ -353,6 +360,7 @@
             var self = this;
             var enableSubmit = true;
             $('.form-info .form-btn-submit').on('click',function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'submit3']);
                 if(self.FormInforValidate()){
                     if(!enableSubmit) return;
                     enableSubmit = false;

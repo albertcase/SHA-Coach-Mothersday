@@ -6,7 +6,7 @@ $(document).ready(function(){
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             success:function(){
-
+                _hmt.push(['_trackEvent', 'buttons', 'share', 'back2']);
             },
             cancel:function(){
             }
@@ -19,7 +19,7 @@ $(document).ready(function(){
             type: '',
             dataUrl: '',
             success:function(){
-
+                _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
             },
             cancel:function(){
             }
