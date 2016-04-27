@@ -55,6 +55,7 @@ class AcxiomAPI extends Base {
         $data = array('openid' => $openid);
         $result = $this->postData($ws, json_encode($data)); 
         $rs = json_decode($result, true);
+        echo $rs;exit;
         $databaseAPI = new \Lib\DatabaseAPI();
         $databaseAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
         if( $rs['responseCode'] == "200" ) {
