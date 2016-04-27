@@ -26,6 +26,20 @@ class ApiController extends Controller {
 		exit;
 	}
 
+	public function openidverifyAction() {
+		$UserAPI = new \Lib\UserAPI();
+		$user = $UserAPI->userLoad(true);
+		if (!$user) {
+			return $this->statusPrint(0, '未登录');
+		}
+		$AcxiomAPI = new \Lib\AcxiomAPI();
+	    $rs = $AcxiomAPI->sendverifycode($user->openid);
+	    if ($rs == 1) {
+	    	return $this->statusPrint(1, '已经绑定过');
+	    }
+	    return $this->statusPrint(2, '未绑定');
+	}
+
 	public function sendverifycodeAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
