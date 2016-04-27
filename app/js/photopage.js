@@ -91,4 +91,8 @@ $(document).ready(function(){
             });
         }
     });
+
+//    share
+    var sharepath = window.location.href;
+    wxshare(sharepath);
 });

@@ -1,12 +1,11 @@
-$(document).ready(function(){
-    var sharepath = 'http://coach-mom.samesamechina.com/';
+function wxshare(sharepath){
     wx.ready(function(){
         wx.onMenuShareTimeline({
             title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             success:function(){
-                _hmt.push(['_trackEvent', 'buttons', 'share', 'back2']);
+                _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
             },
             cancel:function(){
             }
@@ -19,12 +18,18 @@ $(document).ready(function(){
             type: '',
             dataUrl: '',
             success:function(){
-                _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
+                _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to friends']);
             },
             cancel:function(){
             }
         });
 
     });
+}
+
+$(document).ready(function(){
+
+    var sharepath = 'http://coach-mom.samesamechina.com/';
+    wxshare(sharepath);
 
 });
