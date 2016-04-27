@@ -111,7 +111,7 @@ class DatabaseAPI extends Base {
 		if ($res->execute()) {
 			$sql = "update `coach_info` SET `ballot` = ballot + 1 where id = ?";
 			$res = $this->db->prepare($sql); 
-			$res->bind_param("s", $uid);
+			$res->bind_param("s", $id);
 			if ($res->execute()) {
 				return 1;
 			}
