@@ -80,6 +80,14 @@ $(document).ready(function(){
 
                 });
 
+                // show the policy terms
+                $('.terms').on('click', function(){
+                    $('.terms-pop').removeClass('hide');
+                });
+            //    close pop
+                $('.btn-close').on('click',function(){
+                    $('.terms-pop').addClass('hide');
+                });
 
             }
         })

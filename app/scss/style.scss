@@ -87,30 +87,31 @@ img{
   margin: 0.1rem auto;
 }
 .btn-close{
-  position: relative;
-  @include size(0.6rem,0.6rem);
-  margin: 0rem auto 0rem;
-  left: -0.1rem;
+  position: absolute;
+  @include size(0.4rem,0.4rem);
+  right: 0.2rem;
+  left: auto;
+  top: 0.35rem;
   &:after{
     content: '';
     display: block;
-    width: 0.8rem;
-    height: 1px;
+    width: 0.4rem;
+    height: 2px;
     position: absolute;
     left: 0;
     top: 0;
-    background: #c0a176;
+    background: rgba(255,255,255,0.8);
     @include transform(rotate(45deg));
   }
   &:before{
     content: '';
     display: block;
-    width: 0.8rem;
-    height: 1px;
+    width: 0.4rem;
+    height: 2px;
     position: absolute;
     left: 0;
     top: 0;
-    background: #c0a176;
+    background: rgba(255,255,255,0.8);
     @include transform(rotate(-45deg));
   }
 
@@ -794,6 +795,38 @@ input[type='tel']{
   }
 }
 
+.terms-pop{
+
+  .inner{
+    background: #fff;
+    @include size(6.1rem,8rem);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+    overflow: hidden;
+    .btn-close{
+
+    }
+    .title{
+      width: 100%;
+      height: 0.8rem;
+      line-height: 0.8rem;
+      font-size: 0.36rem;
+      text-align: center;
+      background: #000;
+      color: #fff;
+    }
+    .content{
+      height: 6rem;
+      overflow: auto;
+      padding: 0.4rem;
+      font-size: 0.28rem;
+    }
+  }
+}
+
+
 //for gallery page
 .pin-gallery{
   overflow-y:auto;
@@ -885,6 +918,13 @@ input[type='tel']{
   }
 }
 
+
+//for terms
+.terms{
+  font-size: 0.24rem;
+  margin: 0.2rem auto;
+  text-decoration: underline;
+}
 
 //test
 #__bs_notify__{

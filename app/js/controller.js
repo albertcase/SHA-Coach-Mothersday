@@ -22,7 +22,7 @@
                 console.log(data);
                 if(data.status==1){
                     //    logged
-                    self.LoadingGreetingPage();
+                    //self.LoadingGreetingPage();
                     self.id = data.msg.id;
                     self.openid = data.msg.openid;
                 }else if(data.status==0){
@@ -39,6 +39,7 @@
             $('.btn-share').on('click',function(){
                 self.shareSuccess();
             });
+            Common.goInfoPage();
 
             /*
              *  Get Key code
@@ -47,6 +48,14 @@
 
             /*Submit the register information*/
             self.SubmitInformationForm();
+            // show the policy terms
+            $('.terms').on('click', function(){
+                $('.terms-pop').removeClass('hide');
+            });
+            //    close pop
+            $('.btn-close').on('click',function(){
+                $('.terms-pop').addClass('hide');
+            });
 
             var labelRadio = $('.form-info .radio-inline');
             //select the radio
