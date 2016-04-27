@@ -45,7 +45,7 @@ $(document).ready(function(){
             //not login
             Common.goIndexpage();
         }else{
-            alert(datalogin.msg);
+            Common.alertBox.add(datalogin.msg);
         }
     });
 
@@ -53,10 +53,12 @@ $(document).ready(function(){
     var enabled = true;
     $('.btn-sprite').on('click',function(){
         if($(this).hasClass('btn-gogallery')){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'back2']);
             //’回首爱语‘
             Common.goGallerypage();
 
         }else if($(this).hasClass('btn-joinplay')){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'play2']);
         //    ’我也要玩‘
             Api.isFollow(function(data){
                 if(data.status==1){
@@ -68,6 +70,7 @@ $(document).ready(function(){
                 }
             });
         }else if($(this).hasClass('btn-like')){
+            _hmt.push(['_trackEvent', 'buttons', 'click', 'Like1']);
         //    '点赞'
             if(!enabled) return;
             enabled = false;
@@ -83,7 +86,7 @@ $(document).ready(function(){
                     //not login
                     Common.goIndexpage();
                 }else{
-                    alert(data.msg);
+                    Common.alertBox.add(data.msg);
                 }
             });
         }

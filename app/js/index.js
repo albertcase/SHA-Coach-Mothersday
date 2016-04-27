@@ -44,12 +44,14 @@ $(document).ready(function(){
                 Common.goFirstPage();
                 //	go gallery page
                 $('.btn-gogallery').on('click',function(e){
+                    _hmt.push(['_trackEvent', 'buttons', 'click', 'Gallery']);
                     Common.goGallerypage();
                 });
 
                 //write your message
                 $('.btn-filltext').on('click',function(){
                     //ifplay,if not, go page pin-2,else go myphoto page
+                    _hmt.push(['_trackEvent', 'buttons', 'click', 'Play1']);
                     Api.isFollow(function(datafollow){
                         if(datafollow.status==1){
                             //    followed
@@ -68,7 +70,7 @@ $(document).ready(function(){
                                     //not login
                                     Common.goIndexpage();
                                 }else{
-                                    alert(data.msg);
+                                    Common.alertBox.add(data.msg);
                                 }
 
                             });

@@ -26,7 +26,7 @@
                     //not login
                     Common.goIndexpage();
                 }else{
-                    alert(data.msg);
+                    Common.alertBox.add(data.msg);
                 }
 
             });
@@ -56,6 +56,7 @@
 
             //get the coupon
             $('.coupon').on('click',function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'Draw']);
                 self.addCouppon(1);
             });
         },
@@ -77,6 +78,7 @@
             Common.goWriteGreetingPage();
             self.randomGreetingBg();
             $('.btn-camera').on('click', function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'photo']);
                 $('#capture').trigger('click');
             });
             //input file change
@@ -93,6 +95,7 @@
                  *  submit words and photo number
                  *  If submit success, show the share-pop
                  */
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'submit1']);
                 if(!enable) return;
                 enable = false;
 
@@ -120,6 +123,7 @@
                                 link: sharepath,
                                 imgUrl: window.location.origin+'/app/images/kv.png',
                                 success:function(){
+                                    _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
                                     self.shareSuccess();
                                 },
                                 cancel:function(){
@@ -134,6 +138,7 @@
                                 type: '',
                                 dataUrl: '',
                                 success:function(){
+                                    _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to friend']);
                                     self.shareSuccess();
                                 },
                                 cancel:function(){
@@ -146,7 +151,7 @@
                         //not login
                         Common.goIndexpage();
                     }else{
-                        alert(data.msg);
+                        Common.alertBox.add(data.msg);
                     }
 
                 });
@@ -154,6 +159,7 @@
 
 
             $('.pin-2 .btn-back').on('click', function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'back1']);
                 Common.goIndexpage();
             });
         },
@@ -284,7 +290,6 @@
                 e.preventDefault();
                 if(self.MobileValidate()){
                     //    start to get keycode
-                    console.log('validate phone number');
                     $('.btn-getkeycode').addClass('disabled');
                     if(!enableClick) return;
                     enableClick = false;
@@ -292,16 +297,18 @@
                     Api.sendVerifycode({
                         mobile:mobile
                     },function(data){
-                        enableClick = true;
-                        $('.btn-getkeycode').removeClass('disabled');
-                        if(data.status==1){
-                            console.log('短信发送成功');
-                        }else if(data.status==0){
-                            //not login
-                            Common.goIndexpage();
-                        }else{
-                            alert(data.msg);
-                        }
+                        setTimeout(function(){
+                            enableClick = true;
+                            $('.btn-getkeycode').removeClass('disabled');
+                            if(data.status==1){
+                                console.log('短信发送成功');
+                            }else if(data.status==0){
+                                //not login
+                                Common.goIndexpage();
+                            }else{
+                                Common.alertBox.add(data.msg);
+                            }
+                        },30000);
                     });
 
                 };
@@ -312,6 +319,7 @@
              */
             //var enableSubmit = true;
             $('.form-validate .form-btn-submit').on('click',function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'submit2']);
                 if(self.FormKeycodeValidate()){
                     //if(!enableSubmit) return;
                     //enableSubmit = false;
@@ -332,7 +340,7 @@
                             //not login
                             Common.goIndexpage();
                         }else{
-                            alert(data.msg);
+                            Common.alertBox.add(data.msg);
                         }
                     });
                 };
@@ -352,6 +360,7 @@
             var self = this;
             var enableSubmit = true;
             $('.form-info .form-btn-submit').on('click',function(){
+                _hmt.push(['_trackEvent', 'buttons', 'click', 'submit3']);
                 if(self.FormInforValidate()){
                     if(!enableSubmit) return;
                     enableSubmit = false;
@@ -373,7 +382,7 @@
                             //not login
                             Common.goIndexpage();
                         }else{
-                            alert(data.msg);
+                            Common.alertBox.add(data.msg);
                         }
                     });
                 }
