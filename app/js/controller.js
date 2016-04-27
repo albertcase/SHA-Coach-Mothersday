@@ -22,9 +22,12 @@
                 console.log(data);
                 if(data.status==1){
                     //    logged
-                    self.LoadingGreetingPage();
+                    //self.LoadingGreetingPage();
                     self.id = data.msg.id;
                     self.openid = data.msg.openid;
+                }else if(data.status==0){
+                    //not login
+                    Common.goIndexpage();
                 }else{
                     alert(data.msg);
                 }
@@ -36,6 +39,7 @@
             $('.btn-share').on('click',function(){
                 self.shareSuccess();
             });
+            Common.goInfoPage();
 
             /*
              *  Get Key code
@@ -44,6 +48,14 @@
 
             /*Submit the register information*/
             self.SubmitInformationForm();
+            // show the policy terms
+            $('.terms').on('click', function(){
+                $('.terms-pop').removeClass('hide');
+            });
+            //    close pop
+            $('.btn-close').on('click',function(){
+                $('.terms-pop').addClass('hide');
+            });
 
             var labelRadio = $('.form-info .radio-inline');
             //select the radio
@@ -120,7 +132,7 @@
                                 }
                             });
                             wx.onMenuShareAppMessage({
-                                title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+                                title: 'COACH致爱母亲节',
                                 desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
                                 link: sharepath,
                                 imgUrl: window.location.origin+'/app/images/kv.png',
@@ -135,6 +147,9 @@
 
                         });
 
+                    }else if(data.status==0){
+                        //not login
+                        Common.goIndexpage();
                     }else{
                         alert(data.msg);
                     }
@@ -286,6 +301,9 @@
                         $('.btn-getkeycode').removeClass('disabled');
                         if(data.status==1){
                             console.log('短信发送成功');
+                        }else if(data.status==0){
+                            //not login
+                            Common.goIndexpage();
                         }else{
                             alert(data.msg);
                         }
@@ -315,6 +333,9 @@
                             //update info page
                             $('.input-mobile').val(phonenumber);
                             Common.goInfoPage();
+                        }else if(data.status==0){
+                            //not login
+                            Common.goIndexpage();
                         }else{
                             alert(data.msg);
                         }
@@ -356,6 +377,9 @@
                             $('.coupon').on('click',function(){
                                 self.addCouppon(1);
                             });
+                        }else if(data.status==0){
+                            //not login
+                            Common.goIndexpage();
                         }else{
                             alert(data.msg);
                         }

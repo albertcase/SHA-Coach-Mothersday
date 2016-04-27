@@ -12,7 +12,7 @@ $(document).ready(function(){
             }
         });
         wx.onMenuShareAppMessage({
-            title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+            title: 'COACH致爱母亲节',
             desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',

@@ -20,7 +20,7 @@ $(document).ready(function(){
 				listHtml = listHtml+'<li class="item">'+
 					'<div class="top-banner">'+
 					'<span class="user-name">'+listData[i].nickname+'</span>'+
-					'<span class="icon-good">100'+'</span>'+
+					'<span class="icon-good">'+listData[i].ballot+'</span>'+
 					'</div>'+
 					'<div class="photo-wrap">'+
 					'<div class="photo-frame photo photo-1">'+
@@ -36,6 +36,9 @@ $(document).ready(function(){
 					'</li>'
 			}
 			$('.gallery-list').append(listHtml);
+		}else if(data.status==0){
+			//not login
+			Common.goIndexpage();
 		}else{
 			alert(data.msg);
 		}
@@ -63,7 +66,7 @@ $(document).ready(function(){
 						listHtml = '<li class="item">'+
 							'<div class="top-banner">'+
 							'<span class="user-name">'+listData[i].nickname+'</span>'+
-							'<span class="icon-good">'+'100'+'</span>'+
+							'<span class="icon-good">'+listData[i].ballot+'</span>'+
 							'</div>'+
 							'<div class="photo-wrap">'+
 							'<div class="photo-frame photo photo-1">'+
@@ -79,6 +82,9 @@ $(document).ready(function(){
 							'</li>'
 					}
 					$('.gallery-list').append(listHtml);
+				}else if(data.status==0){
+					//not login
+					Common.goIndexpage();
 				}else{
 					alert(data.msg);
 				}

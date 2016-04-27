@@ -18,7 +18,7 @@ $(document).ready(function(){
             Api.getGreeting({
                 id:qsid
             },function(data){
-                console.log(data);
+
                 var listdata = data.msg;
                 //enableScroll = true;
                 if(data.status==1){
@@ -41,8 +41,11 @@ $(document).ready(function(){
                 //    logged
             });
 
+        }else if(datalogin.status==0){
+            //not login
+            Common.goIndexpage();
         }else{
-            //alert(data.msg);
+            alert(datalogin.msg);
         }
     });
 
@@ -76,6 +79,9 @@ $(document).ready(function(){
                     var voteNum = parseInt($('.icon-good').html());
                     $('.icon-good').html(++voteNum);
                     $('.icon-good').removeClass('notlike');
+                }else if(data.status==0){
+                    //not login
+                    Common.goIndexpage();
                 }else{
                     alert(data.msg);
                 }

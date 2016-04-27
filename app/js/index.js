@@ -64,6 +64,9 @@ $(document).ready(function(){
                                         //not submit your image,go canvas page
                                         Common.goReloadHomePage();
                                     }
+                                }else if(data.status==0){
+                                    //not login
+                                    Common.goIndexpage();
                                 }else{
                                     alert(data.msg);
                                 }
@@ -77,6 +80,14 @@ $(document).ready(function(){
 
                 });
 
+                // show the policy terms
+                $('.terms').on('click', function(){
+                    $('.terms-pop').removeClass('hide');
+                });
+            //    close pop
+                $('.btn-close').on('click',function(){
+                    $('.terms-pop').addClass('hide');
+                });
 
             }
         })
