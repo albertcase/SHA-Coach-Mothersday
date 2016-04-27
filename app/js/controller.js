@@ -53,6 +53,11 @@
                 labelRadio.removeClass('actived');
                 $(this).addClass('actived');
             });
+
+            //get the coupon
+            $('.coupon').on('click',function(){
+                self.addCouppon(1);
+            });
         },
         randomGreetingBg:function(){
             var self = this;
@@ -365,9 +370,6 @@
                             //update info page
                             //go coupon page
                             Common.goCouponPage();
-                            $('.coupon').on('click',function(){
-                                self.addCouppon(1);
-                            });
                         }else if(data.status==0){
                             //not login
                             Common.goIndexpage();
