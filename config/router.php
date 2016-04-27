@@ -19,3 +19,4 @@ $routers['/api/card'] = array('CoachBundle\Api', 'card');
 $routers['/api/sendverifycode'] = array('CoachBundle\Api', 'sendverifycode');
 $routers['/api/customerbind'] = array('CoachBundle\Api', 'customerbind');
 $routers['/api/customerregister'] = array('CoachBundle\Api', 'customerregister');
+$routers['/api/openidverify'] = array('CoachBundle\Api', 'openidverify');
