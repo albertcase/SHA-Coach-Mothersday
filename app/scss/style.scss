@@ -863,12 +863,13 @@ input[type='tel']{
 }
 .gallery-list{
   text-align: left;
+  width: 7.1rem;
+  margin: 0 auto;
   .item{
     position: relative;
     display: inline-block;
-    //@include size(3.2rem,4.14rem);
-    margin: 0.2rem;
     width: 3.3rem;
+    margin: 0.2rem 0rem 0.2rem 0.2rem;
     .photo{
       @include size(3.2rem,4.14rem);
       .leave-words{
