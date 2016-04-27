@@ -131,6 +131,32 @@ class DatabaseAPI extends Base {
 		return 0;
 	}
 
+	public function getTotal() {
+		$sql = "SELECT count(id) from coach_info where status = 1";
+		$res = $this->db->prepare($sql); 
+		$res->execute();
+		$res->bind_result($num);
+		if ($res->fetch()) {
+			return $num;
+		}
+		return 0;
+	}
+
+	public function getGreeting($page, $row = 8) {
+		
+		$total = $this->getTotal();
+		$totalpage = ceil( $total / $row );
+		$start = ( $page - 1 ) * $row;
+		$sql="SELECT * FROM  `coach_info`  where status=1 limit $start, $row";
+		$res = $this->db->query($sql);
+		$data = array();
+		while($row = $res->fetch_array(MYSQLI_ASSOC))
+		{
+			$data[] = $row;
+		}		
+		return array('nowpage' => $page, 'rowcount' => $row, 'totalpage' => $totalpage, 'list' => $data);
+	}
+
 
 	public function getGreetingById($id) {
 		$sql = "SELECT `id`, `nickname`, `image`, `greeting`, `background`, `ballot` from coach_info where id = ?";
