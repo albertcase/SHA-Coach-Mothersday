@@ -14,14 +14,6 @@ function gotoPin(i) {
 				window.location.href='index';
 			}
 		},
-		//goHomepage:function(id){
-		//	//go home.tpl.php
-		//	if(id){
-		//		window.location.href='home?id='+id;
-		//	}else{
-		//		window.location.href='home';
-		//	}
-		//},
 		goReloadHomePage:function(id){
 			if(id){
 				window.location.href='home?id='+id;
@@ -92,6 +84,14 @@ function gotoPin(i) {
 				$('.ajaxpop').remove();
 			}
 		},
+		alertBox:{
+			add:function(msg){
+				$('body').append('<div class="alertpop msgbox"><div class="inner"><div class="msg">'+msg+'</div><div class="btn-alert-ok">是</div></div></div>');
+			},
+			remove:function(){
+				$('.alertpop').remove();
+			}
+		},
 		errorMsg : {
 			add:function(ele,msg){
 				if(!ele.find('.error').length){
@@ -113,3 +113,9 @@ function gotoPin(i) {
 	this.Common = Common;
 
 }).call(this);
+
+$(document).ready(function(){
+	$('body').on('click','.btn-alert-ok',function(){
+		Common.alertBox.remove();
+	});
+});

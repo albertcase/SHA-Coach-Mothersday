@@ -26,7 +26,7 @@
                     //not login
                     Common.goIndexpage();
                 }else{
-                    alert(data.msg);
+                    Common.alertBox.add(data.msg);
                 }
 
             });
@@ -151,7 +151,7 @@
                         //not login
                         Common.goIndexpage();
                     }else{
-                        alert(data.msg);
+                        Common.alertBox.add(data.msg);
                     }
 
                 });
@@ -306,7 +306,7 @@
                                 //not login
                                 Common.goIndexpage();
                             }else{
-                                alert(data.msg);
+                                Common.alertBox.add(data.msg);
                             }
                         },30000);
                     });
@@ -340,7 +340,7 @@
                             //not login
                             Common.goIndexpage();
                         }else{
-                            alert(data.msg);
+                            Common.alertBox.add(data.msg);
                         }
                     });
                 };
@@ -382,7 +382,7 @@
                             //not login
                             Common.goIndexpage();
                         }else{
-                            alert(data.msg);
+                            Common.alertBox.add(data.msg);
                         }
                     });
                 }

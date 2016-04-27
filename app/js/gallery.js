@@ -40,7 +40,7 @@ $(document).ready(function(){
 			//not login
 			Common.goIndexpage();
 		}else{
-			alert(data.msg);
+			Common.alertBox.add(data.msg);
 		}
 
 	});
@@ -86,7 +86,7 @@ $(document).ready(function(){
 					//not login
 					Common.goIndexpage();
 				}else{
-					alert(data.msg);
+					Common.alertBox.add(data.msg);
 				}
 
 			});
