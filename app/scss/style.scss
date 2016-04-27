@@ -757,7 +757,7 @@ input[type='tel']{
   top: 0;
   left: 0;
   &.qrcode-pop{
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.9);
   }
 }
 .tips-pop{
@@ -949,6 +949,8 @@ input[type='tel']{
     font-size: 0.32rem;
   }
   .btn-alert-ok{
+    position: relative;
+    z-index: 999;
     text-align: center;
     @include size(1.8rem,0.5rem);
     line-height: 0.5rem;

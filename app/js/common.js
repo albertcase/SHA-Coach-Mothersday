@@ -1,7 +1,12 @@
 function gotoPin(i) {
 	var $pin = $('.wrapper .pin');
 	$pin.removeClass('current').eq(i).addClass('current');
-}
+};
+$(document).ready(function(){
+	$('body').on('touchstart','.btn-alert-ok', function(){
+		Common.alertBox.remove();
+	});
+});
 
 ;(function(){
 	var ua = navigator.userAgent.toLowerCase();
@@ -58,7 +63,7 @@ function gotoPin(i) {
 
 			var name,value,i;
 			var str=location.href;
-			var num=str.indexOf("?")
+			var num=str.indexOf("?");
 			str=str.substr(num+1);
 			var arrtmp=str.split("&");
 			for(i=0;i < arrtmp.length;i++) {
@@ -113,9 +118,3 @@ function gotoPin(i) {
 	this.Common = Common;
 
 }).call(this);
-
-$(document).ready(function(){
-	$('body').on('click','.btn-alert-ok',function(){
-		Common.alertBox.remove();
-	});
-});
