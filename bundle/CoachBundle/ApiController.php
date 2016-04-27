@@ -183,7 +183,6 @@ class ApiController extends Controller {
 		$wechatapi = new \Lib\WechatAPI();
 		//Eric 获取用户资料（关注） 微信js 
 		$rs = $wechatapi->isSubscribed($user->openid); 
-		$rs = 1;
 		if ($rs) {
 			return $this->statusPrint(1, '已关注');
 		}
