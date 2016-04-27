@@ -133,7 +133,7 @@
     </section>
     <!-- coupon page-->
     <section class="pin pin-5">
-        <div class="coupon" href="#">
+        <div class="coupon">
             <img src="../app/images/coupon.png" alt=""/>
         </div>
     </section>
