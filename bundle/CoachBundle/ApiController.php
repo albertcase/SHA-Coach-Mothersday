@@ -78,7 +78,7 @@ class ApiController extends Controller {
 		$mobile = $request->request->get('mobile');
 		$verifycode = $request->request->get('verifycode');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    $rs = $AcxiomAPI->sendverifycode($mobile, $_SESSION['openid'], $verifycode);
+	    $rs = $AcxiomAPI->sendverifycode($mobile, $user->openid, $verifycode);
 	    if ($rs == 1) {
 	    	return $this->statusPrint(1, '提交成功');
 	    }
