@@ -47,7 +47,6 @@ $(document).ready(function(){
 
 
 	$(window).on('scroll', function(){
-		//console.log($(window).scrollTop());
 		if($(document).height()-$(window).height() <= $(window).scrollTop()+100){
 			if(!enableScroll) return;
 			enableScroll = false;
@@ -60,7 +59,6 @@ $(document).ready(function(){
 				enableScroll = true;
 				if(data.status ==1){
 					var listData = data.msg.list;
-					console.log(listData);
 					var listHtml = '';
 					for(var i=0;i<listData.length;i++){
 						listHtml = '<li class="item">'+

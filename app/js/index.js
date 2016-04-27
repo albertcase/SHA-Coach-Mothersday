@@ -56,7 +56,6 @@ $(document).ready(function(){
                         if(datafollow.status==1){
                             //    followed
                             Api.isLogin(function(data){
-                                console.log(data);
                                 if(data.status==1){
                                     //    logged
                                     if(data.msg.background){

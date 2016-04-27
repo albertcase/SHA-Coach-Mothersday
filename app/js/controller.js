@@ -16,7 +16,6 @@
             //loading all the resourse, such as css,js,image
             var self = this;
             Api.isLogin(function(data){
-                console.log(data);
                 if(data.status==1){
                     //    logged
                     self.LoadingGreetingPage();
@@ -110,7 +109,6 @@
                     background:self.curBackground,
                     image:renderPic
                 },function(data){
-                    console.log(data);
                     enable = true;
                     if(data.status==1){
                         //    success
@@ -301,7 +299,7 @@
                             enableClick = true;
                             $('.btn-getkeycode').removeClass('disabled');
                             if(data.status==1){
-                                console.log('短信发送成功');
+
                             }else if(data.status==0){
                                 //not login
                                 Common.goIndexpage();
@@ -330,7 +328,6 @@
                         mobile:phonenumber,
                         verifycode:keycode
                     },function(data){
-                        console.log(data);
                         //enableSubmit = true;
                         if(data.status==1){
                             //update info page
