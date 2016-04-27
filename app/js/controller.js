@@ -33,6 +33,9 @@
 
             //test
             //self.LoadingGreetingPage();
+            $('.btn-share').on('click',function(){
+                self.shareSuccess();
+            });
 
             /*
              *  Get Key code
@@ -110,8 +113,7 @@
                                 link: sharepath,
                                 imgUrl: window.location.origin+'/app/images/kv.png',
                                 success:function(){
-                                    Common.goMobilePage();
-                                    $('.share-pop').addClass('hide');
+                                    self.shareSuccess();
                                 },
                                 cancel:function(){
 
@@ -125,8 +127,7 @@
                                 type: '',
                                 dataUrl: '',
                                 success:function(){
-                                    Common.goMobilePage();
-                                    $('.share-pop').addClass('hide');
+                                    self.shareSuccess();
                                 },
                                 cancel:function(){
                                 }
@@ -362,6 +363,22 @@
                 }
             });
 
+        },
+        shareSuccess:function(){
+            var self = this;
+            Api.openidverify(function(data){
+                $('.share-pop').addClass('hide');
+                if(data.status==1){
+                //    已经绑定过
+                    Common.goCouponPage();
+                }else if(data.status==0){
+                //    未登录
+                    Common.goIndexpage();
+                }else{
+                    //    未绑定
+                    Common.goMobilePage();
+                }
+            });
         },
         addCouppon:function(i){
             Api.coupon({
