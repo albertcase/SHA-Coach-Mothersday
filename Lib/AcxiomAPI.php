@@ -16,12 +16,12 @@ class AcxiomAPI extends Base {
         $RedisAPI = new \Lib\RedisAPI();
         $RedisAPI->saveAcxiomLog('sendverifycode', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
-        	return 1;
+        	return array('code' => '1' , 'msg' => '提交成功');
         }
         if ( $rs['responseCode'] == "001" || $rs['responseCode'] == "002") {
-            return 2;
+            return array('code' => '2' , 'msg' => $rs['responseDesc']);
         }
-        return 0;
+        return array('code' => '2' , 'msg' => $rs['responseDesc']);
     }
    
     public function customerbind($mobile, $openid, $verifycode){
@@ -35,12 +35,12 @@ class AcxiomAPI extends Base {
         $RedisAPI = new \Lib\RedisAPI();
         $RedisAPI->saveAcxiomLog('customerbind', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "003" ) {
-        	return 1;
+        	return array('code' => '1' , 'msg' => '已绑定');
         }
         if ( $rs['responseCode'] == "004" ) {
-            return 2;
+            return array('code' => '2' , 'msg' => $rs['responseDesc']);
         }
-        return 0;
+        return array('code' => '2' , 'msg' => $rs['responseDesc']);
     }
 
     public function customerregister($firstname, $lastname, $mobile, $email, $gender, $openid){
@@ -54,9 +54,9 @@ class AcxiomAPI extends Base {
         $RedisAPI = new \Lib\RedisAPI();
         $RedisAPI->saveAcxiomLog('customerregister', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
-        	return 1;
+        	return array('code' => '1' , 'msg' => '提交成功');
         }
-        return 0;
+        return array('code' => '2' , 'msg' => $rs['responseDesc']);
     }
 
     public function openidverify($openid) {
@@ -71,12 +71,12 @@ class AcxiomAPI extends Base {
         $RedisAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
             if ( $rs['status'] == "已绑定" ) {
-                return 1;
+                return array('code' => '1' , 'msg' => '提交成功');
             } else {
-                return 0;
+                return array('code' => '2' , 'msg' => $rs['responseDesc']);
             }
         }
-        return 0;
+        return array('code' => '2' , 'msg' => $rs['responseDesc']);
     }
 
     public function getMillisecond() {
