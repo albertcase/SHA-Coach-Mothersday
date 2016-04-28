@@ -330,9 +330,14 @@
                     },function(data){
                         //enableSubmit = true;
                         if(data.status==1){
-                            //update info page
-                            $('.input-mobile').val(phonenumber);
-                            Common.goInfoPage();
+                            if(data.msg != 0){
+                                Common.goCouponPage();
+                            }else{
+                                //update info page
+                                $('.input-mobile').val(phonenumber);
+                                Common.goInfoPage();
+                            }
+
                         }else if(data.status==0){
                             //not login
                             Common.goIndexpage();

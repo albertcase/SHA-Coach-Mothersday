@@ -14,16 +14,16 @@ $(document).ready(function(){
 		goIndexpage:function(id){
 			//go index.tpl.php
 			if(id){
-				window.location.href='index?id='+id;
+				window.location.href='/index.html?id='+id;
 			}else{
-				window.location.href='index';
+				window.location.href='/index.html';
 			}
 		},
 		goReloadHomePage:function(id){
 			if(id){
-				window.location.href='home?id='+id;
+				window.location.href='/home?id='+id;
 			}else{
-				window.location.href='home';
+				window.location.href='/home';
 			}
 		},
 		goFirstPage:function(){
@@ -35,16 +35,16 @@ $(document).ready(function(){
 		},
 		goPhotoPage:function(id){
 			if(id){
-				window.location.href='photo?id='+id;
+				window.location.href='/photo?id='+id;
 			}else{
-				window.location.href='photo';
+				window.location.href='/photo';
 			}
 		},
 		goGallerypage:function(id){
 			if(id){
-				window.location.href='gallery?id='+id;
+				window.location.href='/gallery?id='+id;
 			}else{
-				window.location.href='gallery';
+				window.location.href='/gallery';
 			}
 		},
 		goMobilePage:function(){
