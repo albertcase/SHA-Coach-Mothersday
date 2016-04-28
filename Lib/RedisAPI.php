@@ -36,6 +36,7 @@ class RedisAPI {
 	}
 
 	public function getList($page, $row) {
+		echo $this->_redis->get("Coach:ListTime:".$page);exit;
 		if ($cachetime = $this->_redis->get("Coach:ListTime:".$page)) {
 			if (time() - $cachetime <= 3600) {
 				if($this->_redis->get("Coach:List:".$page)){
