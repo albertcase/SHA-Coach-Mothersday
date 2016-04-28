@@ -52,32 +52,34 @@ $(document).ready(function(){
                 $('.btn-filltext').on('click',function(){
                     //ifplay,if not, go page pin-2,else go myphoto page
                     _hmt.push(['_trackEvent', 'buttons', 'click', 'Play1']);
-                    Api.isFollow(function(datafollow){
-                        if(datafollow.status==1){
-                            //    followed
-                            Api.isLogin(function(data){
-                                if(data.status==1){
-                                    //    logged
-                                    if(data.msg.background){
-                                        //has submit image
-                                        Common.goPhotoPage(data.msg.id);
-                                    }else{
-                                        //not submit your image,go canvas page
-                                        Common.goReloadHomePage();
-                                    }
-                                }else if(data.status==0){
-                                    //not login
-                                    Common.goIndexpage();
-                                }else{
-                                    Common.alertBox.add(data.msg);
-                                }
+                    Common.goReloadHomePage();
 
-                            });
-                        }else{
-                            //not follow,show qrcode pop
-                            $('.qrcode-pop').removeClass('hide');
-                        }
-                    });
+                    //Api.isFollow(function(datafollow){
+                    //    if(datafollow.status==1){
+                    //        //    followed
+                    //        Api.isLogin(function(data){
+                    //            if(data.status==1){
+                    //                //    logged
+                    //                if(data.msg.background){
+                    //                    //has submit image
+                    //                    Common.goPhotoPage(data.msg.id);
+                    //                }else{
+                    //                    //not submit your image,go canvas page
+                    //                    Common.goReloadHomePage();
+                    //                }
+                    //            }else if(data.status==0){
+                    //                //not login
+                    //                Common.goIndexpage();
+                    //            }else{
+                    //                Common.alertBox.add(data.msg);
+                    //            }
+                    //
+                    //        });
+                    //    }else{
+                    //        //not follow,show qrcode pop
+                    //        $('.qrcode-pop').removeClass('hide');
+                    //    }
+                    //});
 
                 });
 
