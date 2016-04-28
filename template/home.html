@@ -11,7 +11,7 @@
     <!-- endinject -->
 
     <script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>
-    <!--<script src="http://coach.samesamechina.com/api/v1/js/c102fde9-634a-4c9a-8936-6d8a0faf156e/wechat"></script>-->
+    <!--<script src="http://uat.coach.samesamechina.com/api/v1/js/9bf62f9d-2cac-46f6-a714-429a5c0ccfa0/wechat"></script>-->
     <script>
         var _hmt = _hmt || [];
         (function() {

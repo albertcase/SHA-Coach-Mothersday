@@ -41,7 +41,7 @@ class WechatAPI {
     //正式 pKCDxji6wCVuB38LBgBTx3U2yBoQ
     //测试 pKCDxjrwOQNqdCSu4M14wDNL8Y-o
     $data[] = array(
-            'card_id' => 'pKCDxjrwOQNqdCSu4M14wDNL8Y-o',
+            'card_id' => 'pKCDxji6wCVuB38LBgBTx3U2yBoQ',
             'code' => '',
             'openid' => ''
     );
