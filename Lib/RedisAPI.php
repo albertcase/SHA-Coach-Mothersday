@@ -96,7 +96,7 @@ class RedisAPI {
 	}
 
 	public function loadAcxiomLog($dt) {
-		return $arList = $this->_redis->lrange("Acxiom:". $dt);
+		return $arList = $this->_redis->lrange("Acxiom:". $dt, 0 ,-1);
 	}
 
 	// public function setGreeting($greeting, $background) {
