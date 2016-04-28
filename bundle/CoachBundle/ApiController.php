@@ -165,6 +165,7 @@ class ApiController extends Controller {
 		$data = json_decode($data, true);
 		$databaseapi = new \Lib\DatabaseAPI();
 		$databaseapi->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+		exit;
 	}
 
 
@@ -176,10 +177,18 @@ class ApiController extends Controller {
 		);
 		$page = $request->request->get('nowpage');
 		$row = $request->request->get('rowcount');
+		if ($cachetime = $this->_redis->get("Coach:ListTime:".$page)) {
+			if (time() - $cachetime <= 3600) {
+				if($this->_redis->get("Coach:List:".$page)){
+					return $this->_redis->get("Coach:List:".$page);
+				}
+			}
+		}	
 		$databaseapi = new \Lib\DatabaseAPI();
 		$rs = $databaseapi->getGreeting($page, $row);
-		return $this->statusPrint(1, $rs);
-		
+		$this->_redis->set("Coach:ListTime:".$page, time());
+		$this->_redis->set("Coach:List:".$page, $this->statusPrint(1, $rs));
+		return $this->statusPrint(1, $rs);	
 	}
 
 	public function statusAction() {
