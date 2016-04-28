@@ -180,8 +180,8 @@ class ApiController extends Controller {
 		$row = $request->request->get('rowcount');
 		$redis = new \Lib\RedisAPI();
 
-		$redis->getList($page, $row);
-		return $this->statusPrint(1, $rs);	
+		return $redis->getList($page, $row);
+		//return $this->statusPrint(1, $rs);	
 	}
 
 	public function statusAction() {
