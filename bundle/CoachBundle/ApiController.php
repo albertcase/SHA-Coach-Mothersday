@@ -12,7 +12,9 @@ class ApiController extends Controller {
 		// $rs = $databaseapi->getGreeting(1, 4);
 		$redis = new \Lib\RedisAPI();
 
-		return $redis->getList(1, 4);exit;
+		$rs = $redis->getList(1, 4);
+		var_dump($rs);
+		exit;
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		// $redis = new \Lib\RedisAPI();
