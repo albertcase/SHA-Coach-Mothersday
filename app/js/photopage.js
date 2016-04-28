@@ -59,16 +59,17 @@ $(document).ready(function(){
 
         }else if($(this).hasClass('btn-joinplay')){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'play2']);
+            Common.goIndexpage();
         //    ’我也要玩‘
-            Api.isFollow(function(data){
-                if(data.status==1){
-                    //    followed
-                    Common.goIndexpage();
-                }else{
-                    //not follow,show qrcode pop
-                    $('.qrcode-pop').removeClass('hide');
-                }
-            });
+        //    Api.isFollow(function(data){
+        //        if(data.status==1){
+        //            //    followed
+        //            Common.goIndexpage();
+        //        }else{
+        //            //not follow,show qrcode pop
+        //            $('.qrcode-pop').removeClass('hide');
+        //        }
+        //    });
         }else if($(this).hasClass('btn-like')){
             _hmt.push(['_trackEvent', 'buttons', 'click', 'Like1']);
         //    '点赞'
