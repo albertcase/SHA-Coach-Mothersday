@@ -16,10 +16,7 @@ class AcxiomAPI extends Base {
         $RedisAPI = new \Lib\RedisAPI();
         $RedisAPI->saveAcxiomLog('sendverifycode', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
-        	return array('code' => '1' , 'msg' => '提交成功');
-        }
-        if ( $rs['responseCode'] == "001" || $rs['responseCode'] == "002") {
-            return array('code' => '2' , 'msg' => $rs['responseDesc']);
+        	return array('code' => '1' , 'msg' => $rs['data']['status'], 'verifycode' => $rs['data']['verifycode']);
         }
         return array('code' => '2' , 'msg' => $rs['responseDesc']);
     }
@@ -34,11 +31,8 @@ class AcxiomAPI extends Base {
         $rs = json_decode($result, true);
         $RedisAPI = new \Lib\RedisAPI();
         $RedisAPI->saveAcxiomLog('customerbind', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
-        if ( $rs['responseCode'] == "003" ) {
-        	return array('code' => '1' , 'msg' => '已绑定');
-        }
-        if ( $rs['responseCode'] == "004" ) {
-            return array('code' => '2' , 'msg' => $rs['responseDesc']);
+        if ( $rs['responseCode'] == "200" ) {
+        	return array('code' => '1' , 'msg' => '绑定成功');
         }
         return array('code' => '2' , 'msg' => $rs['responseDesc']);
     }
@@ -71,9 +65,9 @@ class AcxiomAPI extends Base {
         $RedisAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
             if ( $rs['status'] == "已绑定" ) {
-                return array('code' => '1' , 'msg' => '提交成功');
+                return array('code' => '1' , 'msg' => '已绑定');
             } else {
-                return array('code' => '2' , 'msg' => $rs['responseDesc']);
+                return array('code' => '2' , 'msg' => '未绑定');
             }
         }
         return array('code' => '2' , 'msg' => $rs['responseDesc']);
