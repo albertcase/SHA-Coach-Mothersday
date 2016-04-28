@@ -178,17 +178,9 @@ class ApiController extends Controller {
 		);
 		$page = $request->request->get('nowpage');
 		$row = $request->request->get('rowcount');
-		if ($cachetime = $this->_redis->get("Coach:ListTime:".$page)) {
-			if (time() - $cachetime <= 3600) {
-				if($this->_redis->get("Coach:List:".$page)){
-					return $this->_redis->get("Coach:List:".$page);
-				}
-			}
-		}	
-		$databaseapi = new \Lib\DatabaseAPI();
-		$rs = $databaseapi->getGreeting($page, $row);
-		$this->_redis->set("Coach:ListTime:".$page, time());
-		$this->_redis->set("Coach:List:".$page, $this->statusPrint(1, $rs));
+		$redis = new \Lib\RedisAPI();
+
+		$redis->getList($page, $row);
 		return $this->statusPrint(1, $rs);	
 	}
 

@@ -35,6 +35,25 @@ class RedisAPI {
 		return $this->_redis->hGet($table);
 	}
 
+	public function getList($page, $row) {
+		if ($cachetime = $this->_redis->get("Coach:ListTime:".$page)) {
+			if (time() - $cachetime <= 3600) {
+				if($this->_redis->get("Coach:List:".$page)){
+					return $this->_redis->get("Coach:List:".$page);
+				}
+			}
+		}	
+		$databaseapi = new \Lib\DatabaseAPI();
+
+		$rs = $databaseapi->getGreeting($page, $row);
+		$this->_redis->set("Coach:ListTime:".$page, time());
+		$controller = new \Core\Controller();
+		$this->_redis->set("Coach:List:".$page, $controller->statusPrint(1, $rs));
+		
+
+		return $controller->statusPrint(1, $rs);
+	}
+
 	public function regUser($openid, $nickname, $headimgurl) {
 		// if ($this->_redis->hGet("userid", $openid)) {
 		// 	$id = $this->_redis->hGet("userid", $openid);
