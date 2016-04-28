@@ -10,7 +10,8 @@ class ApiController extends Controller {
 		// $mobile = '15121038676';
 		//  $databaseapi = new \Lib\DatabaseAPI();
 		// $rs = $databaseapi->getGreeting(1, 4);
-		return $this->_redis->get("Coach:List:1");exit;
+		$redis = new \Lib\RedisAPI();
+		return $redis->get("Coach:List:1");exit;
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		// $redis = new \Lib\RedisAPI();
