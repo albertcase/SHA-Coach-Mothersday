@@ -10,9 +10,9 @@ class ApiController extends Controller {
 		// $mobile = '15121038676';
 		//  $databaseapi = new \Lib\DatabaseAPI();
 		// $rs = $databaseapi->getGreeting(1, 4);
-		$redis = new \Lib\RedisAPI();
+		$AcxiomAPI = new \Lib\AcxiomAPI();
 
-		$rs = $redis->getList(1, 4);
+		$rs = $AcxiomAPI->sendverifycode('15121038676');
 		var_dump($rs);
 		exit;
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
