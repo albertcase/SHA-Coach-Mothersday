@@ -20,6 +20,7 @@ class Base {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
 		$data = curl_exec($ch);
 		curl_close($ch);
+		var_dump($data);exit;
 		return $data;
 	}	
 
