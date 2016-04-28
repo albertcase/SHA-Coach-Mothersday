@@ -42,7 +42,7 @@ class RedisAPI {
 		$databaseapi = new \Lib\DatabaseAPI();
 		$rs = $databaseapi->getGreeting($page, $row);
 		$this->_redis->set("Coach:List:".$page, serialize($rs));
-		$this->_redis->setTimeout("Coach:List:".$page, 30);
+		$this->_redis->setTimeout("Coach:List:".$page, 3600);
 		return $rs;
 	}
 
