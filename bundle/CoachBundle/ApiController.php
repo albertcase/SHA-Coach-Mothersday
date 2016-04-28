@@ -53,6 +53,7 @@ class ApiController extends Controller {
 	 }
 
 	public function sendverifycodeAction() {
+
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
@@ -66,10 +67,17 @@ class ApiController extends Controller {
 		$mobile = $request->request->get('mobile');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->sendverifycode($mobile);
+	    if ($rs['code'] == 1) {
+	    	$_SESSION['verifycode'] = $rs['verifycode'];
+	    	$_SESSION['verifystatus'] = $rs['msg'];
+	    }
 	    return $this->statusPrint($rs['code'], $rs['msg']);
 	}
 
 	public function customerbindAction() {
+		if (!isset($_SESSION['verifycode'])) {
+			return $this->statusPrint(2, '请发送验证码后提交');
+		}
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
@@ -83,9 +91,18 @@ class ApiController extends Controller {
 		$request->validation($fields);
 		$mobile = $request->request->get('mobile');
 		$verifycode = $request->request->get('verifycode');
-		$AcxiomAPI = new \Lib\AcxiomAPI();
-	    $rs = $AcxiomAPI->sendverifycode($mobile, $user->openid, $verifycode);
-	    return $this->statusPrint($rs['code'], $rs['msg']);
+
+		if ($_SESSION['verifystatus'] == 1) {
+			//老用户
+			$AcxiomAPI = new \Lib\AcxiomAPI();
+		    $rs = $AcxiomAPI->sendverifycode($mobile, $user->openid, $verifycode);
+		    return $this->statusPrint($rs['code'], $rs['msg']);
+		}
+		if ($_SESSION['verifycode'] != $verifycode) {
+			return $this->statusPrint(2, '验证码错误');
+		}
+		return $this->statusPrint(1, 0);
+		
 	}
 
 	public function customerregisterAction() {

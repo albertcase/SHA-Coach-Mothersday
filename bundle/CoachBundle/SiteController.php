@@ -25,7 +25,14 @@ class SiteController extends Controller {
 			$WechatAPI = new \Lib\WechatAPI();
 			$WechatAPI->wechatAuthorize();
 		}
-		$this->render('home');
+		$wechatapi = new \Lib\WechatAPI();
+		$rs = $wechatapi->isSubscribed($user->openid); 
+		if ($rs) {
+			$display = 'hide';
+		} else {
+			$display = '';
+		}
+		$this->render('home', array('display' => $display));
 		exit;
 	}
 
