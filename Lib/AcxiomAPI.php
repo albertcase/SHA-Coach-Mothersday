@@ -3,7 +3,8 @@ namespace Lib;
 
 class AcxiomAPI extends Base {
 
-	public $apiUrl = 'https://uat10.acxiom.com.cn';
+	//public $apiUrl = 'https://uat10.acxiom.com.cn';
+    public $apiUrl = 'https://coachwechat.acxiom.com.cn';
 
     public function sendverifycode($mobile){
         $start = $this->getMillisecond();
