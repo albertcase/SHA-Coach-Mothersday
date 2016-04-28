@@ -144,7 +144,7 @@
         </div>
     </div>
     <!-- popup-->
-    <div class="popup qrcode-pop <?php echo $display;?>">
+    <div class="popup qrcode-pop hide">
         <div class="inner">
             <div class="qrcode">
                 <img src="../app/images/qrcode-follow.png" alt=""/>
