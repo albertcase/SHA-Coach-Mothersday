@@ -6,11 +6,11 @@ class AcxiomAPI extends Base {
 	public $apiUrl = 'https://uat10.acxiom.com.cn';
 
     public function sendverifycode($mobile){
-        $start = getMillisecond();
+        $start = $this->getMillisecond();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/sendverifycode";
         $data = array('mobile' => $mobile);
         $result = $this->postData($ws, json_encode($data)); 
-        $end = getMillisecond();
+        $end = $this->getMillisecond();
         $usetime = $end - $start;
         $rs = json_decode($result, true);
         $RedisAPI = new \Lib\RedisAPI();
@@ -25,11 +25,11 @@ class AcxiomAPI extends Base {
     }
    
     public function customerbind($mobile, $openid, $verifycode){
-        $start = getMillisecond();
+        $start = $this->getMillisecond();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/customerbind";
         $data = array('mobile' => $mobile, 'openid' => $openid, 'verifycode' => $verifycode);
         $result = $this->postData($ws, json_encode($data)); 
-        $end = getMillisecond();
+        $end = $this->getMillisecond();
         $usetime = $end - $start;
         $rs = json_decode($result, true);
         $RedisAPI = new \Lib\RedisAPI();
@@ -44,11 +44,11 @@ class AcxiomAPI extends Base {
     }
 
     public function customerregister($firstname, $lastname, $mobile, $email, $gender, $openid){
-        $start = getMillisecond();
+        $start = $this->getMillisecond();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/customerregister";
         $data = array('firstname' => $firstname, 'lastname' => $lastname, 'mobile' => $mobile, 'email' => $email, 'gender' => $gender, 'openid' => $openid);
         $result = $this->postData($ws, json_encode($data)); 
-        $end = getMillisecond();
+        $end = $this->getMillisecond();
         $usetime = $end - $start;
         $rs = json_decode($result, true);
         $RedisAPI = new \Lib\RedisAPI();
@@ -60,11 +60,11 @@ class AcxiomAPI extends Base {
     }
 
     public function openidverify($openid) {
-        $start = getMillisecond();
+        $start = $this->getMillisecond();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/openidverify";
         $data = array('openid' => $openid);
         $result = $this->postData($ws, json_encode($data)); 
-        $end = getMillisecond();
+        $end = $this->getMillisecond();
         $usetime = $end - $start;
         $rs = json_decode($result, true);
         $RedisAPI = new \Lib\RedisAPI();
