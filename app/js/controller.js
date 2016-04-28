@@ -330,7 +330,7 @@
                     },function(data){
                         //enableSubmit = true;
                         if(data.status==1){
-                            if(data.msg != 0){
+                            if(data.msg != "新用户"){
                                 Common.goCouponPage();
                             }else{
                                 //update info page
