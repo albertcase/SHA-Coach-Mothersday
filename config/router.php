@@ -1,7 +1,7 @@
 <?php
 
 $routers = array();
-$routers['/'] = array('CoachBundle\Site', 'index');
+//$routers['/'] = array('CoachBundle\Site', 'index');
 $routers['/home'] = array('CoachBundle\Site', 'home');
 $routers['/photo'] = array('CoachBundle\Site', 'photo');
 $routers['/gallery'] = array('CoachBundle\Site', 'gallery');
