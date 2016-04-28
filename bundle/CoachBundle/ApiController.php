@@ -26,6 +26,16 @@ class ApiController extends Controller {
 		exit;
 	}
 
+	public function acxiomlistAction() {
+		$request = $this->Request();
+		$dt = $request->query->get('date');
+		 $RedisAPI = new \Lib\RedisAPI();
+	     $rs = $RedisAPI->loadAcxiomLog($dt);
+	     echo "<pre>";
+	     print_r($rs);exit;
+		exit;
+	}
+
 	public function openidverifyAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
