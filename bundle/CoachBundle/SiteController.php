@@ -7,23 +7,24 @@ use Core\Controller;
 class SiteController extends Controller {
 
 	public function indexAction() {	
-		$UserAPI = new \Lib\UserAPI();
-		$user = $UserAPI->userLoad(true);
-		if (!$user) {
-			$parameterAry = $_GET;
-			if(count($parameterAry)>0)
-				$url = "/?".http_build_query($parameterAry);
-			else
-				$url = "/";
-			$_SESSION['redirect_url'] = $url;
-			$WechatAPI = new \Lib\WechatAPI();
-			$WechatAPI->wechatAuthorize();
-		}	
+			
 		$this->render('index');
 		exit;
 	}
 
 	public function homeAction() {	
+		$UserAPI = new \Lib\UserAPI();
+		$user = $UserAPI->userLoad(true);
+		if (!$user) {
+			$parameterAry = $_GET;
+			if(count($parameterAry)>0)
+				$url = "/home?".http_build_query($parameterAry);
+			else
+				$url = "/home";
+			$_SESSION['redirect_url'] = $url;
+			$WechatAPI = new \Lib\WechatAPI();
+			$WechatAPI->wechatAuthorize();
+		}
 		$this->render('home');
 		exit;
 	}
@@ -46,6 +47,18 @@ class SiteController extends Controller {
 	}
 
 	public function galleryAction() {	
+		$UserAPI = new \Lib\UserAPI();
+		$user = $UserAPI->userLoad(true);
+		if (!$user) {
+			$parameterAry = $_GET;
+			if(count($parameterAry)>0)
+				$url = "/gallery?".http_build_query($parameterAry);
+			else
+				$url = "/gallery";
+			$_SESSION['redirect_url'] = $url;
+			$WechatAPI = new \Lib\WechatAPI();
+			$WechatAPI->wechatAuthorize();
+		}
 		$this->render('gallery');
 		exit;
 	}

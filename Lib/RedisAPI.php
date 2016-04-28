@@ -35,6 +35,17 @@ class RedisAPI {
 		return $this->_redis->hGet($table);
 	}
 
+	public function getList($page, $row) {
+		if ($this->_redis->get("Coach:List:".$page)) {
+			return unserialize($this->_redis->get("Coach:List:".$page));
+		}	
+		$databaseapi = new \Lib\DatabaseAPI();
+		$rs = $databaseapi->getGreeting($page, $row);
+		$this->_redis->set("Coach:List:".$page, serialize($rs));
+		$this->_redis->setTimeout("Coach:List:".$page, 3600);
+		return $rs;
+	}
+
 	public function regUser($openid, $nickname, $headimgurl) {
 		// if ($this->_redis->hGet("userid", $openid)) {
 		// 	$id = $this->_redis->hGet("userid", $openid);
@@ -88,6 +99,15 @@ class RedisAPI {
 
 	public function flushAll() {
 		return $this->_redis->flushAll();
+	}
+
+	public function saveAcxiomLog($type, $data, $responseCode, $responseDesc, $result, $start, $end, $usetime) {
+		$this->_redis->lPush("Acxiom:".date("Ymd"), $type . '|' . $data . '|' . $responseCode . '|' . $responseDesc . '|' . $result . '|' . $start . '|' . $end . '|' . $usetime .'|' . date("Y-m-d H:i:s"));
+		return 1;
+	}
+
+	public function loadAcxiomLog($dt) {
+		return $arList = $this->_redis->lrange("Acxiom:". $dt, 0 ,-1);
 	}
 
 	// public function setGreeting($greeting, $background) {

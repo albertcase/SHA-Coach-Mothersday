@@ -8,6 +8,7 @@ $routers['/gallery'] = array('CoachBundle\Site', 'gallery');
 $routers['/getdata'] = array('CoachBundle\Api', 'getdata');
 $routers['/callback'] = array('CoachBundle\Api', 'callback');
 $routers['/api/test'] = array('CoachBundle\Api', 'test');
+$routers['/api/acxiomlist'] = array('CoachBundle\Api', 'acxiomlist');
 $routers['/api/flush'] = array('CoachBundle\Api', 'flush');
 $routers['/api/status'] = array('CoachBundle\Api', 'status');
 $routers['/api/islogin'] = array('CoachBundle\Api', 'islogin');

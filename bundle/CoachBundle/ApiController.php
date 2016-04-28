@@ -8,8 +8,13 @@ class ApiController extends Controller {
 
 	public function testAction() {
 		// $mobile = '15121038676';
-		 $AcxiomAPI = new \Lib\AcxiomAPI();
-	     echo $AcxiomAPI->openidverify('oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
+		//  $databaseapi = new \Lib\DatabaseAPI();
+		// $rs = $databaseapi->getGreeting(1, 4);
+		$redis = new \Lib\RedisAPI();
+
+		$rs = $redis->getList(1, 4);
+		var_dump($rs);
+		exit;
 	    //echo $AcxiomAPI->customerbind($mobile, 'oKCDxjivJ92ky4dxLT8dt1jcXtn4', '26r5');exit;
 	    //echo $AcxiomAPI->customerregister('张', '伟', $mobile, 'ikwer@163.com', 'M', 'oKCDxjivJ92ky4dxLT8dt1jcXtn4');exit;
 		// $redis = new \Lib\RedisAPI();
@@ -26,6 +31,16 @@ class ApiController extends Controller {
 		exit;
 	}
 
+	public function acxiomlistAction() {
+		$request = $this->Request();
+		$dt = $request->query->get('date');
+		 $RedisAPI = new \Lib\RedisAPI();
+	     $rs = $RedisAPI->loadAcxiomLog($dt);
+	     echo "<pre>";
+	     print_r($rs);exit;
+		exit;
+	}
+
 	public function openidverifyAction() {
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
@@ -34,11 +49,8 @@ class ApiController extends Controller {
 		}
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->openidverify($user->openid);
-	    if ($rs == 1) {
-	    	return $this->statusPrint(1, '已经绑定过');
-	    }
-	    return $this->statusPrint(2, '未绑定');
-	}
+	    return $this->statusPrint($rs['code'], $rs['msg']);
+	 }
 
 	public function sendverifycodeAction() {
 		$UserAPI = new \Lib\UserAPI();
@@ -54,13 +66,7 @@ class ApiController extends Controller {
 		$mobile = $request->request->get('mobile');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->sendverifycode($mobile);
-	    if ($rs == 1) {
-	    	return $this->statusPrint(1, '提交成功');
-	    }
-	    if ($rs == 2) {
-	    	return $this->statusPrint(3, '已经绑定过');
-	    }
-	    return $this->statusPrint(2, '提交失败');
+	    return $this->statusPrint($rs['code'], $rs['msg']);
 	}
 
 	public function customerbindAction() {
@@ -79,13 +85,7 @@ class ApiController extends Controller {
 		$verifycode = $request->request->get('verifycode');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->sendverifycode($mobile, $user->openid, $verifycode);
-	    if ($rs == 1) {
-	    	return $this->statusPrint(1, '提交成功');
-	    }
-	    if ($rs == 2) {
-	    	return $this->statusPrint(3, '已经绑定过');
-	    }
-	    return $this->statusPrint(2, '提交失败');
+	    return $this->statusPrint($rs['code'], $rs['msg']);
 	}
 
 	public function customerregisterAction() {
@@ -112,13 +112,7 @@ class ApiController extends Controller {
 		$openid = $request->request->get('openid');
 		$AcxiomAPI = new \Lib\AcxiomAPI();
 	    $rs = $AcxiomAPI->customerregister($firstname, $lastname, $mobile, $email, $gender, $openid);
-	    if ($rs == 1) {
-	    	return $this->statusPrint(1, '提交成功');
-	    }
-	    if ($rs == 2) {
-	    	return $this->statusPrint(3, '已经绑定过');
-	    }
-	    return $this->statusPrint(2, '提交失败');
+	    return $this->statusPrint($rs['code'], $rs['msg']);
 	}
 
 	public function isloginAction() {
@@ -154,6 +148,7 @@ class ApiController extends Controller {
 		$data = json_decode($data, true);
 		$databaseapi = new \Lib\DatabaseAPI();
 		$databaseapi->regUser($data['data']['openid'], $data['data']['nickname'], $data['data']['headimgurl']);
+		exit;
 	}
 
 
@@ -165,10 +160,9 @@ class ApiController extends Controller {
 		);
 		$page = $request->request->get('nowpage');
 		$row = $request->request->get('rowcount');
-		$databaseapi = new \Lib\DatabaseAPI();
-		$rs = $databaseapi->getGreeting($page, $row);
-		return $this->statusPrint(1, $rs);
-		
+		$redis = new \Lib\RedisAPI();
+		$rs = $redis->getList($page, $row);
+		return $this->statusPrint(1, $rs);	
 	}
 
 	public function statusAction() {
