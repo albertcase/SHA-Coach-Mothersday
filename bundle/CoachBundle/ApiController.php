@@ -95,7 +95,7 @@ class ApiController extends Controller {
 		if ($_SESSION['verifystatus'] == 1) {
 			//老用户
 			$AcxiomAPI = new \Lib\AcxiomAPI();
-		    $rs = $AcxiomAPI->sendverifycode($mobile, $user->openid, $verifycode);
+		    $rs = $AcxiomAPI->customerbind($mobile, $user->openid, $verifycode);
 		    return $this->statusPrint($rs['code'], $rs['msg']);
 		}
 		if ($_SESSION['verifycode'] != $verifycode) {
