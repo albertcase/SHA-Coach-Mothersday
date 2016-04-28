@@ -101,7 +101,7 @@ class ApiController extends Controller {
 		if ($_SESSION['verifycode'] != $verifycode) {
 			return $this->statusPrint(2, '验证码错误');
 		}
-		return $this->statusPrint(1, 0);
+		return $this->statusPrint(1, '0');
 		
 	}
 
