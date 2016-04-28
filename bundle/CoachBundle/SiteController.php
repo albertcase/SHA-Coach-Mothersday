@@ -28,9 +28,9 @@ class SiteController extends Controller {
 		$wechatapi = new \Lib\WechatAPI();
 		$rs = $wechatapi->isSubscribed($user->openid); 
 		if ($rs) {
-			$display = '';
-		} else {
 			$display = 'hide';
+		} else {
+			$display = '';
 		}
 		$this->render('home', array('display' => $display));
 		exit;
