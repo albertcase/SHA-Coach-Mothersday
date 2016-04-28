@@ -36,23 +36,18 @@ class RedisAPI {
 	}
 
 	public function getList($page, $row) {
-		echo $this->_redis->get("Coach:List:".$page);exit;
 		if ($cachetime = $this->_redis->get("Coach:ListTime:".$page)) {
 			if (time() - $cachetime <= 3600) {
 				if($this->_redis->get("Coach:List:".$page)){
-					return $this->_redis->get("Coach:List:".$page);
+					return unserialize($this->_redis->get("Coach:List:".$page));
 				}
 			}
 		}	
 		$databaseapi = new \Lib\DatabaseAPI();
-
 		$rs = $databaseapi->getGreeting($page, $row);
 		$this->_redis->set("Coach:ListTime:".$page, time());
-		$controller = new \Core\Controller();
-		$this->_redis->set("Coach:List:".$page, $controller->statusPrint(1, $rs));
-		
-
-		return $controller->statusPrint(1, $rs);
+		$this->_redis->set("Coach:List:".$page, serialize($rs));
+		return $rs;
 	}
 
 	public function regUser($openid, $nickname, $headimgurl) {
