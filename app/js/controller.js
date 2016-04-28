@@ -97,14 +97,16 @@
                 _hmt.push(['_trackEvent', 'buttons', 'click', 'submit1']);
 
 
-                if(!enable) return;
-                enable = false;
+
 
 
 
                 if($('#capture').val() == ""){
                     Common.alertBox.add("请上传图片");
                 }else{
+                        if(!enable) return;
+                        enable = false;
+
                         //render new picture
                         var renderPic = canvas.toDataURL({
                             format: 'png',
