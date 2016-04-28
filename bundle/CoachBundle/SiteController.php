@@ -25,6 +25,9 @@ class SiteController extends Controller {
 			$WechatAPI = new \Lib\WechatAPI();
 			$WechatAPI->wechatAuthorize();
 		}
+		if ($user->greeting) {
+			return $this->redirect('/photo?id='.$user->id);
+		}
 		$wechatapi = new \Lib\WechatAPI();
 		$rs = $wechatapi->isSubscribed($user->openid); 
 		if ($rs) {
