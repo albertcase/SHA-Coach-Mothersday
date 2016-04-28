@@ -90,6 +90,15 @@ class RedisAPI {
 		return $this->_redis->flushAll();
 	}
 
+	public function saveAcxiomLog($type, $data, $responseCode, $responseDesc, $result, $start, $end, $usetime) {
+		$this->_redis->lPush("Acxiom:".date("Ymd"), $type . '|' . $data . '|' . $responseCode . '|' . $responseDesc . '|' . $result . '|' . $start . '|' . $end . '|' . $usetime .'|' . date("Y-m-d H:i:s"));
+		return 1;
+	}
+
+	public function loadAcxiomLog($dt) {
+		return $arList = $this->_redis->lrange("Acxiom:". $dt);
+	}
+
 	// public function setGreeting($greeting, $background) {
 	// 	$id = $_SESSION['user_id'];
 	// 	$userTableKey = "user:" . $id;

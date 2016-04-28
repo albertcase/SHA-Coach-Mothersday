@@ -6,12 +6,15 @@ class AcxiomAPI extends Base {
 	public $apiUrl = 'https://uat10.acxiom.com.cn';
 
     public function sendverifycode($mobile){
+        $start = microtime();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/sendverifycode";
         $data = array('mobile' => $mobile);
         $result = $this->postData($ws, json_encode($data)); 
+        $end = microtime();
+        $usetime = $end - $start;
         $rs = json_decode($result, true);
-        $databaseAPI = new \Lib\DatabaseAPI();
-        $databaseAPI->saveAcxiomLog('sendverifycode', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
+        $RedisAPI = new \Lib\RedisAPI();
+        $RedisAPI->saveAcxiomLog('sendverifycode', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
         	return 1;
         }
@@ -22,12 +25,15 @@ class AcxiomAPI extends Base {
     }
    
     public function customerbind($mobile, $openid, $verifycode){
+        $start = microtime();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/customerbind";
         $data = array('mobile' => $mobile, 'openid' => $openid, 'verifycode' => $verifycode);
         $result = $this->postData($ws, json_encode($data)); 
+        $end = microtime();
+        $usetime = $end - $start;
         $rs = json_decode($result, true);
-        $databaseAPI = new \Lib\DatabaseAPI();
-        $databaseAPI->saveAcxiomLog('customerbind', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
+        $RedisAPI = new \Lib\RedisAPI();
+        $RedisAPI->saveAcxiomLog('customerbind', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "003" ) {
         	return 1;
         }
@@ -38,12 +44,15 @@ class AcxiomAPI extends Base {
     }
 
     public function customerregister($firstname, $lastname, $mobile, $email, $gender, $openid){
+        $start = microtime();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/customerregister";
         $data = array('firstname' => $firstname, 'lastname' => $lastname, 'mobile' => $mobile, 'email' => $email, 'gender' => $gender, 'openid' => $openid);
         $result = $this->postData($ws, json_encode($data)); 
+        $end = microtime();
+        $usetime = $end - $start;
         $rs = json_decode($result, true);
-        $databaseAPI = new \Lib\DatabaseAPI();
-        $databaseAPI->saveAcxiomLog('customerregister', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
+        $RedisAPI = new \Lib\RedisAPI();
+        $RedisAPI->saveAcxiomLog('customerregister', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
         	return 1;
         }
@@ -51,12 +60,15 @@ class AcxiomAPI extends Base {
     }
 
     public function openidverify($openid) {
+        $start = microtime();
         $ws = $this->apiUrl . "/coachwechatws/ws/customer/openidverify";
         $data = array('openid' => $openid);
         $result = $this->postData($ws, json_encode($data)); 
+        $end = microtime();
+        $usetime = $end - $start;
         $rs = json_decode($result, true);
-        $databaseAPI = new \Lib\DatabaseAPI();
-        $databaseAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result);
+        $RedisAPI = new \Lib\RedisAPI();
+        $RedisAPI->saveAcxiomLog('openidverify', json_encode($data), $rs['responseCode'], $rs['responseDesc'], $result, $start, $end, $usetime);
         if ( $rs['responseCode'] == "200" ) {
             if ( $rs['status'] == "已绑定" ) {
                 return 1;
