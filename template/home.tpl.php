@@ -107,10 +107,10 @@
                 <!--<input type="radio" class="input-gender" name="gender" value="男"/>-->
                 <div class="radio-collection">
                     <label class="radio-inline radio-inline-1 actived">
-                        <input type="radio" name="gender" value="男" checked>男
+                        <input type="radio" name="gender" value="M" checked>男
                     </label>
                     <label class="radio-inline radio-inline-2">
-                        <input type="radio" name="gender" value="女">女
+                        <input type="radio" name="gender" value="F">女
                     </label>
                 </div>
                 <!--<input type="radio" class="input-gender" name="gender" value="女"/>-->
