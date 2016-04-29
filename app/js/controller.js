@@ -5,8 +5,8 @@
 
         //init the canvas
         this.canvas = new fabric.Canvas('c');
-        this.canvas.setWidth($('.block-photo .p-inner').width());
-        this.canvas.setHeight($('.block-photo .p-inner').height());
+        this.canvas.setWidth($('.block-photo .p-inner').width() * 0.8);
+        this.canvas.setHeight($('.block-photo .p-inner').height() * 0.8);
         this.curBackground=1;
         this.id='';
         this.openid = '';
@@ -95,64 +95,74 @@
                  *  If submit success, show the share-pop
                  */
                 _hmt.push(['_trackEvent', 'buttons', 'click', 'submit1']);
-                if(!enable) return;
-                enable = false;
 
-                //render new picture
-                var renderPic = canvas.toDataURL({
-                    format: 'png',
-                    quality: 1
-                });
-                //    submit writeGreeting
-                Api.writeGreeting({
-                    greeting:words,
-                    background:self.curBackground,
-                    image:renderPic
-                },function(data){
-                    enable = true;
-                    if(data.status==1){
-                        //    success
-                        $('.share-pop').removeClass('hide');
-                        var sharepath = window.location.origin+'/photo?id='+self.id;
 
-                        wx.ready(function(){
-                            wx.onMenuShareTimeline({
-                                title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
-                                link: sharepath,
-                                imgUrl: window.location.origin+'/app/images/kv.png',
-                                success:function(){
-                                    _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
-                                    self.shareSuccess();
-                                },
-                                cancel:function(){
 
-                                }
-                            });
-                            wx.onMenuShareAppMessage({
-                                title: 'COACH致爱母亲节',
-                                desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
-                                link: sharepath,
-                                imgUrl: window.location.origin+'/app/images/kv.png',
-                                type: '',
-                                dataUrl: '',
-                                success:function(){
-                                    _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to friend']);
-                                    self.shareSuccess();
-                                },
-                                cancel:function(){
-                                }
-                            });
+
+
+
+                if($('#capture').val() == ""){
+                    Common.alertBox.add("请上传图片");
+                }else{
+                        if(!enable) return;
+                        enable = false;
+
+                        //render new picture
+                        var renderPic = canvas.toDataURL({
+                            format: 'png',
+                            quality: 1
+                        });
+                        //    submit writeGreeting
+                        Api.writeGreeting({
+                            greeting:words,
+                            background:self.curBackground,
+                            image:renderPic
+                        },function(data){
+                            enable = true;
+                            if(data.status==1){
+                                //    success
+                                $('.share-pop').removeClass('hide');
+                                var sharepath = window.location.origin+'/photo?id='+self.id;
+
+                                wx.ready(function(){
+                                    wx.onMenuShareTimeline({
+                                        title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+                                        link: sharepath,
+                                        imgUrl: window.location.origin+'/app/images/kv.png',
+                                        success:function(){
+                                            _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to Moments']);
+                                            self.shareSuccess();
+                                        },
+                                        cancel:function(){
+
+                                        }
+                                    });
+                                    wx.onMenuShareAppMessage({
+                                        title: 'COACH致爱母亲节',
+                                        desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+                                        link: sharepath,
+                                        imgUrl: window.location.origin+'/app/images/kv.png',
+                                        type: '',
+                                        dataUrl: '',
+                                        success:function(){
+                                            _hmt.push(['_trackEvent', 'buttons', 'share', 'Share to friend']);
+                                            self.shareSuccess();
+                                        },
+                                        cancel:function(){
+                                        }
+                                    });
+
+                                });
+
+                            }else if(data.status==0){
+                                //not login
+                                Common.goIndexpage();
+                            }else{
+                                Common.alertBox.add(data.msg);
+                            }
 
                         });
-
-                    }else if(data.status==0){
-                        //not login
-                        Common.goIndexpage();
-                    }else{
-                        Common.alertBox.add(data.msg);
-                    }
-
-                });
+                }
             });
 
 
@@ -404,6 +414,7 @@
                 }else{
                     //    未绑定
                     Common.goMobilePage();
+
                 }
             });
         },
