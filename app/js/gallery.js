@@ -23,7 +23,7 @@ $(document).ready(function(){
 					'<span class="icon-good">'+listData[i].ballot+'</span>'+
 					'</div>'+
 					'<div class="photo-wrap">'+
-					'<div class="photo-frame photo photo-1">'+
+					'<div class="photo-frame photo photo-'+ listData[i].background +'">'+
 					'<div class="block-photo">'+
 					'<div class="p-inner">'+
 					'<img src="'+listData[i].image+'" alt=""/>'+
