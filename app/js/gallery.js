@@ -17,13 +17,13 @@ $(document).ready(function(){
 			var listHtml = '';
 			totalPage = parseInt(data.msg.totalpage);
 			for(var i=0;i<listData.length;i++){
-				listHtml = listHtml+'<li class="item">'+
+				listHtml += listHtml+'<li class="item">'+
 					'<div class="top-banner">'+
 					'<span class="user-name">'+listData[i].nickname+'</span>'+
 					'<span class="icon-good">'+listData[i].ballot+'</span>'+
 					'</div>'+
 					'<div class="photo-wrap">'+
-					'<div class="photo-frame photo photo-1">'+
+					'<div class="photo-frame photo photo-'+ listData[i].background +'">'+
 					'<div class="block-photo">'+
 					'<div class="p-inner">'+
 					'<img src="'+listData[i].image+'" alt=""/>'+
@@ -61,13 +61,13 @@ $(document).ready(function(){
 					var listData = data.msg.list;
 					var listHtml = '';
 					for(var i=0;i<listData.length;i++){
-						listHtml = '<li class="item">'+
+						listHtml += '<li class="item">'+
 							'<div class="top-banner">'+
 							'<span class="user-name">'+listData[i].nickname+'</span>'+
 							'<span class="icon-good">'+listData[i].ballot+'</span>'+
 							'</div>'+
 							'<div class="photo-wrap">'+
-							'<div class="photo-frame photo photo-1">'+
+							'<div class="photo-frame photo photo-'+ listData[i].background +'">'+
 							'<div class="block-photo">'+
 							'<div class="p-inner">'+
 							'<img src='+listData[i].image+' alt=""/>'+

@@ -1,7 +1,7 @@
 function wxshare(sharepath){
     wx.ready(function(){
         wx.onMenuShareTimeline({
-            title: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+            title: '母亲节，为妈妈赢取全新Saddle手袋',
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             success:function(){
@@ -12,7 +12,7 @@ function wxshare(sharepath){
         });
         wx.onMenuShareAppMessage({
             title: 'COACH致爱母亲节',
-            desc: '大声说出对妈妈的爱，赢取全新Saddle手袋！',
+            desc: '母亲节，为妈妈赢取全新Saddle手袋',
             link: sharepath,
             imgUrl: window.location.origin+'/app/images/kv.png',
             type: '',
