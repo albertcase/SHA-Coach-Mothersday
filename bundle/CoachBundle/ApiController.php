@@ -201,6 +201,7 @@ class ApiController extends Controller {
 	}
 
 	public function greetingAction() {
+		return $this->statusPrint(2, '活动已经结束');
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
@@ -265,6 +266,7 @@ class ApiController extends Controller {
 	}
 
 	public function ballotAction() {
+		return $this->statusPrint(2, '活动已经结束');
 		$UserAPI = new \Lib\UserAPI();
 		$user = $UserAPI->userLoad(true);
 		if (!$user) {
