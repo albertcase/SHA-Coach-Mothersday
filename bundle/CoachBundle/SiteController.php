@@ -7,7 +7,7 @@ use Core\Controller;
 class SiteController extends Controller {
 
 	public function indexAction() {	
-		if(date("Ymd")>=20160511) {
+		if(date("YmdH")>=2016051023) {
 			$this->render('index');
 			exit;
 		}
