@@ -7,14 +7,13 @@ use Core\Controller;
 class SiteController extends Controller {
 
 	public function indexAction() {	
-		$user_agent = $_SERVER['HTTP_USER_AGENT'];
-		if (strpos($user_agent, 'MicroMessenger') === false) {
-		    // 非微信浏览器禁止浏览
-		    echo "HTTP/1.1 401 Unauthorized";
-		    exit;
-		}
 			
 		$this->render('index');
+		exit;
+	}
+
+	public function testAction() {		
+		$this->render('old');
 		exit;
 	}
 
