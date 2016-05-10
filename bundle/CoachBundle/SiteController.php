@@ -13,7 +13,7 @@ class SiteController extends Controller {
 	}
 
 	public function testAction() {		
-		$this->render('old');
+		$this->render('index');
 		exit;
 	}
 
