@@ -77,12 +77,12 @@ class SiteController extends Controller {
 	}
 
 	public function galleryAction() {	
-		$user_agent = $_SERVER['HTTP_USER_AGENT'];
-		if (strpos($user_agent, 'MicroMessenger') === false) {
-		    // 非微信浏览器禁止浏览
-		    echo "HTTP/1.1 401 Unauthorized";
-		    exit;
-		}
+		// $user_agent = $_SERVER['HTTP_USER_AGENT'];
+		// if (strpos($user_agent, 'MicroMessenger') === false) {
+		//     // 非微信浏览器禁止浏览
+		//     echo "HTTP/1.1 401 Unauthorized";
+		//     exit;
+		// }
 		// $UserAPI = new \Lib\UserAPI();
 		// $user = $UserAPI->userLoad(true);
 		// if (!$user) {
