@@ -9,7 +9,7 @@ class SiteController extends Controller {
 	public function indexAction() {	
 		if(date("Ymd")>=20160511) {
 			$this->render('index');
-			exit
+			exit;
 		}
 		$this->render('old');
 		exit;
