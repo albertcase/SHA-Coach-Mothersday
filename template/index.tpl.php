@@ -54,7 +54,7 @@
             <img src="../app/images/kv.png" alt=""/>
         </div>
         <div class="p1-t1">
-            <img src="../app/images/p1-t1.png" alt=""/>
+            <img src="../app/images/stop-tips.png" alt=""/>
         </div>
         <div class="btn-sprite btn-gogallery"></div>
         <div class="btn-sprite btn-filltext"></div>
