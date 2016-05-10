@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -23,7 +22,7 @@
     </script>
 
     <!-- inject:js -->
-    <script src="/app/js/widget/widget_index.js"></script>
+    <script src="/app/js/widget/widget_index_new.js"></script>
     <!-- endinject -->
 </head>
 <body>

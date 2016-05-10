@@ -52,8 +52,7 @@ $(document).ready(function(){
                 $('.btn-filltext').on('click',function(){
                     //ifplay,if not, go page pin-2,else go myphoto page
                     _hmt.push(['_trackEvent', 'buttons', 'click', 'Play1']);
-                    Common.alertBox.add('活动已结束');
-                    //Common.goReloadHomePage();
+                    Common.goReloadHomePage();
 
                     //Api.isFollow(function(datafollow){
                     //    if(datafollow.status==1){
