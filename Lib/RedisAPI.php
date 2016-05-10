@@ -36,13 +36,13 @@ class RedisAPI {
 	}
 
 	public function getList($page, $row) {
-		if ($this->_redis->get("Coach:List:".$page)) {
-			return unserialize($this->_redis->get("Coach:List:".$page));
-		}	
+		// if ($this->_redis->get("Coach:List:".$page)) {
+		// 	return unserialize($this->_redis->get("Coach:List:".$page));
+		// }	
 		$databaseapi = new \Lib\DatabaseAPI();
 		$rs = $databaseapi->getGreeting($page, $row);
-		$this->_redis->set("Coach:List:".$page, serialize($rs));
-		$this->_redis->setTimeout("Coach:List:".$page, 30);
+		// $this->_redis->set("Coach:List:".$page, serialize($rs));
+		// $this->_redis->setTimeout("Coach:List:".$page, 30);
 		return $rs;
 	}
 
