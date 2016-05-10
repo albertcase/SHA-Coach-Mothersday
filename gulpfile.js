@@ -15,6 +15,7 @@ var path = {
     css:['./app/css/*.css'],
     js:['./app/js/*.js','!app/js/widget.js'],
     index_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/pre-loader.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/index.js'],
+    index_new_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/index-new.js'],
     home_incluede_js:['./app/js/lib/zepto.min.js','./app/js/lib/lrz.all.bundle.js','./app/js/lib/fabric2.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/controller.js'],
     photo_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/photopage.js'],
     gallery_incluede_js:['./app/js/lib/zepto.min.js','./app/js/rem.js','./app/js/weixinshare.js','./app/js/api.js','./app/js/common.js','./app/js/gallery.js'],
@@ -66,6 +67,18 @@ gulp.task('indexjs', function () {
         .pipe(gulp.dest('./app/js/widget'));
 });
 
+//concat and uglify indexnewjs
+gulp.task('indexnewjs', function () {
+    // 1. 找到文件
+    gulp.src(path.index_new_incluede_js)
+        .pipe(concat('widget_index_new.js'))
+        // 2. 压缩文件
+        .pipe(uglify())
+        .pipe(rename('widget_index_new.js'))
+        // 3. 另存为压缩文件
+        .pipe(gulp.dest('./app/js/widget'));
+});
+
 //concat and uglify homejs
 gulp.task('homejs', function () {
     // 1. 找到文件
@@ -112,6 +125,17 @@ gulp.task('generate_index',['css','indexjs'], function () {
         .pipe(gulp.dest('./template'));
 });
 
+//generate index_new.tpl.php
+gulp.task('generate_index_new',['css','indexnewjs'], function () {
+    var target = gulp.src('./template/index.html');
+    // It's not necessary to read the files (will speed up things), we're only after their paths:
+    var sources = gulp.src(['./app/js/widget/widget_index_new.js', './app/css/style.css'], {read: false});
+
+    return target.pipe(inject(sources))
+        .pipe(rename('index.tpl.php'))
+        .pipe(gulp.dest('./template'));
+});
+
 //generate home.tpl.php
 gulp.task('generate_home',['css','homejs'], function () {
     var target = gulp.src('./template/home.html');
@@ -145,7 +169,7 @@ gulp.task('generate_gallery',['css','galleryjs'], function () {
         .pipe(gulp.dest('./template'));
 });
 
-gulp.task('template',['generate_index','generate_home','generate_photo','generate_gallery']);
+gulp.task('template',['generate_index','generate_index_new','generate_home','generate_photo','generate_gallery']);
 
 gulp.task('default',['browser-sync']);
 
